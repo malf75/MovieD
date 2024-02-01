@@ -99,7 +99,7 @@ body{
     
 }
 
-textarea{
+.posta{
     border: 0.1px solid var(--cor-secundaria);
     border-radius: 40px;
     box-shadow: 0px 3px 8px #001131;
@@ -113,11 +113,6 @@ textarea{
     box-sizing: border-box;
     resize: none;
     color: var(--cor-secundaria);
-}
-
-textarea:focus, input:focus{
-    transition: 1s;
-    outline: none;
 }
 
 .form__submit{
@@ -148,6 +143,22 @@ textarea:focus, input:focus{
 
 .redirect{
     display: flex;
+}
+
+.busca{
+    border: 0.1px solid var(--cor-secundaria);
+    border-radius: 40px;
+    box-shadow: 0px 3px 8px #001131;
+    width: 70%;
+    height: 70px;
+    margin: 10% 8% 0 15%;
+    background-color: var(--cor-principal);
+    padding: 3% 3%;
+    font-family: var(--fonte-principal);
+    font-size: 24px;
+    box-sizing: border-box;
+    resize: none;
+    color: var(--cor-secundaria);
 }
 
 #btn{
@@ -289,8 +300,10 @@ textarea:focus, input:focus{
 
 .filme__opcoes{
     font-size: 25px;
-    padding: 0.2em 0 1em 32em;
+    padding: 0.2em 0 1em 30em;
     text-decoration: none;
+    display: flex;
+    flex-direction: row;
 }
 
 .filme__like{
@@ -576,4 +589,10 @@ textarea:focus, input:focus{
 
 .file-upload{
     display:none;
+}
+
+.number__likes{
+    font-size: 16px;
+    margin-top: 0.3em;
+    margin-right: 0.4em;
 }

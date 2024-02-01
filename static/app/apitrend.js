@@ -9,7 +9,7 @@ const trends = document.querySelectorAll('.trend')
       postagens.forEach((postagem) => {
         filmes.forEach((filme) => {
           let titulo = filme.Series_Title;
-          let regex = new RegExp(`\\b${titulo}\\b`, 'i');
+          let regex = new RegExp(`\\b(?!:.)\\s*${titulo}\\b(?!:.)\\s*`, 'ig')
           if (regex.test(postagem.textContent)) {
             if (filmesMencionados[titulo]) {
               filmesMencionados[titulo] += 1;
@@ -40,7 +40,7 @@ const trends = document.querySelectorAll('.trend')
         filmes.forEach((filme) => {
           if (!filmeEncontrado) {
             let titulo = filme.Series_Title;
-            let regex = new RegExp(`\\b${titulo}\\b`, 'i');
+            let regex = new RegExp(`\\b(?!:.)\\s*${titulo}\\b(?!:.)\\s*`, 'ig')
             if (regex.test(trend.textContent)) {
               const containerFilmesTrend = document.createElement('div');
               containerFilmesTrend.classList.add('filme__trend');

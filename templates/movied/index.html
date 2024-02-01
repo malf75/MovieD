@@ -51,7 +51,7 @@
         <img class="logo" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied">
         <form class="form" action="{% url 'index' %}" method="POST">
         {% csrf_token %}
-            <textarea name="postagemt" id="postagem" placeholder="Comment your review" maxlength="400" style="height: auto;" required></textarea>
+            <textarea class="posta" name="postagemt" id="postagem" placeholder="Comment your review" maxlength="400" style="height: auto;" required></textarea>
             <input type="submit" value="Post" class="form__submit">
         </form>
         <div class="tabela">
@@ -88,6 +88,9 @@
     </section>
     <div class="vl2"></div>
     <section>
+        <form class="form2" action="{% url 'index' %}" method="POST">
+            <textarea class="busca" name="busca" id="busca" maxlength="30" placeholder="Search"></textarea>
+        </form>
         <div class="rt">
             <h3 class="rt__texto">Trending Movies</h3>
             <div class="tabela-trend">
