@@ -1,0 +1,92 @@
+{% extends 'movied/base.html' %}
+{% load static %}
+{% block content %}
+
+{% if profile %}
+<section class="redirect">
+<div>
+    <button id="btn"><i class="fa-solid fa-moon"></i></button>
+</div>
+</section>
+<div class="vl"></div>
+<section>
+    <div class="container3">
+        <img class="logo logo__profile" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied">
+        <div>
+            {% if profile == user.profile %}
+                {% if profile.user.profile.profile_image %}
+                <form id="image-change" method="POST" enctype="multipart/form-data" action="{% url 'profile' request.user.id %}">
+                {% csrf_token %}
+                    <label for="file-upload" class="custom-file-upload">
+                        <img src="{{ profile.user.profile.profile_image.url }}" class="foto__perfil-pp" alt="foto de perfil">   
+                {% else %}
+                        <img src="{% static 'img/default.jpg'%}" class="foto__perfil-pp" alt="foto de perfil">
+                {% endif %}
+                <input class="file-upload" id="file-upload" name="nova-imagem" type="file" accept="image/*" onchange="submitForm()">
+                    </label>
+                </form>
+            {% else %}
+            {% if profile.user.profile.profile_image %}
+                <img src="{{ profile.user.profile.profile_image.url }}" class="foto__perfil-pp" alt="foto de perfil">
+            {% else %}
+                <img src="{% static 'img/default.jpg'%}" class="foto__perfil-pp" alt="foto de perfil">
+            {% endif %}
+            {% endif %}
+        </div>
+        <h1 class="nome__perfil">{{ profile.user.username | title }}</h1>
+        <div class="follows__f">
+            <strong class="follows">Followed By</strong>
+            <a href="#" class="fol">{{ profile.followed_by.all|length }}</a>
+            <strong class="following">Following</strong>
+            <a href="#" class="fol">{{ profile.follows.all|length }}</a>
+            {% if profile == user.profile %}
+            {% else %}
+            <form method="POST">
+                {% csrf_token %}
+                {% if profile in user.profile.follows.all %}
+                    <button class="botao_follow" name="follow" value="unfollow" type="submit">Unfollow</button>
+                {% else %}
+                    <button class="botao_follow" name="follow" value="follow" type="submit">Follow</button>
+                {% endif %}
+            </form>
+            {% endif %}
+        </div>
+        {% if posts %}
+                {% for postagem in posts %}
+                <div class="quem">
+                {% if postagem.user.profile.profile_image %}
+                <div id="container2">
+                    <img class="foto__perfil" src="{{ postagem.user.profile.profile_image.url }}" class="foto__perfil-post">
+                </div>
+                {% else %}
+                <div id="container2">
+                    <img src="{% static 'img/default.jpg'%}" class="foto__perfil" alt="foto de perfil">
+                </div>
+                {% endif %}
+                <p class="postagem__data"><strong>{{ postagem.user | title }}</strong> • {{ postagem.data_postagem }}</p>
+                </div>
+            <div class="paragrafo">
+                <p class="postagem__paragrafo">{{ postagem.comentario }}</p>
+            </div>
+            <div class="filme__opcoes">
+                {% if user in postagem.likes.all %}
+                <p class="number__likes">{{postagem.number_of_likes}}</p><a href="{% url 'postagem_like' postagem.id %}" class="filme__like"><i class="fa-solid fa-heart"></i></a>
+                {% else %}
+                <p class="number__likes">{{postagem.number_of_likes}}</p><a href="{% url 'postagem_like' postagem.id %}" class="filme__like"><i class="fa-regular fa-heart"></i></a>
+                {% endif %}
+                <a href="#" class="filme__comment"><i class="fa-regular fa-comment"></i></a>
+                <a href="#" class="filme__save"><i class="fa-regular fa-bookmark"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        {% endif %}
+</div>
+{% endif %}
+</section>
+<div class="vl2"></div>
+<section>
+    
+</section>
+
+{% endblock %}

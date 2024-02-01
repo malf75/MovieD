@@ -1,0 +1,97 @@
+{% extends 'movied/base.html' %}
+{% load static %}
+{% block content %}
+    <section class="redirect">
+        <div>
+            <button id="btn"><i class="fa-solid fa-moon"></i></button>
+        </div>
+        <div id="container" class="redirect__forms">
+            {% if user.is_authenticated %}
+                <div class="foto__perfil-d">
+                    <input type="checkbox" id="menu" class="container__btn foto__perfil-a">
+                    <label for="menu">
+                        {% if user.profile.profile_image %}
+                        <img src="{{ user.profile.profile_image.url }}" class="foto__perfil" alt="foto de perfil">
+                        {% else %}
+                        <img src="{% static 'img/default.jpg'%}" class="foto__perfil" alt="foto de perfil">
+                        {% endif %}
+                        <span class="foto__perfil"></span>
+                    </label>
+                    <ul class="lista-menu">
+                        <li class="lista-menu__item">
+                            <a href="{% url 'profile' request.user.id %}" class="lista-menu__link">Profile</a>
+                        </li>
+                        <li class="lista-menu__item">
+                            <a href="{% url 'logout' %}" class="lista-menu__link">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            {% else %}
+            <a href="{% url 'login' %}" class="redirect__login">Login</a>
+            <a href="{% url 'signup' %}" class="redirect__cadastro">Sign Up</a>
+            {% endif %}
+        </div>
+        <div class="redirect__navbar">
+            <a href="{% url 'index' %}" class="redirect__navbar__botao"><span class="fa fa-house"></span>Home</a>
+            <a href="#" class="redirect__navbar__botao"><span class="fa fa-bell"></span>Notifications</a>
+            <a href="#" class="redirect__navbar__botao"><span class="fa fa-clipboard"></span>Lists</a>
+            <a href="#" class="redirect__navbar__botao"><span class="fa fa-envelope"></span>Messages</a>
+            <a href="#" class="redirect__navbar__botao"><span class="fa fa-gear"></span>Preferences</a>
+        </div> 
+    </section>
+    <div class="vl"></div>
+    <section>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="warning" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <img class="logo" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied">
+        <form class="form" action="{% url 'index' %}" method="POST">
+        {% csrf_token %}
+            <textarea name="postagemt" id="postagem" placeholder="Comment your review" maxlength="400" style="height: auto;" required></textarea>
+            <input type="submit" value="Post" class="form__submit">
+        </form>
+        <div class="tabela">
+                {% if posts %}
+                {% for postagem in posts %}
+                <div class="quem">
+                {% if postagem.user.profile.profile_image %}
+                <div id="container2">
+                    <a href="{% url 'profile' postagem.user.id %}"><img class="foto__perfil" src="{{ postagem.user.profile.profile_image.url }}" class="foto__perfil-post"></a>
+                </div>
+                {% else %}
+                <div id="container2">
+                    <a href="{% url 'profile' postagem.user.id %}"><img src="{% static 'img/default.jpg'%}" class="foto__perfil" alt="foto de perfil"></a>
+                </div>
+                {% endif %}
+                <p class="postagem__data"><strong>{{ postagem.user | title }}</strong> • {{ postagem.data_postagem }}</p>
+                </div>
+            <div class="paragrafo">
+                <p class="postagem__paragrafo">{{ postagem.comentario }}</p>
+            </div>
+            <div class="filme__opcoes">
+                {% if user in postagem.likes.all %}
+                <p class="number__likes">{{postagem.number_of_likes}}</p><a href="{% url 'postagem_like' postagem.id %}" class="filme__like"><i class="fa-solid fa-heart"></i></a>
+                {% else %}
+                <p class="number__likes">{{postagem.number_of_likes}}</p><a href="{% url 'postagem_like' postagem.id %}" class="filme__like"><i class="fa-regular fa-heart"></i></a>
+                {% endif %}
+                <a href="#" class="filme__comment"><i class="fa-regular fa-comment"></i></a>
+                <a href="#" class="filme__save"><i class="fa-regular fa-bookmark"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        {% endif %}
+    </section>
+    <div class="vl2"></div>
+    <section>
+        <div class="rt">
+            <h3 class="rt__texto">Trending Movies</h3>
+            <div class="tabela-trend">
+            </div>
+        </div>
+    </section>
+{% endblock %}

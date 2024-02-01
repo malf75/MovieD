@@ -1,0 +1,23 @@
+{% extends 'movied/base.html' %}
+{% load static %}
+{% block content %}
+    <div>
+        <button id="btn"><i class="fa-solid fa-moon"></i></button>
+    </div>
+    <form action="{% url 'signup' %}" method="POST">
+        {% csrf_token %}
+    <div class="container">
+        <div class="container__signup">
+            <img class="logo logo__signup" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied">
+            <input class="input__signup" type="text" placeholder="username" name="nome" required>
+            <p class="erro__senha-sign">{{ erros.username }}</p>
+            <input class="input__signup" type="email" placeholder="email" name="email" required>
+            <input class="input__signup" type="password" placeholder="password" name="password" required>
+            <p class="erro__senha-sign">{{ erros.password }}</p>
+            <input class="input__signup" type="password" placeholder="repeat password" name="password2" required>
+            <p class="erro__senha-sign">{{ erros.password }}</p>
+            <input class="input__signup__post" type="submit" value="SIGN UP">
+        </div>
+    </form>
+    </div>
+{% endblock %}

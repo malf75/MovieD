@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "compromise": "^14.11.2",
+    "fuse": "^0.11.3",
+    "string-similarity": "^4.0.4",
+    "string-similarity-js": "^2.1.4"
+  }
+}
