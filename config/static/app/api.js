@@ -8,8 +8,6 @@ fetch("https://jsvx4qwrvwso7batrajoavuoysd0rvjpi9dg90wure.vercel.app/filmes")
   .then(res => res.json())
   .then((filmes) => {
 
-// Cria o container de opções do filme //
-
     selectFilmes.style.position = "absolute"
     selectFilmes.style.display = "none"
     selectFilmes.title = "opções de filme"
@@ -61,8 +59,6 @@ fetch("https://jsvx4qwrvwso7batrajoavuoysd0rvjpi9dg90wure.vercel.app/filmes")
     
     document.body.appendChild(selectFilmes)
   }
-
-// Printa as informações nas Postagens //
 
     postagens.forEach((postagem, index) => {
       let filmeEncontrado = false
