@@ -153,7 +153,7 @@ body{
     height: 70px;
     margin: 10% 8% 0 15%;
     background-color: var(--cor-principal);
-    padding: 3% 3%;
+    padding: 4% 3%;
     font-family: var(--fonte-principal);
     font-size: 24px;
     box-sizing: border-box;
@@ -346,9 +346,6 @@ body{
 ::-webkit-scrollbar-thumb:hover {
     background: #001131;
 }
-
-
-/* SIGN UP STYLES */
 
 .container__signup{
     border: 1px solid var(--cor-secundaria);

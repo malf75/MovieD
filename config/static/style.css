@@ -347,9 +347,6 @@ body{
     background: #001131;
 }
 
-
-/* SIGN UP STYLES */
-
 .container__signup{
     border: 1px solid var(--cor-secundaria);
     border-radius: 20px;
