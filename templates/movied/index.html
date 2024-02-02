@@ -60,7 +60,7 @@
                 <div class="quem">
                 {% if postagem.user.profile.profile_image %}
                 <div id="container2">
-                    <a href="{% url 'profile' postagem.user.id %}"><img class="foto__perfil" src="{{ postagem.user.profile.profile_image.url }}" class="foto__perfil-post"></a>
+                    <a href="{% url 'profile' postagem.user.id %}"><img class="foto__perfil" src="{{ postagem.user.profile.profile_image.url }}" class="foto__perfil-post" alt="foto de perfil"></a>
                 </div>
                 {% else %}
                 <div id="container2">

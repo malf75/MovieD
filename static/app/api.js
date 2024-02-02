@@ -12,6 +12,7 @@ fetch("https://jsvx4qwrvwso7batrajoavuoysd0rvjpi9dg90wure.vercel.app/filmes")
 
     selectFilmes.style.position = "absolute"
     selectFilmes.style.display = "none"
+    selectFilmes.title = "opções de filme"
 
     filmes.forEach((filme) => {
       const option = document.createElement('option')

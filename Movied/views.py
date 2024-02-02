@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from django.utils import timezone
 
+
 def index(request):
     postagens = Postagem.objects.all().order_by("-data_postagem")
     
@@ -126,6 +127,7 @@ def profile(request, pk):
 
         return render(request, "movied/profile.html", {"profile":profile, "posts":postagens})
     else:
+        messages.warning(request, ('You Must Be Logged In'))
         return redirect('index')
     
 def postagem_like(request, pk):

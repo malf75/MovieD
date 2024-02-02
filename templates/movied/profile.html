@@ -5,7 +5,7 @@
 {% if profile %}
 <section class="redirect">
 <div>
-    <button id="btn"><i class="fa-solid fa-moon"></i></button>
+    <button id="btn" title="botão darkmode"><i class="fa-solid fa-moon"></i></button>
 </div>
 </section>
 <div class="vl"></div>
@@ -14,10 +14,10 @@
         <img class="logo logo__profile" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied">
         <div>
             {% if profile == user.profile %}
-                {% if profile.user.profile.profile_image %}
                 <form id="image-change" method="POST" enctype="multipart/form-data" action="{% url 'profile' request.user.id %}">
                 {% csrf_token %}
-                    <label for="file-upload" class="custom-file-upload">
+                <label for="file-upload" class="custom-file-upload">
+                {% if profile.user.profile.profile_image %}              
                         <img src="{{ profile.user.profile.profile_image.url }}" class="foto__perfil-pp" alt="foto de perfil">   
                 {% else %}
                         <img src="{% static 'img/default.jpg'%}" class="foto__perfil-pp" alt="foto de perfil">

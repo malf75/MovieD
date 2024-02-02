@@ -30,6 +30,11 @@ body{
     transition: 0.3s;
 }
 
+textarea:focus, input:focus{
+    transition: 1s;
+    outline: none;
+}
+
 .vl{
     border-left: 1px solid var(--cor-secundaria);
     height: 100%;

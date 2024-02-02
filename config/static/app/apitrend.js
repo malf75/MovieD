@@ -6,8 +6,6 @@ const trends = document.querySelectorAll('.trend')
     .then(res => res.json())
     .then((filmes) => {
 
-// Checa os filmes mencionados nas postagens //
-
       let filmesMencionados = {};
       postagens.forEach((postagem) => {
         filmes.forEach((filme) => {
@@ -35,8 +33,6 @@ const trends = document.querySelectorAll('.trend')
             containerFilmes.innerHTML = filme[0]
             tabelaTrend.appendChild(containerFilmes)
       })
-
-// Cria o container de filmes em alta //
 
       const trends = document.querySelectorAll('.trend');
 
