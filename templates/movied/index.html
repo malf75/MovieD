@@ -8,7 +8,7 @@
         <div id="container" class="redirect__forms">
             {% if user.is_authenticated %}
                 <div class="foto__perfil-d">
-                    <input type="checkbox" id="menu" class="container__btn foto__perfil-a">
+                    <input type="checkbox" id="menu" class="container__btn">
                     <label for="menu">
                         {% if user.profile.profile_image %}
                         <img src="{{ user.profile.profile_image.url }}" class="foto__perfil" alt="foto de perfil">

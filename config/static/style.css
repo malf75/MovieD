@@ -122,7 +122,7 @@ textarea:focus, input:focus{
 
 .form__submit{
     width: 15%;
-    margin: 2% 8% 0% 77%;
+    margin: 2% 8% 0% 76.5%;
     padding: 1.5% 1%;
     border-radius: 40px;
     background-color: var(--cor-principal);
@@ -246,11 +246,11 @@ textarea:focus, input:focus{
 
 .logo{
     height: 80px;
-    margin: 2em 17em 0em 27em;
+    margin: 2em 26em 0em 26em;
 }
 
 .form{
-    margin: 0em 1em 1em 2.2em;
+    margin: 0em 2.2em 1em 2.2em;
 }
 
 .entrada__texto{
@@ -473,6 +473,26 @@ textarea:focus, input:focus{
     margin-left: 0.6em;
 }
 
+.lista-menu2{
+    display: none;
+    position: absolute;
+    list-style-type: none;
+    margin-left: 1.7em;
+}
+
+.lista-menu__item2{
+    font-family: var(--fonte-principal);
+    font-size: 16px;
+    margin-left: 0.3em;
+    margin-top: 0.1em;
+    padding: 0.2em;
+    background-color: var(--cor-secundaria);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    
+}
+
 .lista-menu__item{
     font-family: var(--fonte-principal);
     font-size: 16px;
@@ -491,11 +511,20 @@ textarea:focus, input:focus{
     text-decoration: none;
 }
 
+.lista-menu__link2{
+    color: var(--cor-principal);
+    text-decoration: none;
+}
+
 .container__btn{
     display: none;
 }
 
 .container__btn:checked ~ .lista-menu {
+    display: block;
+}
+
+.container__btn:checked ~ .lista-menu2 {
     display: block;
 }
 
@@ -543,7 +572,7 @@ textarea:focus, input:focus{
 
 .nome__perfil{
     font-family: var(--fonte-principal);
-    margin: 0.4em 0 0.4em 1.7em;
+    margin: 1.4em 0 0.4em 1.7em;
 }
 
 .follows__f{
@@ -650,4 +679,11 @@ textarea:focus, input:focus{
     font-size: 15px;
     font-weight: 700;
     opacity: 40%;
+}
+
+.explicacao__suggestion{
+    font-family: var(--fonte-principal);
+    color: var(--cor-secundaria);
+    margin-bottom: 1em;
+    text-align: center;
 }

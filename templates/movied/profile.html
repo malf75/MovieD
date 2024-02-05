@@ -14,17 +14,19 @@
         <img class="logo logo__profile" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied">
         <div>
             {% if profile == user.profile %}
-                <form id="image-change" method="POST" enctype="multipart/form-data" action="{% url 'profile' request.user.id %}">
-                {% csrf_token %}
-                <label for="file-upload" class="custom-file-upload">
+                <input type="checkbox" id="menu2" class="container__btn">
+                <label for="menu2">
                 {% if profile.user.profile.profile_image %}              
-                        <img src="{{ profile.user.profile.profile_image.url }}" class="foto__perfil-pp" alt="foto de perfil">   
+                    <img src="{{ profile.user.profile.profile_image.url }}" class="foto__perfil-pp" alt="foto de perfil">   
                 {% else %}
-                        <img src="{% static 'img/default.jpg'%}" class="foto__perfil-pp" alt="foto de perfil">
+                    <img src="{% static 'img/default.jpg'%}" class="foto__perfil-pp" alt="foto de perfil">
                 {% endif %}
-                <input class="file-upload" id="file-upload" name="nova-imagem" type="file" accept="image/*" onchange="submitForm()">
-                    </label>
-                </form>
+                </label>
+                <ul class="lista-menu2">
+                    <li class="lista-menu__item2">
+                        <a href="#" class="lista-menu__link2">Edit Profile</a>
+                    </li>
+                </ul>
             {% else %}
             {% if profile.user.profile.profile_image %}
                 <img src="{{ profile.user.profile.profile_image.url }}" class="foto__perfil-pp" alt="foto de perfil">
