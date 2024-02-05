@@ -1,0 +1,28 @@
+{% extends 'movied/base.html' %}
+{% load static %}
+{% block content %}
+<section>
+    <div>
+        <button id="btn"><i class="fa-solid fa-moon"></i></button>
+    </div>
+</section>
+<hl class="vl"></hl>
+<section class="form__filme">
+    <img class="logo logo__suggestions" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied">
+    <div class="forms">
+        <form action="{% url 'suggestions' %}" method="POST">
+        {% csrf_token %}
+        <input name="nome-filme" class="forms__filme nome__filme" type="text" maxlength="50" placeholder="Series Title">
+        <input name="ano-filme" class="forms__filme ano__filme" type="number" maxlength="4" placeholder="Release Year">
+        <input name="duracao-filme" class="forms__filme duracao__filme" type="text" maxlength="10" placeholder="Runtime">
+        <input name="genero-filme" class="forms__filme genero__filme" type="text" maxlength="50" placeholder="Genre">
+        <input name="rating-filme" step="0.1" class="forms__filme rating__filme" type="number" maxlength="4" placeholder="IMDB Rating">
+        <input name="sinopse-filme" class="forms__filme sinopse__filme" type="text" maxlength="400" placeholder="Overview">
+        <input class="input__suggestion" type="submit" value="Submit" required>
+        </form>
+    </div>
+</section>
+<hl class="vl2"></hl>
+<section>
+</section>
+{% endblock %}

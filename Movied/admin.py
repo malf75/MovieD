@@ -1,5 +1,5 @@
 from django.contrib import admin
-from Movied.models import Postagem
+from Movied.models import Postagem, Suggestions
 from django.contrib.auth.models import User, Group
 from .models import Profile
 
@@ -14,6 +14,12 @@ class ListandoPostagens(admin.ModelAdmin):
 class ProfileInLine(admin.StackedInline):
     model=Profile
 
+class ListSuggestions(admin.ModelAdmin):
+    list_display = ("id", "Series_Title")
+    list_display_links = ("id", "Series_Title")
+    search_fields = ("id", "Series_Title")
+    list_per_page = 10
+
 class UserAdmin(admin.ModelAdmin):
     model=User
     inlines= [ProfileInLine]
@@ -22,5 +28,7 @@ admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 
 admin.site.register(Postagem, ListandoPostagens)
+
+admin.site.register(Suggestions, ListSuggestions)
 
 

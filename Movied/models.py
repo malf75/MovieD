@@ -14,7 +14,7 @@ class Postagem(models.Model):
 
     def __str__(self):
          return(
-              f"{self.user} "
+              f"{self.user}"
               f"({self.data_postagem})"
               f"{self.comentario}"
          )
@@ -27,6 +27,19 @@ class Profile(models.Model):
     def __str__(self):
         return (f"{self.user.username}"
                 f"({self.user.id})"
+            )
+    
+class Suggestions(models.Model):
+    user = models.ForeignKey(User, related_name='suggestions', on_delete=models.DO_NOTHING, default=None)
+    Series_Title = models.CharField(null=False, blank=False, max_length=50)
+    Released_Year = models.IntegerField(null=False, blank=False)
+    Runtime = models.CharField(null=False, blank=False, max_length=10)
+    Genre = models.CharField(null=False, blank=False, max_length=50)
+    Rating = models.FloatField(null=False, blank=False)
+    Overview = models.TextField(null=False, blank=False, max_length=400)
+
+    def __str__(self):
+        return (f"{self.Series_Title}"
             )
 
 def create_profile(sender, instance, created, **kwargs):

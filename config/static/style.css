@@ -13,7 +13,7 @@
 }
 
 .dark-mode{
-    --cor-principal: black;
+    --cor-principal: #141E46;
     --cor-secundaria: #FFF5E0;
     transition: 0.3s;
 }
@@ -368,7 +368,7 @@ textarea:focus, input:focus{
     height: 60px;
     margin: 10% 8% 0 7%;
     background-color: var(--cor-principal);
-    padding: 3% 3%;
+    padding: 0.8em 1em 1em 1em;
     font-family: var(--fonte-principal);
     font-size: 24px;
     box-sizing: border-box;
@@ -508,7 +508,7 @@ textarea:focus, input:focus{
 .messages{
     padding: 0.2em;
     display: flex;
-    margin: 0 24em 0 20em;
+    margin: 0 22em 0 22em;
     list-style: none;
     border: 1px solid rgba(189, 1, 1, 0.5);
     justify-content: center;
@@ -597,4 +597,57 @@ textarea:focus, input:focus{
     font-size: 16px;
     margin-top: 0.3em;
     margin-right: 0.4em;
+}
+
+.form__filme{
+    display: flex;
+    flex-direction: column;
+}
+
+.forms{
+    flex-direction: column;
+    display: flex;
+    width: 20em;
+    margin: 2em 19em 2em 19em;
+}
+
+.logo__suggestions{
+    width: 80px;
+    height: 80px;
+}
+
+.forms__filme{
+    width: 88%;
+    padding: 2em;
+    margin-bottom: 2em;
+    border: 1px solid var(--cor-secundaria);
+    border-radius: 40px;
+    background-color: var(--cor-principal);
+    color: var(--cor-secundaria);
+}
+
+.input__suggestion{
+    width: 37%;
+    margin: 10% 8% 0% 34%;
+    padding: 1.5% 4%;
+    border-radius: 40px;
+    background-color: var(--cor-principal);
+    font-family: var(--fonte-principal);
+    color: var(--cor-secundaria);
+    font-size: 22px;
+    border: 2px solid var(--cor-secundaria);
+    cursor: pointer;
+}
+
+.input__suggestion:hover{
+    background-color: var(--cor-secundaria);
+    color: var(--cor-principal);
+ }
+
+.forms__filme::placeholder{
+    color: var(--cor-secundaria);
+    font-family: var(--fonte-principal);
+    font-size: 15px;
+    font-weight: 700;
+    opacity: 40%;
 }

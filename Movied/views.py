@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from Movied.models import Postagem, Profile
+from Movied.models import Postagem, Profile, Suggestions
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from django.utils import timezone
@@ -143,4 +143,34 @@ def postagem_like(request, pk):
     else:
         messages.warning(request, ('You Must Be Logged In'))
         return redirect('index')
+    
+def suggestions(request):
+
+    if request.method == "POST" and request.user.is_authenticated:
+
+        nome = request.POST.get('nome-filme', None)
+        ano = request.POST.get('ano-filme', None)
+        duracao = request.POST.get('duracao-filme', None)
+        genero = request.POST.get('genero-filme', None)
+        rating = request.POST.get('rating-filme', None)
+        sinopse = request.POST.get('sinopse-filme', None)
+        user = request.user
+        sugestao = Suggestions.objects.create(
+            user=user,
+            Series_Title=nome,
+            Released_Year=ano,
+            Runtime=duracao,
+            Genre=genero,
+            Rating=rating,
+            Overview=sinopse,
+        )
+
+        sugestao.save()
+        return redirect('index')
+    
+    if not request.user.is_authenticated:
+        messages.warning(request, ('You Must Be Logged In'))
+        return redirect('index')
+
+    return render(request, 'movied/suggestions.html')
     
