@@ -18,11 +18,29 @@ class Postagem(models.Model):
               f"({self.data_postagem})"
               f"{self.comentario}"
          )
+    
+class Comentarios(models.Model):
+    comentario = models.TextField(null=True, blank=True, max_length=400)
+    data_comentario = models.DateTimeField(default=datetime.now, blank=False)
+    user = models.ForeignKey(User, related_name='comentarios_postagem_user', on_delete=models.DO_NOTHING, default=None)
+    postagem = models.ForeignKey(Postagem, related_name='comentarios_postagem', default=None, on_delete=models.CASCADE)
+    comentario_pai = models.ForeignKey('self', related_name='comentarios_filhos', null=True, blank=True, on_delete=models.CASCADE)
+    likes = models.ManyToManyField(User, related_name="comentario_like", blank=True)
+
+    def number_of_likes(self):
+         return self.likes.count()
+
+    def __str__(self):
+         return(
+              f"{self.comentario}"
+              f"{self.data_comentario}"
+         )
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     follows = models.ManyToManyField("self", related_name="followed_by", symmetrical=False, blank=True)
     profile_image = models.ImageField(null=True, blank=True, upload_to="images/")
+    bio = models.TextField(null=True, blank=True, max_length = 80)
     
     def __str__(self):
         return (f"{self.user.username}"

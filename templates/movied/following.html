@@ -1,0 +1,39 @@
+{% extends 'movied/base.html' %}
+{% load static %}
+{% block content %}
+<section>
+    <div>
+        <button id="btn"><i class="fa-solid fa-moon"></i></button>
+    </div>
+</section>
+<hl class="vl"></hl>
+<section class="followers">
+    <a href="{% url 'index' %}" class="logo__ancora"><img class="logo logo__suggestions" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied"></a>
+{% if profiles %}
+    {% for profile in profiles.follows.all %}
+        <div class="followers__card">
+            {% if profile.profile_image %}
+            <a href="{% url 'profile' profile.user.id %}"><img src="{{ profile.profile_image.url }}" class="foto__followers" alt="{{ profile.user.username }}"></a>
+            <div class="nome__bio">
+                <h3 class="username__followers">{{ profile.user.username }}</h3>
+                {% if profile.bio %}
+                <p class="bio__followers">{{ profile.bio }}</p>
+                {% endif %}
+            </div>
+            {% else %}
+            <a href="{% url 'profile' profile.user.id %}"><img src="{% static 'img/default.jpg'%}" class="foto__followers" alt="{{ profile.user.username }}"></a>
+            <div class="nome__bio">
+                <h3 class="username__followers">{{ profile.user.username }}</h3>
+                {% if profile.bio %}
+                <p class="bio__followers">{{ profile.bio }}</p>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+{% endif %}
+</section>
+<hl class="vl2"></hl>
+<section>
+</section>
+{% endblock %}

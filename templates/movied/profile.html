@@ -11,7 +11,7 @@
 <div class="vl"></div>
 <section>
     <div class="container3">
-        <img class="logo logo__profile" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied">
+        <a href="{% url 'index' %}" class="logo__ancora"><img class="logo logo__profile" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied"></a>
         <div>
             {% if profile == user.profile %}
                 <input type="checkbox" id="menu2" class="container__btn">
@@ -24,7 +24,7 @@
                 </label>
                 <ul class="lista-menu2">
                     <li class="lista-menu__item2">
-                        <a href="#" class="lista-menu__link2">Edit Profile</a>
+                        <a href="{% url 'profileedit' profile.user.id %}" class="lista-menu__link2">Edit Profile</a>
                     </li>
                 </ul>
             {% else %}
@@ -35,12 +35,15 @@
             {% endif %}
             {% endif %}
         </div>
-        <h1 class="nome__perfil">{{ profile.user.username | title }}</h1>
+        <h1 class="nome__perfil">{{ profile.user.username }}</h1>
+        {% if profile.bio %}
+            <p class="bio">{{ profile.user.profile.bio }}</p>
+        {% endif %}
         <div class="follows__f">
             <strong class="follows">Followed By</strong>
-            <a href="#" class="fol">{{ profile.followed_by.all|length }}</a>
+            <a href="{% url 'followers' profile.user.id %}" class="fol">{{ profile.followed_by.all|length }}</a>
             <strong class="following">Following</strong>
-            <a href="#" class="fol">{{ profile.follows.all|length }}</a>
+            <a href="{% url 'following' profile.user.id %}" class="fol">{{ profile.follows.all|length }}</a>
             {% if profile == user.profile %}
             {% else %}
             <form method="POST">
@@ -65,7 +68,7 @@
                     <img src="{% static 'img/default.jpg'%}" class="foto__perfil" alt="foto de perfil">
                 </div>
                 {% endif %}
-                <p class="postagem__data"><strong>{{ postagem.user | title }}</strong> • {{ postagem.data_postagem }}</p>
+                <p class="postagem__data"><strong>{{ postagem.user }}</strong> • {{ postagem.data_postagem }}</p>
                 </div>
             <div class="paragrafo">
                 <p class="postagem__paragrafo">{{ postagem.comentario }}</p>
@@ -76,7 +79,7 @@
                 {% else %}
                 <p class="number__likes">{{postagem.number_of_likes}}</p><a href="{% url 'postagem_like' postagem.id %}" class="filme__like"><i class="fa-regular fa-heart"></i></a>
                 {% endif %}
-                <a href="#" class="filme__comment"><i class="fa-regular fa-comment"></i></a>
+                <p class="comentarios__length">{{ postagem.comentarios_postagem.all.count }}</p><a href="{% url 'comentarios' postagem.id %}" class="filme__comment"><i class="fa-regular fa-comment"></i></a>
                 <a href="#" class="filme__save"><i class="fa-regular fa-bookmark"></i></a>
             </div>
         </div>

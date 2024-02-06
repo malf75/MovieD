@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from Movied.models import Postagem, Profile, Suggestions
+from Movied.models import Postagem, Profile, Suggestions, Comentarios
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from django.utils import timezone
+from django.http import JsonResponse
 
 
 def index(request):
@@ -111,17 +112,10 @@ def profile(request, pk):
             if 'follow' in request.POST:
                 current_user_profile = request.user.profile
                 action = request.POST.get('follow')
-                action2 = request.POST.get('mudar-foto')
                 if action == "unfollow":
                     current_user_profile.follows.remove(profile)
                 elif action == "follow":
                     current_user_profile.follows.add(profile)
-
-                if action2 == "mudar-foto":
-                    new_image = request.FILES.get('nova-imagem')
-                    if new_image:
-                        current_user_profile.profile_image = new_image
-                        current_user_profile.save()
 
                 current_user_profile.save()
 
@@ -129,6 +123,24 @@ def profile(request, pk):
     else:
         messages.warning(request, ('You Must Be Logged In'))
         return redirect('index')
+    
+def followers(request,pk):
+    if request.user.is_authenticated:
+        profiles = Profile.objects.get(user_id=pk)
+    else:
+        messages.warning(request, ('You Must Be Logged In'))
+        return redirect('index')
+
+    return render(request, 'movied/followers.html', {"profiles":profiles})
+
+def following(request,pk):
+    if request.user.is_authenticated:
+        profiles = Profile.objects.get(user_id=pk)
+    else:
+        messages.warning(request, ('You Must Be Logged In'))
+        return redirect('index')
+
+    return render(request, 'movied/following.html', {"profiles":profiles})
     
 def postagem_like(request, pk):
     if request.user.is_authenticated:
@@ -138,7 +150,11 @@ def postagem_like(request, pk):
         else:
             postagem.likes.add(request.user)
 
-        return redirect(request.META.get("HTTP_REFERER"))
+        data = {
+            'likes_count': postagem.likes.count(),
+            'user_liked': postagem.likes.filter(id=request.user.id).exists()
+        }
+        return JsonResponse(data)
 
     else:
         messages.warning(request, ('You Must Be Logged In'))
@@ -174,3 +190,71 @@ def suggestions(request):
 
     return render(request, 'movied/suggestions.html')
     
+def profile_edit(request, pk):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            current_user = request.user
+            profile = get_object_or_404(Profile, user=current_user)
+            erros = {}
+
+            nome = request.POST.get('nome', None)
+            bio = request.POST.get('bio', None)
+            imagem = request.FILES.get('profile_picture')
+
+            if nome:
+                if User.objects.filter(username=nome).exclude(pk=current_user.pk).exists():
+                    erros['username'] = "Username Already Exists"
+                if ' ' in nome:
+                    erros['username'] = "Spaces Are Not Permitted"
+
+            else:
+                nome = current_user.username
+            
+            if bio:
+                profile.bio = bio
+
+            if imagem:
+                profile.profile_image = imagem
+
+            if erros:
+                context = {'erros': erros, 'profiles': profile}
+                return render(request, 'movied/profileedit.html', context)
+            else:
+                if nome != current_user.username:
+                    current_user.username = nome
+                    current_user.save()
+                profile.save()
+                return redirect('profile', pk=pk)
+        else:
+            profiles = Profile.objects.get(user__id=request.user.id)
+            return render(request, 'movied/profileedit.html', {"profiles": profiles})
+    else:
+        messages.warning(request, ('You Must Be Logged In'))
+        return redirect('index')
+    
+def comentarios(request, pk):
+    if request.user.is_authenticated:
+        postagem = get_object_or_404(Postagem, id=pk)
+        if request.method == 'POST':
+            comentario_texto = request.POST.get('comentario')
+            Comentarios.objects.create(comentario=comentario_texto, postagem=postagem, user=request.user)
+            return redirect('comentarios', pk=pk)
+        return render(request, 'movied/comentarios.html', {'postagem':postagem})
+    
+def comentario_like(request, pk):
+    if request.user.is_authenticated:
+        comentario = get_object_or_404(Comentarios, id=pk)
+        if comentario.likes.filter(id=request.user.id):
+            comentario.likes.remove(request.user)
+        else:
+            comentario.likes.add(request.user)
+
+        data = {
+            'likes_count': comentario.likes.count(),
+            'user_liked': comentario.likes.filter(id=request.user.id).exists()
+        }
+        return JsonResponse(data)
+
+    else:
+        messages.warning(request, ('You Must Be Logged In'))
+        return redirect('index')

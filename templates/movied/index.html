@@ -57,6 +57,7 @@
         <div class="tabela">
                 {% if posts %}
                 {% for postagem in posts %}
+                {% if postagem.user.profile in user.profile.follows.all or postagem.user.profile == user.profile %}
                 <div class="quem">
                 {% if postagem.user.profile.profile_image %}
                 <div id="container2">
@@ -67,21 +68,22 @@
                     <a href="{% url 'profile' postagem.user.id %}"><img src="{% static 'img/default.jpg'%}" class="foto__perfil" alt="foto de perfil"></a>
                 </div>
                 {% endif %}
-                <p class="postagem__data"><strong>{{ postagem.user | title }}</strong> • {{ postagem.data_postagem }}</p>
+                <p class="postagem__data"><strong>{{ postagem.user }}</strong> • {{ postagem.data_postagem }}</p>
                 </div>
             <div class="paragrafo">
                 <p class="postagem__paragrafo">{{ postagem.comentario }}</p>
             </div>
             <div class="filme__opcoes">
                 {% if user in postagem.likes.all %}
-                <p class="number__likes">{{postagem.number_of_likes}}</p><a href="{% url 'postagem_like' postagem.id %}" class="filme__like"><i class="fa-solid fa-heart"></i></a>
+                <p data-post-id="{{ postagem.id }}" class="number__likes">{{postagem.number_of_likes}}</p><a href="{% url 'postagem_like' postagem.id %}" class="filme__like" data-post-id="{{ postagem.id }}" data-csrf-token="{{ csrf_token }}"><i class="fa-solid fa-heart"></i></a>
                 {% else %}
-                <p class="number__likes">{{postagem.number_of_likes}}</p><a href="{% url 'postagem_like' postagem.id %}" class="filme__like"><i class="fa-regular fa-heart"></i></a>
+                <p data-post-id="{{ postagem.id }}" class="number__likes">{{postagem.number_of_likes}}</p><a href="{% url 'postagem_like' postagem.id %}" class="filme__like" data-post-id="{{ postagem.id }}" data-csrf-token="{{ csrf_token }}"><i class="fa-regular fa-heart"></i></a>
                 {% endif %}
-                <a href="#" class="filme__comment"><i class="fa-regular fa-comment"></i></a>
+                <p class="comentarios__length">{{ postagem.comentarios_postagem.all.count }}</p><a href="{% url 'comentarios' postagem.id %}" class="filme__comment"><i class="fa-regular fa-comment"></i></a>
                 <a href="#" class="filme__save"><i class="fa-regular fa-bookmark"></i></a>
             </div>
         </div>
+        {% endif %}
         {% endfor %}
         {% else %}
         {% endif %}
