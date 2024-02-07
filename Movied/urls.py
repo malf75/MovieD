@@ -17,4 +17,5 @@ urlpatterns = [
     path('reportar_postagem/<int:pk>', views.reportar_postagem, name='reportar_postagem'),
     path('deletar_comentario/<int:pk>', views.deletar_comentario, name='deletar_comentario'),
     path('reportar_comentario/<int:pk>', views.reportar_comentario, name='reportar_comentario'),
+    path('search', views.search, name='search'),
 ]

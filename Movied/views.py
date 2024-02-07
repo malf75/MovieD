@@ -280,3 +280,9 @@ def reportar_comentario(request, pk):
     else:
         messages.warning(request, ('You Must Be Logged In'))
         return redirect('login')
+    
+def search(request):
+    query = request.POST.get('query')
+    posts = Postagem.objects.filter(comentario__icontains=query)
+    users = User.objects.filter(username__icontains=query)
+    return render(request, 'movied/search.html', {'posts':posts, 'query':query, 'users':users})

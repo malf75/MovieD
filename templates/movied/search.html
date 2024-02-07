@@ -7,11 +7,15 @@
     </div>
 </section>
 <hl class="vl"></hl>
-<section class="followers">
+<section>
     <div class="container3">
-    <a href="{% url 'index' %}" class="logo__ancora"><img class="logo logo__suggestions" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied"></a>
-    {% if postagem %}
-                {% if postagem.user.profile in user.profile.follows.all or postagem.user.profile == user.profile %}
+    <a href="{% url 'index' %}" class="logo__ancora" id="logo__ancora"><img class="logo logo__search" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied"></a>
+    <div class="buttons">
+        <button class="search__all">All</button>
+        <button class="search__reviews">Reviews</button>
+        <button class="search__users">Users</button>
+    </div>
+    {% for postagem in posts %}
                 <div class="quem">
                 {% if postagem.user.profile.profile_image %}
                 <div id="container2">
@@ -41,43 +45,32 @@
                 <p class="comentarios__length">{{ postagem.comentarios_postagem.all.count }}</p><a href="{% url 'comentarios' postagem.id %}" class="filme__comment"><i class="fa-regular fa-comment"></i></a>
                 <a href="#" class="filme__save"><i class="fa-regular fa-bookmark"></i></a>
             </div>
-        </div>
-        {% endif %}
-        {% endif %}
-        <form class="form" action="{% url 'comentarios' postagem.id %}" method="POST">
-            {% csrf_token %}
-                <textarea class="comenta" name="comentario" id="comentario" placeholder="Comment" maxlength="400" style="height: auto;" required></textarea>
-                <input type="submit" value="Post" class="form__submit">
-        </form>
-        {% for comentario in postagem.comentarios_postagem.all %}
-            <div class="comentario">
-                <div class="quem">
-                {% if comentario.user.profile.profile_image %}
-                <div id="container2">
-                    <a href="{% url 'profile' comentario.user.id %}"><img class="foto__perfil" src="{{ comentario.user.profile.profile_image.url }}" class="foto__perfil-post" alt="foto de perfil"></a>
+        {% endfor %}
+        {% for profile in users %}
+            <div class="followers__card">
+                {% if profile.profile.profile_image %}
+                <a href="{% url 'profile' profile.id %}"><img src="{{ profile.profile.profile_image.url }}" class="foto__followers" alt="{{ profile.user.username }}"></a>
+                <div class="nome__bio">
+                    <h3 class="username__followers">{{ profile.username }}</h3>
+                    {% if profile.profile.bio %}
+                    <p class="bio__followers">{{ profile.profile.bio }}</p>
+                    {% endif %}
                 </div>
                 {% else %}
-                <div id="container2">
-                    <a href="{% url 'profile' comentario.user.id %}"><img src="{% static 'img/default.jpg'%}" class="foto__perfil" alt="foto de perfil"></a>
+                <a href="{% url 'profile' profile.id %}"><img src="{% static 'img/default.jpg'%}" class="foto__followers" alt="{{ profile.user.username }}"></a>
+                <div class="nome__bio">
+                    <h3 class="username__followers">{{ profile.username }}</h3>
+                    {% if profile.profile.bio %}
+                    <p class="bio__followers">{{ profile.bio }}</p>
+                    {% endif %}
                 </div>
                 {% endif %}
-                <p class="postagem__data"><strong>{{ comentario.user }}</strong> • {{ comentario.data_comentario }}</p>
-                {% if comentario.user == request.user %}
-                <a href="{% url 'deletar_comentario' comentario.id %}" class="remove__post"><i class="fa-solid fa-trash"></i></a>
-                {% else %}
-                <a href="{% url 'reportar_comentario' comentario.id %}" class="report__post"><i class="fa-solid fa-triangle-exclamation"></i></a>
-                {% endif %}
-                </div>
-            <div class="paragrafo">
-                <p class="postagem__paragrafo">{{ comentario.comentario }}</p>
             </div>
-            <div class="filme__opcoes2">
-            </div>
-        </div>
         {% endfor %}
     </div>
 </section>
 <hl class="vl2"></hl>
 <section>
 </section>
+<script src="{% static 'app/search.js' %}"></script>
 {% endblock %}

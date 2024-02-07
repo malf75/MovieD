@@ -95,8 +95,13 @@
     </section>
     <div class="vl2"></div>
     <section>
-        <form class="form2" action="{% url 'index' %}" method="POST">
-            <textarea class="busca" name="busca" id="busca" maxlength="30" placeholder="Search"></textarea>
+        <form class="form2" action="{% url 'search' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" class="busca" name="query" id="query" maxlength="30" placeholder="Search" required>
+            <input type="submit" id="search" class="input__search">
+            <label class="search" for="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </label>
         </form>
         <div class="rt">
             <h3 class="rt__texto">Trending Movies</h3>

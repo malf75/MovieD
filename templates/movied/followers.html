@@ -8,6 +8,7 @@
 </section>
 <hl class="vl"></hl>
 <section class="followers">
+    <div class="container3">
     <a href="{% url 'index' %}" class="logo__ancora"><img class="logo logo__suggestions" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied"></a>
 {% if profiles %}
     {% for profile in profiles.followed_by.all %}
@@ -32,6 +33,7 @@
         </div>
         {% endfor %}
 {% endif %}
+</div>
 </section>
 <hl class="vl2"></hl>
 <section>
