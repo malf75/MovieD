@@ -26,4 +26,3 @@ $('.filme__like').on('click', function(event) {
     .fail(function(xhr, errmsg, err) {
     });
 });
-

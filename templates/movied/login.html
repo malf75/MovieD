@@ -11,7 +11,8 @@
             <img class="logo logo__signup" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied">
             <input class="input__signup" type="text" name="username" placeholder="username" required>
             <input class="input__signup" type="password" name="password" placeholder="password" required>
-            <input class="input__signup__post" type="submit" value="LOGIN" required>
+            <input class="input__signup__post" type="submit" value="Login" required>
+            <a href="{% url 'signup' %}" class="input__signup__post2">Sign up</a>
             <p class="erro__senha-login">{{ erros.login }}</p>
         </div>
     </form>

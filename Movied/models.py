@@ -8,15 +8,15 @@ class Postagem(models.Model):
     data_postagem = models.DateTimeField(default=datetime.now, blank=False)
     user = models.ForeignKey(User, related_name='comentarios', on_delete=models.DO_NOTHING, default=None)
     likes = models.ManyToManyField(User, related_name="postagem_like", blank=True)
+    reported = models.BooleanField(default=False)
 
     def number_of_likes(self):
          return self.likes.count()
 
     def __str__(self):
          return(
-              f"{self.user}"
+              f"{self.user} "
               f"({self.data_postagem})"
-              f"{self.comentario}"
          )
     
 class Comentarios(models.Model):
@@ -24,11 +24,7 @@ class Comentarios(models.Model):
     data_comentario = models.DateTimeField(default=datetime.now, blank=False)
     user = models.ForeignKey(User, related_name='comentarios_postagem_user', on_delete=models.DO_NOTHING, default=None)
     postagem = models.ForeignKey(Postagem, related_name='comentarios_postagem', default=None, on_delete=models.CASCADE)
-    comentario_pai = models.ForeignKey('self', related_name='comentarios_filhos', null=True, blank=True, on_delete=models.CASCADE)
-    likes = models.ManyToManyField(User, related_name="comentario_like", blank=True)
-
-    def number_of_likes(self):
-         return self.likes.count()
+    reported = models.BooleanField(default=False)
 
     def __str__(self):
          return(

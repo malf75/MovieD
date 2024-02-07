@@ -8,24 +8,24 @@ from django.http import JsonResponse
 
 def index(request):
     postagens = Postagem.objects.all().order_by("-data_postagem")
-    
-    if request.method == "POST" and request.user.is_authenticated:
 
-        postagem_text = request.POST.get('postagemt', None)
-        user = request.user
-        postagem = Postagem.objects.create(
-            user=user,
-            comentario=postagem_text,
-            data_postagem=timezone.now()
-        )
-
-        postagem.save()
-        return redirect('index')
+    if request.user.is_authenticated:
     
-    if request.method == "POST" and not request.user.is_authenticated:
-        messages.warning(request, ('You Must Be Logged In'))
-        return redirect('index')
+        if request.method == "POST":
+
+            postagem_text = request.POST.get('postagemt', None)
+            user = request.user
+            postagem = Postagem.objects.create(
+                user=user,
+                comentario=postagem_text,
+                data_postagem=timezone.now()
+            )
+
+            postagem.save()
+            return redirect('index')
         
+    else:
+        return redirect('login')
 
     return render(request, 'movied/index.html', {'posts': postagens})
 
@@ -241,20 +241,42 @@ def comentarios(request, pk):
             return redirect('comentarios', pk=pk)
         return render(request, 'movied/comentarios.html', {'postagem':postagem})
     
-def comentario_like(request, pk):
+def deletar_postagem(request, pk):
     if request.user.is_authenticated:
-        comentario = get_object_or_404(Comentarios, id=pk)
-        if comentario.likes.filter(id=request.user.id):
-            comentario.likes.remove(request.user)
-        else:
-            comentario.likes.add(request.user)
-
-        data = {
-            'likes_count': comentario.likes.count(),
-            'user_liked': comentario.likes.filter(id=request.user.id).exists()
-        }
-        return JsonResponse(data)
-
+        postagem = get_object_or_404(Postagem, id=pk)
+        if request.user.username == postagem.user.username:
+            postagem.delete()
+            return redirect('index')
     else:
         messages.warning(request, ('You Must Be Logged In'))
+        return redirect('login')
+    
+def deletar_comentario(request, pk):
+    if request.user.is_authenticated:
+        comentario = get_object_or_404(Comentarios, id=pk)
+        if request.user.username == comentario.user.username:
+            comentario.delete()
+            return redirect('index')
+    else:
+        messages.warning(request, ('You Must Be Logged In'))
+        return redirect('login')
+    
+def reportar_postagem(request, pk):
+    if request.user.is_authenticated:
+        postagem = get_object_or_404(Postagem, id=pk)
+        postagem.reported = True
+        postagem.save()
         return redirect('index')
+    else:
+        messages.warning(request, ('You Must Be Logged In'))
+        return redirect('login')
+    
+def reportar_comentario(request, pk):
+    if request.user.is_authenticated:
+        comentario = get_object_or_404(Comentarios, id=pk)
+        comentario.reported = True
+        comentario.save()
+        return redirect('index')
+    else:
+        messages.warning(request, ('You Must Be Logged In'))
+        return redirect('login')

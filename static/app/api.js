@@ -85,7 +85,7 @@ fetch("https://jsvx4qwrvwso7batrajoavuoysd0rvjpi9dg90wure.vercel.app/filmes")
             filmeEncontrado = true;
           }
         }
+        });
       });
     });
   });
-});

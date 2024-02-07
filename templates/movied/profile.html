@@ -69,6 +69,11 @@
                 </div>
                 {% endif %}
                 <p class="postagem__data"><strong>{{ postagem.user }}</strong> • {{ postagem.data_postagem }}</p>
+                {% if postagem.user == request.user %}
+                <a href="{% url 'deletar_postagem' postagem.id %}" class="remove__post"><i class="fa-solid fa-trash"></i></a>
+                {% else %}
+                <a href="{% url 'reportar_postagem' postagem.id %}" class="report__post"><i class="fa-solid fa-triangle-exclamation"></i></a>
+                {% endif %}
                 </div>
             <div class="paragrafo">
                 <p class="postagem__paragrafo">{{ postagem.comentario }}</p>

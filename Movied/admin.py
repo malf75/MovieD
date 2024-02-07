@@ -9,6 +9,7 @@ class ListandoPostagens(admin.ModelAdmin):
     list_display = ("id", "comentario", "data_postagem")
     list_display_links = ("id", "comentario")
     search_fields = ("comentario", "id")
+    list_filter = ('reported',)
     list_per_page = 10
 
 class ListandoComentarios(admin.ModelAdmin):
@@ -16,6 +17,7 @@ class ListandoComentarios(admin.ModelAdmin):
     list_display_links = ("id", "comentario")
     search_fields = ("comentario", "id")
     list_per_page = 10
+    list_filter = ('reported',)
 
 class ProfileInLine(admin.StackedInline):
     model=Profile

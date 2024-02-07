@@ -272,7 +272,7 @@ textarea:focus, input:focus{
 }
 
 .paragrafo{
-    margin-left: 1.1em;
+    margin-left: 1.7em;
 }
 
 .postagem__paragrafo{
@@ -352,7 +352,7 @@ textarea:focus, input:focus{
     border-radius: 20px;
     box-shadow: 0 3px 8px #001131;
     margin: 2% 22%;
-    padding: 5em 1em 8em 1em;
+    padding: 5em 1em 7em 1em;
 }
 
 .input__signup{
@@ -381,7 +381,7 @@ textarea:focus, input:focus{
 
 .input__signup__post{
     width: 28%;
-    margin: 10% 8% 0% 35%;
+    margin: 10% 8% 8% 35%;
     padding: 1.5% 4%;
     border-radius: 40px;
     background-color: var(--cor-principal);
@@ -403,11 +403,13 @@ textarea:focus, input:focus{
 }
 
 .container__login{
+    width: 400px;
+    height: 600px;
     border: 1px solid var(--cor-secundaria);
     border-radius: 20px;
     box-shadow: 0 3px 8px #001131;
-    margin: 18% 22%;
-    padding: 5em 1em 8em 1em;
+    margin: 12% 22% 12% 22%;
+    padding: 5em 1em 1em 1em;
     justify-content: center;
 }
 
@@ -424,7 +426,7 @@ textarea:focus, input:focus{
     font-family: var(--fonte-principal);
     font-size: 20px;
     margin-top: 1em;
-    margin-left: 7em;
+    margin-left: 5em;
 }
 
 
@@ -458,6 +460,12 @@ textarea:focus, input:focus{
 
 #container2 img:hover{
     border-color: red;
+}
+
+.fa-ellipsis{
+    margin-left: 32em;
+    margin-top: 1em;
+    cursor: pointer;
 }
 
 .lista-menu{
@@ -825,4 +833,38 @@ textarea:focus, input:focus{
     font-size: 16px;
     margin-top: 0.2em;
     margin-right: 0.4em;
+}
+
+.remove__post{
+    font-size: 16px;
+    margin-top: 2.4em;
+    margin-left: 30em;
+    text-decoration: none;
+    color: var(--cor-secundaria);
+}
+
+.report__post{
+    font-size: 18px;
+    margin-top: 2em;
+    margin-left: 26em;
+    text-decoration: none;
+    color: var(--cor-secundaria);
+}
+
+.input__signup__post2{
+    width: 28%;
+    margin: 12% 8% 0% 34.2%;
+    padding: 1.5% 4%;
+    border-radius: 40px;
+    background-color: var(--cor-principal);
+    font-family: var(--fonte-principal);
+    color: var(--cor-secundaria);
+    font-size: 22px;
+    border: 2px solid var(--cor-secundaria);
+    text-decoration: none;
+}
+
+.input__signup__post2:hover{
+    background-color: var(--cor-secundaria);
+    color: var(--cor-principal);
 }
