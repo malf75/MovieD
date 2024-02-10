@@ -2,6 +2,7 @@ from django.urls import path
 from Movied import views
 
 urlpatterns = [
+    path('api/filme_info/', views.get_filme_info, name='filme_info'),
     path('', views.index, name='index'),
     path('login/', views.login, name='login'),
     path('signup/', views.signup, name='signup'),
@@ -17,5 +18,6 @@ urlpatterns = [
     path('reportar_postagem/<int:pk>', views.reportar_postagem, name='reportar_postagem'),
     path('deletar_comentario/<int:pk>', views.deletar_comentario, name='deletar_comentario'),
     path('reportar_comentario/<int:pk>', views.reportar_comentario, name='reportar_comentario'),
-    path('search', views.search, name='search'),
+    path('search/', views.search, name='search'),
+    path('preferences/', views.preferences, name='preferences'),
 ]

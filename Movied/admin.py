@@ -1,5 +1,5 @@
 from django.contrib import admin
-from Movied.models import Postagem, Suggestions, Comentarios
+from Movied.models import Postagem, Suggestions, Comentarios, Filmes
 from django.contrib.auth.models import User, Group
 from .models import Profile
 
@@ -28,6 +28,13 @@ class ListSuggestions(admin.ModelAdmin):
     search_fields = ("id", "Series_Title")
     list_per_page = 10
 
+class ListFilmes(admin.ModelAdmin):
+    list_display = ("id", "Series_Title")
+    list_display_links = ("id", "Series_Title")
+    search_fields = ("id", "Series_Title")
+    list_per_page = 500    
+    list_filter = ('Genre',)
+
 class UserAdmin(admin.ModelAdmin):
     model=User
     inlines= [ProfileInLine]
@@ -40,5 +47,7 @@ admin.site.register(Postagem, ListandoPostagens)
 admin.site.register(Comentarios, ListandoComentarios)
 
 admin.site.register(Suggestions, ListSuggestions)
+
+admin.site.register(Filmes, ListFilmes)
 
 

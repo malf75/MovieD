@@ -78,6 +78,19 @@
             <div class="paragrafo">
                 <p class="postagem__paragrafo">{{ postagem.comentario }}</p>
             </div>
+            {% for filme in postagem.filmes.all %}
+            <div class="filme__container">
+                <img class="imagem__filme" src="{{ filme.Poster_Link}}" alt="Poster do Filme">
+              <li class="filme__item">
+                <p class="filme__item-p">Name: {{filme.Series_Title}}</p>
+                <p class="filme__item-p">Overview: {{filme.Overview}}</p>
+                <p class="filme__item-p">Runtime: {{filme.Runtime}}</p>
+                <p class="filme__item-p">IMDB Rating: {{filme.Rating}}</p>
+                <p class="filme__item-p">Released: {{filme.Released_Year}}</p>
+                <p class="filme__item-p">Genre: {{filme.Genre}}</p>
+              </li>
+            </div>
+            {% endfor %}
             <div class="filme__opcoes">
                 {% if user in postagem.likes.all %}
                 <p data-post-id="{{ postagem.id }}" class="number__likes">{{postagem.number_of_likes}}</p><a href="{% url 'postagem_like' postagem.id %}" class="filme__like" data-post-id="{{ postagem.id }}" data-csrf-token="{{ csrf_token }}"><i class="fa-solid fa-heart"></i></a>
@@ -105,7 +118,30 @@
         </form>
         <div class="rt">
             <h3 class="rt__texto">Trending Movies</h3>
-            <div class="tabela-trend">
+            <div class="tabela-trend" id="filme_dinamico">
+            {% for movie in top_posts %}
+            {% if movie %}
+                <div class="filme__trend">
+                    <img class="imagem__filme-trend" src="{{movie.Poster_Link}}" alt="Poster do Filme">
+                    <li class="filme__item-trend">
+                        <p class="filme__item-p-trend">Name: {{movie.Series_Title}}</p>
+                        <p class="filme__item-p-trend">Rating: {{movie.Rating}}</p>
+                        <p class="filme__item-p-trend">Released: {{movie.Released_Year}}</p>
+                    </li>
+                </div>
+            {% endif %}
+            {% endfor %}
+            </div>
+            <div class="trend__options">
+                <form id="form__trend" method="get" action="{% url 'index' %}">
+                {% csrf_token %}
+                    <i class="fa-solid fa-earth-americas"></i>
+                    <label class="switch">
+                        <input type="checkbox" id="slide-trend" name="include_follows">
+                        <span class="slider round"></span>
+                    </label>
+                    <i class="fa-solid fa-users"></i>
+                </form>
             </div>
         </div>
     </section>

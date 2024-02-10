@@ -2,7 +2,7 @@ const postagens = document.querySelectorAll('.postagem__paragrafo');
 const tabelaTrend = document.querySelector('.tabela-trend')
 const trends = document.querySelectorAll('.trend')
 
-  fetch("https://jsvx4qwrvwso7batrajoavuoysd0rvjpi9dg90wure.vercel.app/filmes")
+  fetch(`/api/filme_info/`)
     .then(res => res.json())
     .then((filmes) => {
 

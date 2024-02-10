@@ -9,8 +9,8 @@
 <hl class="vl"></hl>
 <section class="form__filme">
     <a href="{% url 'index' %}" class="logo__ancora"><img class="logo logo__suggestions" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied"></a>
+    <p class="explicacao__suggestion">Did our API not find your movie? Suggest it here, we will review and add it to the list</p>
     <div class="forms">
-        <p class="explicacao__suggestion">Did our API not find your movie? Suggest it here, we will review and add it to the list</p>
         <form action="{% url 'suggestions' %}" method="POST">
         {% csrf_token %}
         <input name="nome-filme" class="forms__filme nome__filme" type="text" maxlength="50" placeholder="Series Title">

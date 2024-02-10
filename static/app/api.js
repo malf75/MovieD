@@ -2,9 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const postagens = document.querySelectorAll('.postagem__paragrafo')
 const selectFilmes = document.createElement('select')
 
-
-
-fetch("https://jsvx4qwrvwso7batrajoavuoysd0rvjpi9dg90wure.vercel.app/filmes")
+fetch(`/api/filme_info/`)
   .then(res => res.json())
   .then((filmes) => {
 
@@ -12,7 +10,7 @@ fetch("https://jsvx4qwrvwso7batrajoavuoysd0rvjpi9dg90wure.vercel.app/filmes")
     selectFilmes.style.display = "none"
     selectFilmes.title = "opções de filme"
 
-    filmes.forEach((filme) => {
+    filmes.filmes.forEach((filme) => {
       const option = document.createElement('option')
       option.value = filme.Series_Title
       option.text = filme.Series_Title
@@ -59,33 +57,5 @@ fetch("https://jsvx4qwrvwso7batrajoavuoysd0rvjpi9dg90wure.vercel.app/filmes")
     
     document.body.appendChild(selectFilmes)
   }
-
-    postagens.forEach((postagem, index) => {
-      let filmeEncontrado = false
-      filmes.forEach((filme) => {
-        if (!filmeEncontrado) {
-          let titulo = filme.Series_Title;
-          let regex = new RegExp(`\\b(?!:.)\\s*${titulo}\\b(?!:.)\\s*`, 'ig')
-          if (regex.test(postagem.textContent)) {
-            const containerFilmes = document.createElement('div')
-            containerFilmes.classList.add('filme__container')
-            containerFilmes.innerHTML = `
-              <img class="imagem__filme" src="${filme.Poster_Link}" alt="Poster do Filme">
-              <li class="filme__item">
-                <p class="filme__item-p">Name: ${filme.Series_Title}</p>
-                <p class="filme__item-p">Overview: ${filme.Overview}</p>
-                <p class="filme__item-p">Runtime: ${filme.Runtime}</p>
-                <p class="filme__item-p">IMDB Rating: ${filme.IMDB_Rating}</p>
-                <p class="filme__item-p">Released: ${filme.Released_Year}</p>
-                <p class="filme__item-p">Genre: ${filme.Genre}</p>
-              </li>
-            `;
-            const existingElement = postagem.nextSibling;
-            postagem.parentNode.insertBefore(containerFilmes, existingElement);
-            filmeEncontrado = true;
-          }
-        }
-        });
-      });
     });
   });

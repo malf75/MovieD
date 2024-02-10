@@ -1,13 +1,34 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from Movied.models import Postagem, Profile, Suggestions, Comentarios
+from Movied.models import Postagem, Profile, Suggestions, Comentarios, Filmes
+from django.db.models import Count
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from django.utils import timezone
 from django.http import JsonResponse
+import re
 
+def get_filme_info(request):
+    if request.user.is_authenticated:
+        filmes = Filmes.objects.all()
+        filme_info = {
+            "filmes": []
+        }
+        for filme in filmes:
+            filme_info["filmes"].append({
+                "Series_Title": filme.Series_Title,
+            })
+
+        return JsonResponse(filme_info, safe=False)
 
 def index(request):
     postagens = Postagem.objects.all().order_by("-data_postagem")
+    include_follows = request.GET.get('include_follows')
+    followed_profiles = request.user.profile.follows.all()
+    if include_follows == 'on':
+        related_postagens = Postagem.objects.filter(user__profile__in=followed_profiles)
+        top_posts = Filmes.objects.filter(postagens__in=related_postagens).annotate(total_citations=Count('postagens')).filter(total_citations__gt=0).order_by('-total_citations')[:3]
+    else:
+        top_posts = Filmes.objects.annotate(total_citations=Count('postagens')).filter(total_citations__gt=0).order_by('-total_citations')[:3]
 
     if request.user.is_authenticated:
     
@@ -15,19 +36,35 @@ def index(request):
 
             postagem_text = request.POST.get('postagemt', None)
             user = request.user
-            postagem = Postagem.objects.create(
-                user=user,
-                comentario=postagem_text,
-                data_postagem=timezone.now()
-            )
+            titulo = Filmes.objects.values_list('Series_Title', flat=True)
+            pattern = r'\b(?!:.)\s*(?:' + '|'.join(map(re.escape, titulo)) + r')\b(?!:.)\s*'
+            filme_match = re.search(pattern, postagem_text)
+            if filme_match:
+                titulo_matched = filme_match.group()
+                filme = Filmes.objects.filter(Series_Title__iexact=titulo_matched.strip()).first()
+                if filme:
+                    postagem = Postagem.objects.create(
+                        user=user,
+                        comentario=postagem_text,
+                        data_postagem=timezone.now(),
+                    )
+                    postagem.filmes.set([filme])
+                    postagem.save()
+            else:
+                filme = None
+                postagem = Postagem.objects.create(
+                    user=user,
+                    comentario=postagem_text,
+                    data_postagem=timezone.now(),
+                )
+                postagem.save()
 
-            postagem.save()
             return redirect('index')
         
     else:
         return redirect('login')
 
-    return render(request, 'movied/index.html', {'posts': postagens})
+    return render(request, 'movied/index.html', {'posts': postagens, 'top_posts':top_posts})
 
 def login(request):
 
@@ -101,7 +138,7 @@ def signup(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect('index')
+    return redirect('login')
 
 def profile(request, pk):
     if request.user.is_authenticated:
@@ -286,3 +323,6 @@ def search(request):
     posts = Postagem.objects.filter(comentario__icontains=query)
     users = User.objects.filter(username__icontains=query)
     return render(request, 'movied/search.html', {'posts':posts, 'query':query, 'users':users})
+
+def preferences(request):
+    return render(request, 'movied/preferences.html')

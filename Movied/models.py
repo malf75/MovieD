@@ -2,13 +2,31 @@ from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+    
+class Filmes(models.Model):
+    Poster_Link = models.URLField()
+    Series_Title = models.CharField(null=False, blank=False, max_length=50)
+    Released_Year = models.IntegerField(null=True, blank=True)
+    Runtime = models.CharField(null=False, blank=False, max_length=10)
+    Genre = models.CharField(null=False, blank=False, max_length=50)
+    Rating = models.FloatField(null=False, blank=False)
+    Overview = models.TextField(null=False, blank=False, max_length=400)
+    id = models.AutoField(primary_key=True)
 
+    def __str__(self):
+         return(
+              f"{self.Series_Title} "
+              f"{self.Released_Year}"
+         )
+    
 class Postagem(models.Model):
     comentario = models.TextField(null=False, blank=False, max_length=400)
     data_postagem = models.DateTimeField(default=datetime.now, blank=False)
     user = models.ForeignKey(User, related_name='comentarios', on_delete=models.DO_NOTHING, default=None)
     likes = models.ManyToManyField(User, related_name="postagem_like", blank=True)
     reported = models.BooleanField(default=False)
+    id = models.AutoField(primary_key=True)
+    filmes = models.ManyToManyField(Filmes, related_name='postagens', blank=True)
 
     def number_of_likes(self):
          return self.likes.count()
@@ -20,6 +38,7 @@ class Postagem(models.Model):
          )
     
 class Comentarios(models.Model):
+    id = models.AutoField(primary_key=True)
     comentario = models.TextField(null=True, blank=True, max_length=400)
     data_comentario = models.DateTimeField(default=datetime.now, blank=False)
     user = models.ForeignKey(User, related_name='comentarios_postagem_user', on_delete=models.DO_NOTHING, default=None)
@@ -51,6 +70,7 @@ class Suggestions(models.Model):
     Genre = models.CharField(null=False, blank=False, max_length=50)
     Rating = models.FloatField(null=False, blank=False)
     Overview = models.TextField(null=False, blank=False, max_length=400)
+    id = models.AutoField(primary_key=True)
 
     def __str__(self):
         return (f"{self.Series_Title}"

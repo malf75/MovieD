@@ -7,13 +7,13 @@
 
 :root{
     --cor-principal: #FFF5E0;
-    --cor-secundaria: #141E46;
+    --cor-secundaria: #090d1f;
     --cor-terciaria: #FF6969;
     --fonte-principal: 'Montserrat', sans-serif;
 }
 
 .dark-mode{
-    --cor-principal: #141E46;
+    --cor-principal: #090d1f;
     --cor-secundaria: #FFF5E0;
     transition: 0.3s;
 }
@@ -55,6 +55,85 @@ textarea:focus, input:focus{
     display: flex;
     justify-content: start;   
     flex-direction: column;
+    padding-bottom: 2em;
+}
+
+.trend__options{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.fa-earth-americas{
+    margin-top: 0.9em;
+}
+
+.fa-users{
+    margin-left: 0.5em;
+    margin-top: 0.9em;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 25px;
+    margin-top: 0.8em;
+    margin-left: 0.5em;
+    margin-right: 0.5;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #681212;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 21px;
+    width: 21px;
+    left: 2px;
+    bottom: 2px;
+    background-color: var(--cor-principal);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #157c0c;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+    left: 10px;
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
 }
 
 .rt2{
@@ -286,7 +365,7 @@ textarea:focus, input:focus{
 }
 
 .postagem__paragrafo{
-    margin: 1em 3em 1em 3em;
+    margin: 1em 3em 1em 1.8em;
     font-size: 20px;
     font-family: var(--fonte-principal);
     overflow-wrap: break-word; 
@@ -959,4 +1038,258 @@ textarea:focus, input:focus{
 .buttons{
     border-top: 1px solid var(--cor-secundaria);
     border-bottom: 1px solid var(--cor-secundaria);
+}
+
+.buttons__preferences{
+    display: flex;
+    flex-direction: column;
+    margin-left: 59%;
+    margin-top: 250px;
+}
+
+.btn__preferences{
+    border: none;
+    background-color: var(--cor-principal);
+    cursor: pointer;
+    font: var(--fonte-principal);
+    font-size: 24px;
+    color: var(--cor-secundaria);
+    border-top: 1px solid var(--cor-secundaria);
+    border-bottom: 1px solid var(--cor-secundaria);
+    padding: 1em;
+}
+
+.btn__preferences:hover{
+    background-color: rgba(66, 66, 66, 0.3);
+}
+
+@media screen and (min-width: 2048px) {
+    .logo{
+        margin: 2em 26em 0em 28.5em;
+    }
+
+    .remove__post{
+        margin-left: 35em;
+    }
+
+    .filme__opcoes{
+        padding: 0.2em 0 1em 33em;
+    }
+
+    .search{
+        margin-left: 30px;
+    }
+
+    .redirect__navbar{
+        margin-left: 9em;
+    }
+
+    .foto__perfil-d{
+        margin-left: 3em;
+    }
+
+    .logo__suggestions{
+        margin: 1em 0 2em 46%;
+    }
+
+    .logo__search{
+        margin-left: 46.3%;
+        margin-bottom: 3em;
+    }
+
+    .input__suggestion{
+        margin: 10% 8% 0% 44%;
+    }
+
+    .forms__filme{
+        margin-left: 2.5em;
+    }
+
+    .explicacao__suggestion{
+        margin-left: 5em;
+    }
+
+    .botao_follow{
+        margin-left: 48em;
+    }
+}
+
+@media screen and (min-width: 3840px) {
+    .logo{
+        margin: 2em 26em 0em 57em;
+    }
+
+    .remove__post{
+        margin-left: 87em;
+    }
+
+    .filme__opcoes{
+        padding: 0.2em 0 1em 69em;
+    }
+
+    .search{
+        margin-left: 330px;
+    }
+
+    .redirect__navbar{
+        margin-left: 12em;
+        font-size: 40px;
+    }
+
+    .foto__perfil-d{
+        margin-left: 20em;
+    }
+
+    .logo__suggestions{
+        margin: 1em 0 2em 46%;
+    }
+
+    .logo__search{
+        margin-left: 47.7%;
+        margin-bottom: 3em;
+    }
+
+    .input__suggestion{
+        width: 160px;
+        height: 100px;
+        margin: 2em 20em 0 23.5em;
+    }
+
+    .forms__filme{
+        font-size: 26px;
+        height: 40px;
+        width: 600px;
+        margin-left: 10em;
+    }
+
+    .forms__filme::placeholder{
+        font-size: 26px;
+    }
+
+    .explicacao__suggestion{
+        margin: 0em 24em 1em 21em;
+        font-size: 26px;
+    }
+
+    .botao_follow{
+        font-size: 26px;
+        margin-left: 54em;
+    }
+
+    #container img{
+        margin-top: 5em;
+        width: 160px;
+        height: 160px;
+    }
+
+    .lista-menu{
+        margin-left: 0.7em;
+    }
+
+    .lista-menu__item{
+        font-size: 30px;
+    }
+
+    .postagem__paragrafo{
+        font-size: 30px;
+    }
+
+    .imagem__filme{
+        width: 15em;
+        margin-left: 1.7em;
+    }
+
+    .filme__item{
+        font-size: 24px;
+    }
+
+    .rt{
+        height: 1000px;
+        width: 70%;
+        font-size: 24px;
+    }
+
+    .imagem__filme-trend{
+        width: 7em;
+        border: 1px solid var(--cor-secundaria);
+        margin-left: 0.5em;
+        margin-top: 0.5em;
+    }
+
+    .filme__item-p-trend{
+        margin-top: 1.7em;
+        margin-left: 0.5em;
+        font-size: 24px;
+    }
+
+    #container2 img{
+        width: 90px;
+        height: 90px;
+    }
+
+    .postagem__data{
+        padding: 3em 0 0 0.5em;
+        font-size: 18px;
+    }
+
+    .foto__perfil-pp{
+        width: 160px;
+        height: 160px;
+    }
+    
+    .nome__perfil{
+        font-size: 30px;
+        margin: 2em 0 0.4em 2.2em;
+    }
+    
+    .bio{
+        font-size: 26px;
+        margin: 0.5em 0 0.4em 2.4em;
+    }
+
+    .follows__f{
+        margin-left: 4em;
+    }
+
+    .lista-menu2{
+        margin-left: 1.7em;
+    }
+    
+    .lista-menu__item2{
+        font-size: 26px;
+        margin-left: 0.3em;
+        margin-top: 0.1em;  
+    }
+
+    .profile_picture{
+        margin-bottom: 2em;
+        margin-left: 42em;
+    }
+    
+    .image-preview{
+        margin-left: 33.6em;
+        width: 160px;
+        height: 160px;
+    }
+    
+    .input__profile__bio{
+        width: 600px;
+        height: 220px;
+        margin-left: 12.3em;
+        font-size: 26px;
+    }
+
+    .input__profile{
+        width: 400px;
+        height: 100px;
+        font-size: 26px;
+        margin-left: 14em;
+    }
+
+    .input__profile__post{
+        width: 200px;
+        height: 100px;
+        margin: 1em 8em 0 20em;
+        font-size: 26px;
+    }
 }
