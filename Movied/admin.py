@@ -1,5 +1,5 @@
 from django.contrib import admin
-from Movied.models import Postagem, Suggestions, Comentarios, Filmes
+from Movied.models import Postagem, Suggestions, Comentarios, Filmes, Notifications
 from django.contrib.auth.models import User, Group
 from .models import Profile
 
@@ -35,6 +35,13 @@ class ListFilmes(admin.ModelAdmin):
     list_per_page = 500    
     list_filter = ('Genre',)
 
+class ListNotifications:
+    list_display = ("id", "user")
+    list_display_links = ("id", "user")
+    list_per_page = 10
+    list_filter("categoria")
+
+
 class UserAdmin(admin.ModelAdmin):
     model=User
     inlines= [ProfileInLine]
@@ -49,5 +56,7 @@ admin.site.register(Comentarios, ListandoComentarios)
 admin.site.register(Suggestions, ListSuggestions)
 
 admin.site.register(Filmes, ListFilmes)
+
+admin.site.register(Notifications, ListNotifications)
 
 

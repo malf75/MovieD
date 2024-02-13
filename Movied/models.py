@@ -17,6 +17,7 @@ class Filmes(models.Model):
     Genre = models.CharField(null=False, blank=False, max_length=50)
     Rating = models.FloatField(null=False, blank=False)
     Overview = models.TextField(null=False, blank=False, max_length=400)
+    Streaming = models.URLField()
     id = models.AutoField(primary_key=True)
 
     def __str__(self):
