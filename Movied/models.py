@@ -2,6 +2,12 @@ from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+
+NOT_CHOICES = (
+              ("Postagem", "POSTAGEM"),
+              ("Comentario", "COMENTARIO"),
+              ("Follow", "FOLLOW"),
+              )
     
 class Filmes(models.Model):
     Poster_Link = models.URLField()
@@ -61,6 +67,18 @@ class Profile(models.Model):
         return (f"{self.user.username}"
                 f"({self.user.id})"
             )
+
+class Notifications(models.Model):
+    user = models.ManyToManyField(User, related_name="receptor", symmetrical=False)
+    postagem = models.ForeignKey(Postagem, related_name="postagem", default=None)
+    comentario = models.ForeignKey(Comentarios, related_name="comentario", default=None)
+    follows = models.ForeignKey(Profile, related_name="follows", default=None)
+    categoria = models.CharField(max_length=4, choices=NOT_CHOICES, default=None)
+
+    def __str__(self):
+      return (f"{self.user}"
+          )
+
     
 class Suggestions(models.Model):
     user = models.ForeignKey(User, related_name='suggestions', on_delete=models.DO_NOTHING, default=None)
