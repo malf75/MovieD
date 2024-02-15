@@ -11,7 +11,6 @@
     <div class="container3">
     <a href="{% url 'index' %}" class="logo__ancora"><img class="logo logo__suggestions" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied"></a>
     {% if postagem %}
-                {% if postagem.user.profile in user.profile.follows.all or postagem.user.profile == user.profile %}
                 <div class="quem">
                 {% if postagem.user.profile.profile_image %}
                 <div id="container2">
@@ -56,7 +55,6 @@
             </div>
         </div>
         {% endif %}
-        {% endif %}
         <form class="form" action="{% url 'comentarios' postagem.id %}" method="POST">
             {% csrf_token %}
                 <textarea class="comenta" name="comentario" id="comentario" placeholder="Comment" maxlength="400" style="height: auto;" required></textarea>
@@ -64,7 +62,7 @@
         </form>
         {% for comentario in postagem.comentarios_postagem.all %}
             <div class="comentario">
-                <div class="quem">
+                <div class="quem2">
                 {% if comentario.user.profile.profile_image %}
                 <div id="container2">
                     <a href="{% url 'profile' comentario.user.id %}"><img class="foto__perfil" src="{{ comentario.user.profile.profile_image.url }}" class="foto__perfil-post" alt="foto de perfil"></a>

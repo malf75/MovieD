@@ -101,6 +101,34 @@
                 <a href="#" class="filme__save"><i class="fa-regular fa-bookmark"></i></a>
             </div>
         </div>
+        {% for comentario in postagem.comentarios_postagem.all %}
+        {% if comentario.user.profile in user.profile.follows.all or comentario.user.profile == user.profile %}
+            <div class="comentario">
+                <div class="quem2">
+                {% if comentario.user.profile.profile_image %}
+                <div id="container2">
+                    <a href="{% url 'profile' comentario.user.id %}"><img class="foto__perfil" src="{{ comentario.user.profile.profile_image.url }}" class="foto__perfil-post" alt="foto de perfil"></a>
+                </div>
+                {% else %}
+                <div id="container2">
+                    <a href="{% url 'profile' comentario.user.id %}"><img src="{% static 'img/default.jpg'%}" class="foto__perfil" alt="foto de perfil"></a>
+                </div>
+                {% endif %}
+                <p class="postagem__data"><strong>{{ comentario.user }}</strong> • {{ comentario.data_comentario }}</p>
+                {% if comentario.user == request.user %}
+                <a href="{% url 'deletar_comentario' comentario.id %}" class="remove__post2"><i class="fa-solid fa-trash"></i></a>
+                {% else %}
+                <a href="{% url 'reportar_comentario' comentario.id %}" class="report__post2"><i class="fa-solid fa-triangle-exclamation"></i></a>
+                {% endif %}
+                </div>
+            <div class="paragrafo2">
+                <p class="postagem__paragrafo">{{ comentario.comentario }}</p>
+            </div>
+            <div class="filme__opcoes2">
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
         {% endif %}
         {% endfor %}
         {% else %}

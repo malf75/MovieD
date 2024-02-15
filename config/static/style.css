@@ -364,6 +364,10 @@ input:checked + .slider:before {
     margin-left: 1.7em;
 }
 
+.paragrafo2{
+    margin-left: 5.3em;
+}
+
 .postagem__paragrafo{
     margin: 1em 3em 1em 1.8em;
     font-size: 20px;
@@ -385,8 +389,7 @@ input:checked + .slider:before {
 }
 
 .filme__item{
-    margin-left: 1em;
-    margin-right: 4em;
+    margin: 0 4em 1em 1em;
     font-family: var(--fonte-principal);
     font-weight: 700;
     color: var(--cor-secundaria);
@@ -622,6 +625,16 @@ input:checked + .slider:before {
 
 .quem{
     border-top: 1px solid var(--cor-secundaria);
+    display: flex;
+    flex-direction: row;
+}
+
+.quem2{
+    border-top: 1px solid var(--cor-secundaria);
+    border-radius: 1em;
+    height: 10%;
+    margin-left: 2em;
+    margin-right: 2em;
     display: flex;
     flex-direction: row;
 }
@@ -934,10 +947,26 @@ input:checked + .slider:before {
     color: var(--cor-secundaria);
 }
 
+.remove__post2{
+    font-size: 16px;
+    margin-top: 2.4em;
+    margin-left: 27.5em;
+    text-decoration: none;
+    color: var(--cor-secundaria);
+}
+
 .report__post{
     font-size: 18px;
     margin-top: 2em;
     margin-left: 26em;
+    text-decoration: none;
+    color: var(--cor-secundaria);
+}
+
+.report__post2{
+    font-size: 18px;
+    margin-top: 2em;
+    margin-left: 24.5em;
     text-decoration: none;
     color: var(--cor-secundaria);
 }
