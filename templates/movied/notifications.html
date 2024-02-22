@@ -1,0 +1,20 @@
+{% extends 'movied/base.html' %}
+{% load static %}
+{% block content %}
+<section>
+    <div>
+        <button id="btn"><i class="fa-solid fa-moon"></i></button>
+    </div>
+</section>
+<div class="vl"></div>
+<section>
+    {% if notification.categoria == 'FOLLOW' %}
+    <a href="{{ notification.follows.profile }}" class="notificacao">{{ notification.follows }} Followed You</p>
+    {% endif %}
+</section>
+<div class="vl2"></div>
+<section>
+    
+</section>
+
+{% endblock %}

@@ -16,5 +16,8 @@ document.getElementById('slide-trend').addEventListener('change', function() {
     }
     document.getElementById('form__trend').submit();
 
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', `/`, true);
+    xhr.send(new FormData(document.getElementById('form__trend')));
 });
 });

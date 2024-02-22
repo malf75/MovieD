@@ -74,9 +74,9 @@
                 {% endif %}
                 <p class="postagem__data"><strong>{{ comentario.user }}</strong> • {{ comentario.data_comentario }}</p>
                 {% if comentario.user == request.user %}
-                <a href="{% url 'deletar_comentario' comentario.id %}" class="remove__post"><i class="fa-solid fa-trash"></i></a>
+                <a href="{% url 'deletar_comentario' comentario.id %}" class="remove__post2"><i class="fa-solid fa-trash"></i></a>
                 {% else %}
-                <a href="{% url 'reportar_comentario' comentario.id %}" class="report__post"><i class="fa-solid fa-triangle-exclamation"></i></a>
+                <a href="{% url 'reportar_comentario' comentario.id %}" class="report__post2"><i class="fa-solid fa-triangle-exclamation"></i></a>
                 {% endif %}
                 </div>
             <div class="paragrafo">

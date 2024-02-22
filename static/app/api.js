@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-const postagens = document.querySelectorAll('.postagem__paragrafo')
 const selectFilmes = document.createElement('select')
 
 fetch(`/api/filme_info/`)
@@ -19,7 +18,6 @@ fetch(`/api/filme_info/`)
     
     const inputTexto = document.getElementById('postagem')
     if (inputTexto) {
-    selectFilmes.style.display = 'none'
     
     inputTexto.addEventListener('input', (event) => {
       const textoDigitado = event.target.value.substring(event.target.value.indexOf('@') + 1)

@@ -3,11 +3,6 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
-NOT_CHOICES = (
-              ("Postagem", "POSTAGEM"),
-              ("Comentario", "COMENTARIO"),
-              ("Follow", "FOLLOW"),
-              )
     
 class Filmes(models.Model):
     Poster_Link = models.URLField()
@@ -17,7 +12,7 @@ class Filmes(models.Model):
     Genre = models.CharField(null=False, blank=False, max_length=50)
     Rating = models.FloatField(null=False, blank=False)
     Overview = models.TextField(null=False, blank=False, max_length=400)
-    Streaming = models.URLField()
+    Streaming = models.URLField(null=True, blank=True)
     id = models.AutoField(primary_key=True)
 
     def __str__(self):
@@ -66,19 +61,7 @@ class Profile(models.Model):
     
     def __str__(self):
         return (f"{self.user.username}"
-                f"({self.user.id})"
             )
-
-class Notifications(models.Model):
-    user = models.ManyToManyField(User, related_name="receptor", symmetrical=False)
-    postagem = models.ForeignKey(Postagem, related_name="postagem", default=None)
-    comentario = models.ForeignKey(Comentarios, related_name="comentario", default=None)
-    follows = models.ForeignKey(Profile, related_name="follows", default=None)
-    categoria = models.CharField(max_length=4, choices=NOT_CHOICES, default=None)
-
-    def __str__(self):
-      return (f"{self.user}"
-          )
 
     
 class Suggestions(models.Model):
@@ -101,3 +84,4 @@ def create_profile(sender, instance, created, **kwargs):
             user_profile.save()
 
 post_save.connect(create_profile, sender=User)
+

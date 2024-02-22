@@ -189,7 +189,7 @@ input:checked + .slider:before {
     box-shadow: 0px 3px 8px #001131;
     width: 85%;
     height: 150px;
-    margin: 10% 8% 0 7%;
+    margin: 10% 8% 0 8%;
     background-color: var(--cor-principal);
     padding: 3% 3%;
     font-family: var(--fonte-principal);
@@ -335,7 +335,7 @@ input:checked + .slider:before {
 
 .logo{
     height: 80px;
-    margin: 2em 26em 0em 26em;
+    margin: 2em 26em 0em 27em;
 }
 
 .form{
@@ -383,9 +383,15 @@ input:checked + .slider:before {
 }
 
 .imagem__filme{
-    width: 10em;
+    height: 16em;
+    width: 11em;
     border: 2px solid var(--cor-secundaria);
     border-radius: 10px;
+    cursor: pointer;
+}
+
+.imagem__filme:hover{
+    border-color: red;
 }
 
 .filme__item{
@@ -1224,8 +1230,8 @@ input:checked + .slider:before {
     }
 
     .imagem__filme{
-        width: 15em;
-        margin-left: 1.7em;
+        width: 14em;
+        margin-left: 1.2em;
     }
 
     .filme__item{

@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from django.utils import timezone
 from django.http import JsonResponse
+from datetime import datetime
 import re
 
 def get_filme_info(request):
@@ -38,9 +39,11 @@ def index(request):
             user = request.user
             titulo = Filmes.objects.values_list('Series_Title', flat=True)
             pattern = r'\b(?!:.)\s*(?:' + '|'.join(map(re.escape, titulo)) + r')\b(?!:.)\s*'
-            filme_match = re.search(pattern, postagem_text)
-            if filme_match:
-                titulo_matched = filme_match.group()
+            pattern_pink = r'Pink Floyd: The Wall'
+            pink_match = re.search(pattern_pink, postagem_text)
+
+            if pink_match: 
+                titulo_matched = pink_match.group()
                 filme = Filmes.objects.filter(Series_Title__iexact=titulo_matched.strip()).first()
                 if filme:
                     postagem = Postagem.objects.create(
@@ -50,16 +53,32 @@ def index(request):
                     )
                     postagem.filmes.set([filme])
                     postagem.save()
-            else:
-                filme = None
-                postagem = Postagem.objects.create(
-                    user=user,
-                    comentario=postagem_text,
-                    data_postagem=timezone.now(),
-                )
-                postagem.save()
 
-            return redirect('index')
+                    return redirect('index')
+                
+            else:
+                filme_match = re.search(pattern, postagem_text)
+                if filme_match:
+                    titulo_matched = filme_match.group()
+                    filme = Filmes.objects.filter(Series_Title__iexact=titulo_matched.strip()).first()
+                    if filme:
+                        postagem = Postagem.objects.create(
+                            user=user,
+                            comentario=postagem_text,
+                            data_postagem=timezone.now(),
+                        )
+                        postagem.filmes.set([filme])
+                        postagem.save()
+                else:
+                    filme = None
+                    postagem = Postagem.objects.create(
+                        user=user,
+                        comentario=postagem_text,
+                        data_postagem=timezone.now(),
+                    )
+                    postagem.save()
+
+                return redirect('index')
         
     else:
         return redirect('login')
@@ -325,4 +344,11 @@ def search(request):
     return render(request, 'movied/search.html', {'posts':posts, 'query':query, 'users':users})
 
 def preferences(request):
-    return render(request, 'movied/preferences.html')
+    if request.user.is_authenticated:
+
+        return render(request, 'movied/preferences.html')
+
+def notifications(request, pk):
+    if request.user.is_authenticated and pk == request.user.id:
+        
+        return render(request, 'movied/notifications.html', {'notification':notifications})

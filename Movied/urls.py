@@ -20,4 +20,5 @@ urlpatterns = [
     path('reportar_comentario/<int:pk>', views.reportar_comentario, name='reportar_comentario'),
     path('search/', views.search, name='search'),
     path('preferences/', views.preferences, name='preferences'),
+    path('notifications/<int:pk>', views.notifications, name='notifications'),
 ]

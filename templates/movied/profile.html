@@ -80,7 +80,11 @@
             </div>
             {% for filme in postagem.filmes.all %}
             <div class="filme__container">
-                <img class="imagem__filme" src="{{ filme.Poster_Link}}" alt="Poster do Filme">
+                {% if filme.Streaming %}
+                <a href="{{filme.Streaming}}" target="_blank" rel="noopener noreferrer"><img class="imagem__filme" src="{{filme.Poster_Link}}" alt="Poster do Filme"></a>
+                {% else %}
+                <a><img class="imagem__filme" src="{{filme.Poster_Link}}" alt="Poster do Filme"></a>
+                {% endif %}
               <li class="filme__item">
                 <p class="filme__item-p">Name: {{filme.Series_Title}}</p>
                 <p class="filme__item-p">Overview: {{filme.Overview}}</p>
