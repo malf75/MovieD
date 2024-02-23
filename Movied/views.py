@@ -351,4 +351,5 @@ def preferences(request):
 def notifications(request, pk):
     if request.user.is_authenticated and pk == request.user.id:
         
+        
         return render(request, 'movied/notifications.html', {'notification':notifications})

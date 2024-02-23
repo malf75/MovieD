@@ -1,7 +1,8 @@
 from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, m2m_changed
+from django.dispatch import receiver
 
     
 class Filmes(models.Model):
@@ -62,6 +63,13 @@ class Profile(models.Model):
     def __str__(self):
         return (f"{self.user.username}"
             )
+    
+class Notifications(models.Model):
+     user = models.ForeignKey(User, related_name='Notifications_user', on_delete=models.DO_NOTHING)
+     notificacao = models.CharField(null=True, blank=True, max_length = 200)
+
+     def __str__(self):
+          return self.notificacao
 
     
 class Suggestions(models.Model):
@@ -85,3 +93,11 @@ def create_profile(sender, instance, created, **kwargs):
 
 post_save.connect(create_profile, sender=User)
 
+@receiver(m2m_changed, sender=Profile.follows.through)
+def followed(sender, instance, **kwargs):
+     if kwargs['action'] == 'post_add':
+          user = instance.user
+          new_follow = instance.follows.last()
+          message = f"{new_follow} started following you"
+          notification = Notifications.objects.create(user=user, notificacao=message)
+          notification.save()
