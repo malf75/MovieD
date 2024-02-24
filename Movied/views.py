@@ -22,16 +22,15 @@ def get_filme_info(request):
         return JsonResponse(filme_info, safe=False)
 
 def index(request):
-    postagens = Postagem.objects.all().order_by("-data_postagem")
-    include_follows = request.GET.get('include_follows')
-    followed_profiles = request.user.profile.follows.all()
-    if include_follows == 'on':
-        related_postagens = Postagem.objects.filter(user__profile__in=followed_profiles)
-        top_posts = Filmes.objects.filter(postagens__in=related_postagens).annotate(total_citations=Count('postagens')).filter(total_citations__gt=0).order_by('-total_citations')[:3]
-    else:
-        top_posts = Filmes.objects.annotate(total_citations=Count('postagens')).filter(total_citations__gt=0).order_by('-total_citations')[:3]
-
     if request.user.is_authenticated:
+        postagens = Postagem.objects.all().order_by("-data_postagem")
+        include_follows = request.GET.get('include_follows')
+        followed_profiles = request.user.profile.follows.all()
+        if include_follows == 'on':
+            related_postagens = Postagem.objects.filter(user__profile__in=followed_profiles)
+            top_posts = Filmes.objects.filter(postagens__in=related_postagens).annotate(total_citations=Count('postagens')).filter(total_citations__gt=0).order_by('-total_citations')[:3]
+        else:
+            top_posts = Filmes.objects.annotate(total_citations=Count('postagens')).filter(total_citations__gt=0).order_by('-total_citations')[:3]
     
         if request.method == "POST":
 
