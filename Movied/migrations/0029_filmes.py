@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('Poster_Link', models.URLField()),
-                ('Series_Title', models.CharField(max_length=50)),
+                ('Series_Title', models.CharField(max_length=120)),
                 ('Released_Year', models.IntegerField()),
                 ('Runtime', models.CharField(max_length=10)),
                 ('Genre', models.CharField(max_length=50)),

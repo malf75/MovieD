@@ -13,7 +13,7 @@ NOTIFICATION_CHOICES = {
     
 class Filmes(models.Model):
     Poster_Link = models.URLField(null=True, blank=True)
-    Series_Title = models.CharField(null=False, blank=False, max_length=50)
+    Series_Title = models.CharField(null=False, blank=False, max_length=120)
     Released_Year = models.IntegerField(null=True, blank=True)
     Runtime = models.CharField(null=False, blank=False, max_length=10)
     Genre = models.CharField(null=False, blank=False, max_length=50)
@@ -82,7 +82,7 @@ class Notification(models.Model):
     
 class Suggestions(models.Model):
     user = models.ForeignKey(User, related_name='suggestions', on_delete=models.DO_NOTHING, default=None)
-    Series_Title = models.CharField(null=False, blank=False, max_length=50)
+    Series_Title = models.CharField(null=False, blank=False, max_length=120)
     Released_Year = models.IntegerField(null=False, blank=False)
     Runtime = models.CharField(null=False, blank=False, max_length=10)
     Genre = models.CharField(null=False, blank=False, max_length=50)
