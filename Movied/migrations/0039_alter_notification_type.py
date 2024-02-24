@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='notification',
             name='type',
-            field=models.CharField(choices=[('LK', 'Like'), ('FL', 'Follow'), ('CM', 'Comment')], default='Like', max_length=3),
+            field=models.CharField(choices=[('LK', 'Like'), ('FL', 'Follow'), ('CM', 'Comment')], default='Like', max_length=20),
         ),
     ]
