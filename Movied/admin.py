@@ -48,14 +48,14 @@ class UserAdmin(admin.ModelAdmin):
 def create_filmes_from_suggestion(modeladmin, request, queryset):
     for suggestion in queryset:
         Filmes.objects.create(
-            Poster_Link=suggestion.Poster_Link,
+            Poster_Link=None,
             Series_Title=suggestion.Series_Title,
             Released_Year=suggestion.Released_Year,
             Runtime=suggestion.Runtime,
             Genre=suggestion.Genre,
             Rating=suggestion.Rating,
             Overview=suggestion.Overview,
-            Streaming=suggestion.Streaming
+            Streaming=None
         )
 
 create_filmes_from_suggestion.short_description = "Create Filmes from Suggestions"
