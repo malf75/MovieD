@@ -13,7 +13,7 @@ NOTIFICATION_CHOICES = {
     
 class Filmes(models.Model):
     Poster_Link = models.URLField(null=True, blank=True)
-    Series_Title = models.CharField(null=False, blank=False, max_length=120)
+    Series_Title = models.CharField(null=False, blank=False, max_length=110)
     Released_Year = models.IntegerField(null=True, blank=True)
     Runtime = models.CharField(null=False, blank=False, max_length=10)
     Genre = models.CharField(null=False, blank=False, max_length=50)
