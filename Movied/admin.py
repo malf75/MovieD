@@ -22,11 +22,7 @@ class ListandoComentarios(admin.ModelAdmin):
 class ProfileInLine(admin.StackedInline):
     model=Profile
 
-class ListSuggestions(admin.ModelAdmin):
-    list_display = ("id", "Series_Title")
-    list_display_links = ("id", "Series_Title")
-    search_fields = ("id", "Series_Title")
-    list_per_page = 10
+
 
 class ListFilmes(admin.ModelAdmin):
     list_display = ("id", "Series_Title")
@@ -39,7 +35,6 @@ class ListNotifications(admin.ModelAdmin):
     list_display = ("id", "notificacao")
     list_display_links = ("id", "notificacao")
     list_per_page = 10
-
 
 class UserAdmin(admin.ModelAdmin):
     model=User
@@ -60,11 +55,16 @@ def create_filmes_from_suggestion(modeladmin, request, queryset):
 
 create_filmes_from_suggestion.short_description = "Create Filmes from Suggestions"
 
-@admin.register(Suggestions)
-class SuggestionsAdmin(admin.ModelAdmin):
+class ListSuggestions(admin.ModelAdmin):
+    list_display = ("id", "Series_Title")
+    list_display_links = ("id", "Series_Title")
+    search_fields = ("id", "Series_Title")
+    list_per_page = 10
     actions = [create_filmes_from_suggestion]
+    
 
 admin.site.unregister(User)
+
 admin.site.register(User, UserAdmin)
 
 admin.site.register(Postagem, ListandoPostagens)
