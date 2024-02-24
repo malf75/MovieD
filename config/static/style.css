@@ -450,7 +450,7 @@ input:checked + .slider:before {
     border-radius: 20px;
     box-shadow: 0 3px 8px #001131;
     margin: 2% 22%;
-    padding: 5em 1em 7em 1em;
+    padding: 5em 1em 5em 1em;
 }
 
 .input__signup{
@@ -506,7 +506,7 @@ input:checked + .slider:before {
     border: 1px solid var(--cor-secundaria);
     border-radius: 20px;
     box-shadow: 0 3px 8px #001131;
-    margin: 12% 22% 12% 22%;
+    margin: 12% 25% 12% 25%;
     padding: 5em 1em 1em 1em;
     justify-content: center;
 }
