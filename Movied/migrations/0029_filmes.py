@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('Series_Title', models.CharField(max_length=50)),
                 ('Released_Year', models.IntegerField()),
                 ('Runtime', models.CharField(max_length=10)),
-                ('Genre', models.CharField(max_length=50)),
+                ('Genre', models.CharField(max_length=100)),
                 ('Rating', models.FloatField()),
                 ('Overview', models.TextField(max_length=400)),
             ],
