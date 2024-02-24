@@ -106,11 +106,10 @@ def followed(sender, instance, action, reverse, model, pk_set, **kwargs):
      if action == 'post_add' and not reverse:
           user = model.objects.get(pk=pk_set.pop()).user
           notification_sender = instance.user
-          notification_type = "FL"
           message = f"{notification_sender} started following you"
-          if Notification.objects.filter(user=user, notificacao=message, notification_sender=notification_sender, type=notification_type).exists():
+          if Notification.objects.filter(user=user, notificacao=message, notification_sender=notification_sender, type='FL').exists():
                pass
           else:
-               notification = Notification.objects.create(user=user, notificacao=message, notification_sender=notification_sender, type=notification_type)
+               notification = Notification.objects.create(user=user, notificacao=message, notification_sender=notification_sender, type='FL')
                notification.save()
           
