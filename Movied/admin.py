@@ -45,6 +45,25 @@ class UserAdmin(admin.ModelAdmin):
     model=User
     inlines= [ProfileInLine]
 
+def create_filmes_from_suggestion(modeladmin, request, queryset):
+    for suggestion in queryset:
+        Filmes.objects.create(
+            Poster_Link=suggestion.Poster_Link,
+            Series_Title=suggestion.Series_Title,
+            Released_Year=suggestion.Released_Year,
+            Runtime=suggestion.Runtime,
+            Genre=suggestion.Genre,
+            Rating=suggestion.Rating,
+            Overview=suggestion.Overview,
+            Streaming=suggestion.Streaming
+        )
+
+create_filmes_from_suggestion.short_description = "Create Filmes from Suggestions"
+
+@admin.register(Suggestions)
+class SuggestionsAdmin(admin.ModelAdmin):
+    actions = [create_filmes_from_suggestion]
+
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 
