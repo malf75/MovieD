@@ -54,6 +54,13 @@
                 <a href="#" class="filme__save"><i class="fa-regular fa-bookmark"></i></a>
             </div>
         </div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="warning" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
         {% endif %}
         <form class="form" action="{% url 'comentarios' postagem.id %}" method="POST">
             {% csrf_token %}

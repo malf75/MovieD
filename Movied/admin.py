@@ -1,5 +1,5 @@
 from django.contrib import admin
-from Movied.models import Postagem, Suggestions, Comentarios, Filmes, Notifications
+from Movied.models import Postagem, Suggestions, Comentarios, Filmes, Notification
 from django.contrib.auth.models import User, Group
 from .models import Profile
 
@@ -56,7 +56,7 @@ admin.site.register(Suggestions, ListSuggestions)
 
 admin.site.register(Filmes, ListFilmes)
 
-admin.site.register(Notifications, ListNotifications)
+admin.site.register(Notification, ListNotifications)
 
 
 

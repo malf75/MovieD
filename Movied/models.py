@@ -4,6 +4,12 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save, m2m_changed
 from django.dispatch import receiver
 
+NOTIFICATION_CHOICES = {
+     "LK":"Like",
+     "FL":"Follow",
+     "CM":"Comment",
+}
+
     
 class Filmes(models.Model):
     Poster_Link = models.URLField()
@@ -64,9 +70,11 @@ class Profile(models.Model):
         return (f"{self.user.username}"
             )
     
-class Notifications(models.Model):
+class Notification(models.Model):
      user = models.ForeignKey(User, related_name='Notifications_user', on_delete=models.DO_NOTHING)
      notificacao = models.CharField(null=True, blank=True, max_length = 200)
+     notification_sender = models.ForeignKey(User, related_name='Notification_sender', on_delete=models.DO_NOTHING, default=None)
+     type = models.CharField(max_length=3, choices=NOTIFICATION_CHOICES, default='Like')
 
      def __str__(self):
           return self.notificacao
@@ -94,10 +102,15 @@ def create_profile(sender, instance, created, **kwargs):
 post_save.connect(create_profile, sender=User)
 
 @receiver(m2m_changed, sender=Profile.follows.through)
-def followed(sender, instance, **kwargs):
-     if kwargs['action'] == 'post_add':
-          user = instance.user
-          new_follow = instance.follows.last()
-          message = f"{new_follow} started following you"
-          notification = Notifications.objects.create(user=user, notificacao=message)
-          notification.save()
+def followed(sender, instance, action, reverse, model, pk_set, **kwargs):
+     if action == 'post_add' and not reverse:
+          user = model.objects.get(pk=pk_set.pop()).user
+          notification_sender = instance.user
+          notification_type = "FL"
+          message = f"{notification_sender} started following you"
+          if Notification.objects.filter(user=user, notificacao=message, notification_sender=notification_sender, type=notification_type).exists():
+               pass
+          else:
+               notification = Notification.objects.create(user=user, notificacao=message, notification_sender=notification_sender, type=notification_type)
+               notification.save()
+          

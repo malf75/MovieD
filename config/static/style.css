@@ -964,7 +964,7 @@ input:checked + .slider:before {
 .report__post{
     font-size: 18px;
     margin-top: 2em;
-    margin-left: 26em;
+    margin-left: 31em;
     text-decoration: none;
     color: var(--cor-secundaria);
 }
@@ -1096,6 +1096,53 @@ input:checked + .slider:before {
 
 .btn__preferences:hover{
     background-color: rgba(66, 66, 66, 0.3);
+}
+
+.logo__notification:hover{
+    background-color: rgba(53, 51, 51, 0.2);
+    border-radius: 20px;
+}
+
+.notificacao{
+    margin: 3em 1em 1em 1em;
+    font-size: 16px;
+    border: 1px solid var(--cor-secundaria);
+    border-radius: 40px;
+    background-color: var(--cor-principal);
+    color: var(--cor-secundaria);
+}
+
+.notificacao:hover{
+    background-color: rgba(53, 51, 51, 0.2);
+}
+
+.notificacao__ancora{
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+}
+
+.paragrafo__ancora{
+    margin-top: 2.9em;
+    margin-left: 1em;
+    font-family: var(--fonte-principal);
+    color: var(--cor-secundaria);
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.foto__notification{
+    margin: 1em 0em 1em 1em;
+    width: 100%;
+    border: 2px solid var(--cor-secundaria);
+    border-radius: 100%;
+    width: 90px;
+    height: 90px;
+    cursor: pointer; 
+}
+
+.foto__notification:hover{
+    border-color: red;
 }
 
 @media screen and (min-width: 2048px) {

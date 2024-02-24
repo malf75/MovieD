@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from Movied.models import Postagem, Profile, Suggestions, Comentarios, Filmes
+from Movied.models import Postagem, Profile, Suggestions, Comentarios, Filmes, Notification
 from django.db.models import Count
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
@@ -205,7 +205,15 @@ def postagem_like(request, pk):
             postagem.likes.remove(request.user)
         else:
             postagem.likes.add(request.user)
-
+            notification = Notification.objects.filter(user=postagem.user, notificacao=f'{request.user} liked your review of {"".join([filme.Series_Title for filme in postagem.filmes.all()])}', notification_sender=request.user)
+            if notification.exists():
+                pass
+            else:
+                notification = Notification.objects.create(
+                user=postagem.user,
+                notificacao=f'{request.user} liked your review of {"".join([filme.Series_Title for filme in postagem.filmes.all()])}',
+                notification_sender=request.user
+                )
         data = {
             'likes_count': postagem.likes.count(),
             'user_liked': postagem.likes.filter(id=request.user.id).exists()
@@ -293,8 +301,20 @@ def comentarios(request, pk):
         postagem = get_object_or_404(Postagem, id=pk)
         if request.method == 'POST':
             comentario_texto = request.POST.get('comentario')
-            Comentarios.objects.create(comentario=comentario_texto, postagem=postagem, user=request.user)
-            return redirect('comentarios', pk=pk)
+            comentario = Comentarios.objects.filter(comentario=comentario_texto, postagem=postagem, user=request.user)
+            if comentario.exists():
+                messages.warning(request, ('You Have Already Commented This'))
+            else:
+                Comentarios.objects.create(comentario=comentario_texto, postagem=postagem, user=request.user)
+                notification = Notification.objects.create(
+                user=postagem.user,
+                notificacao=f'{request.user} commented your review of {"".join([filme.Series_Title for filme in postagem.filmes.all()])}',
+                notification_sender=request.user,
+                type="CM"
+                )
+                notification.save()
+                return redirect('comentarios', pk=pk)
+            
         return render(request, 'movied/comentarios.html', {'postagem':postagem})
     
 def deletar_postagem(request, pk):
@@ -350,6 +370,6 @@ def preferences(request):
 
 def notifications(request, pk):
     if request.user.is_authenticated and pk == request.user.id:
+        notification = Notification.objects.all().order_by("-id")
         
-        
-        return render(request, 'movied/notifications.html', {'notification':notifications})
+        return render(request, 'movied/notifications.html', {'notification':notification})
