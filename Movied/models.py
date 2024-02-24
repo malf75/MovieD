@@ -16,7 +16,7 @@ class Filmes(models.Model):
     Series_Title = models.CharField(null=False, blank=False, max_length=50)
     Released_Year = models.IntegerField(null=True, blank=True)
     Runtime = models.CharField(null=False, blank=False, max_length=10)
-    Genre = models.CharField(null=False, blank=False, max_length=50)
+    Genre = models.CharField(null=False, blank=False, max_length=100)
     Rating = models.FloatField(null=False, blank=False)
     Overview = models.TextField(null=False, blank=False, max_length=400)
     Streaming = models.URLField(null=True, blank=True)
