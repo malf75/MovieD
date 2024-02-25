@@ -355,7 +355,7 @@ input:checked + .slider:before {
 }
 
 .postagem__data{
-    padding: 2.4em 0 0 0.5em;
+    padding: 2.4em 8em 0 0.5em;
     font-family: var(--fonte-principal);
     color: var(--cor-secundaria);
 }
