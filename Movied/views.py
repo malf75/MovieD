@@ -280,7 +280,7 @@ def profile_edit(request, pk):
             if imagem:
                 profile.profile_image = imagem
                 file_path = f'images-movied/media/imagens/{imagem}'
-                default_storage.save(imagem, file_path)
+                default_storage.save(file_path, imagem)
 
             if erros:
                 context = {'erros': erros, 'profiles': profile}
