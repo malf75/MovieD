@@ -37,6 +37,7 @@ AWS_QUERYSTRING_AUTH = False
 AWS_HEADERS = {
     'Access-Control-Allow-Origin': '*'
 }
+AWS_S3_REGION_NAME = 'sa-east-1'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
