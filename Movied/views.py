@@ -278,7 +278,7 @@ def profile_edit(request, pk):
 
             if imagem:
                 profile.profile_image = imagem
-                file_path = f'images-movied/static/media/imagens/{imagem}'
+                file_path = f'images-movied/media/imagens/{imagem}'
                 default_storage.save(file_path, imagem)
 
             if erros:
