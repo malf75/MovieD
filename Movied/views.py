@@ -278,7 +278,7 @@ def profile_edit(request, pk):
 
             if imagem:
                 profile.profile_image = imagem
-                file_path = f'media/imagens/{imagem}'
+                file_path = f'bucketeer-d0c7c10d-5f55-4447-89e1-6f8568946c79/media/imagens/{imagem}'
                 default_storage.save(file_path, imagem)
 
             if erros:
