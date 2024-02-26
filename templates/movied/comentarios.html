@@ -79,7 +79,7 @@
                     <a href="{% url 'profile' comentario.user.id %}"><img src="{% static 'img/default.jpg'%}" class="foto__perfil" alt="foto de perfil"></a>
                 </div>
                 {% endif %}
-                <p class="postagem__data"><strong>{{ comentario.user }}</strong> • {{ comentario.data_comentario }}</p>
+                <p class="comentario__data"><strong>{{ comentario.user }}</strong> • {{ comentario.data_comentario }}</p>
                 {% if comentario.user == request.user %}
                 <a href="{% url 'deletar_comentario' comentario.id %}" class="remove__post2"><i class="fa-solid fa-trash"></i></a>
                 {% else %}

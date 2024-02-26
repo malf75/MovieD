@@ -369,6 +369,6 @@ def preferences(request):
 
 def notifications(request, pk):
     if request.user.is_authenticated and pk == request.user.id:
-        notification = Notification.objects.all().order_by("-id")
+        notification = Notification.objects.filter(user_id=pk).order_by("-id")
         
         return render(request, 'movied/notifications.html', {'notification':notification})

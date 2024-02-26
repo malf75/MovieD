@@ -960,14 +960,14 @@ input:checked + .slider:before {
 }
 
 .remove__post{
-    font-size: 16px;
+    font-size: 18px;
     margin-top: 2.4em;
     text-decoration: none;
     color: var(--cor-secundaria);
 }
 
 .remove__post2{
-    font-size: 16px;
+    font-size: 18px;
     margin-top: 2.4em;
     text-decoration: none;
     color: var(--cor-secundaria);
