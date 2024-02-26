@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from django.utils import timezone
 from django.http import JsonResponse
-from datetime import datetime
+from django.core.files.storage import default_storage
 import re
 
 def get_filme_info(request):
@@ -278,6 +278,8 @@ def profile_edit(request, pk):
 
             if imagem:
                 profile.profile_image = imagem
+                file_path = f'media/imagens/{imagem}'
+                default_storage.save(file_path, imagem)
 
             if erros:
                 context = {'erros': erros, 'profiles': profile}
