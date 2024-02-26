@@ -278,8 +278,9 @@ def profile_edit(request, pk):
                 profile.bio = bio
 
             if imagem:
+                name = f'{current_user.username}_{datetime.now()}.jpg'
                 profile.profile_image = imagem
-                file_path = f'images-movied/media/imagens/{imagem}'
+                file_path = f'images-movied/media/imagens/{name}'
                 default_storage.save(file_path, imagem)
 
             if erros:
