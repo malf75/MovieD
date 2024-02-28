@@ -281,8 +281,7 @@ def profile_edit(request, pk):
             if imagem:
                 profile.profile_image = imagem
                 current_time = datetime.now().strftime('%Y%m%d%H%M%S')
-                file_name = f'{current_user.username}{current_time}.jpg'
-                file_path = os.path.join('media','images', file_name)
+                file_path = f'static/images/{imagem}{current_time}'
                 default_storage.save(file_path, imagem)
 
             if erros:
