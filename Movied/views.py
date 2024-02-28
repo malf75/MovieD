@@ -4,6 +4,7 @@ from django.db.models import Count
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from django.utils import timezone
+from datetime import datetime
 from django.http import JsonResponse
 from django.core.files.storage import default_storage
 from pathlib import Path, os
@@ -279,7 +280,9 @@ def profile_edit(request, pk):
 
             if imagem:
                 profile.profile_image = imagem
-                file_name = default_storage.save(file_name, imagem)
+                file_name = f'{current_user.username}{datetime.now()}'
+                file_path = os.path.join('media','images', file_name)
+                default_storage.save(file_path, imagem)
 
             if erros:
                 context = {'erros': erros, 'profiles': profile}
