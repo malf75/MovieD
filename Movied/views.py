@@ -6,6 +6,7 @@ from django.contrib import auth, messages
 from django.utils import timezone
 from django.http import JsonResponse
 from django.core.files.storage import default_storage
+from pathlib import Path, os
 import re
 
 def get_filme_info(request):
@@ -278,7 +279,7 @@ def profile_edit(request, pk):
 
             if imagem:
                 profile.profile_image = imagem
-                file_path = f'media/imagens/{imagem}'
+                file_path = os.path.join('media', 'imagens', imagem.name)
                 default_storage.save(file_path, imagem)
 
             if erros:
