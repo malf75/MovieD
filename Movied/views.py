@@ -280,7 +280,8 @@ def profile_edit(request, pk):
 
             if imagem:
                 profile.profile_image = imagem
-                file_name = f'{current_user.username}{datetime.now()}'
+                current_time = datetime.now().strftime('%Y%m%d%H%M%S')
+                file_name = f'{current_user.username}{current_time}.jpg'
                 file_path = os.path.join('media','images', file_name)
                 default_storage.save(file_path, imagem)
 
