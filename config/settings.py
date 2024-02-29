@@ -38,7 +38,7 @@ AWS_QUERYSTRING_AUTH = False
 AWS_HEADERS = {
     'Access-Control-Allow-Origin': '*'
 }
-REGION = 'sa-east-1'
+AWS_S3_REGION_NAME = 'sa-east-1'
 
 
 
