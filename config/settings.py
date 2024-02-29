@@ -14,7 +14,6 @@ from pathlib import Path, os
 from dotenv import load_dotenv
 from decouple import config
 import django_on_heroku
-import boto3
 
 load_dotenv()
 

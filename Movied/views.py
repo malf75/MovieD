@@ -7,7 +7,6 @@ from django.utils import timezone
 from datetime import datetime
 from django.http import JsonResponse
 from django.core.files.storage import default_storage
-from pathlib import Path, os
 import re
 
 def get_filme_info(request):

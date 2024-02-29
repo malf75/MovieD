@@ -1160,9 +1160,6 @@ input:checked + .slider:before {
         margin: 2em 26em 0em 28.5em;
     }
 
-    .remove__post{
-    }
-
     .filme__opcoes{
         padding: 0.2em 0 1em 33em;
     }
