@@ -30,14 +30,13 @@ AWS_ACCESS_KEY_ID = str(os.getenv('AWS_ACCESS_KEY_ID'))
 AWS_SECRET_ACCESS_KEY = str(os.getenv('AWS_SECRET_ACCESS_KEY'))
 AWS_STORAGE_BUCKET_NAME = str(os.getenv('BUCKET_NAME'))
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-AWS_DEFAULT_ACL = 'public-read'
 AWS_S3_OBJECT_PARAMETER = {'CacheControl':'max-age=86400'}
 AWS_LOCATION = 'static'
 AWS_QUERYSTRING_AUTH = False
 AWS_HEADERS = {
     'Access-Control-Allow-Origin': '*'
 }
-AWS_S3_REGION_NAME = 'sa-east-1'
+AWS_S3_REGION_NAME = 'us-east-1'
 
 
 
