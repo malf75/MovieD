@@ -306,16 +306,15 @@ def comentarios(request, pk):
                 messages.warning(request, ('You Have Already Commented This'))
             else:
                 Comentarios.objects.create(comentario=comentario_texto, postagem=postagem, user=request.user)
-                notification = Notification.objects.create(
-                user=postagem.user,
-                notificacao=f'{request.user} commented your review of {"".join([filme.Series_Title for filme in postagem.filmes.all()])}',
-                notification_sender=request.user,
-                type="CM"
-                )
-                if notification.user == notification.notification_sender:
+                if request.user == postagem.user:
                     pass
                 else:
-                    notification.save()
+                    Notification.objects.create(
+                    user=postagem.user,
+                    notificacao=f'{request.user} commented your review of {"".join([filme.Series_Title for filme in postagem.filmes.all()])}',
+                    notification_sender=request.user,
+                    type="CM"
+                    )
                 return redirect('comentarios', pk=pk)
             
         return render(request, 'movied/comentarios.html', {'postagem':postagem})
