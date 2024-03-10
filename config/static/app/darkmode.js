@@ -1,3 +1,5 @@
+let darkModeState = null
+
 document.addEventListener('DOMContentLoaded', function() {
     let butao = document.querySelector('#btn');
     let logo = document.querySelector('.logo');
@@ -13,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
             logosign.src = 'https://images-movied.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png';
         }
         localStorage.setItem('dark-mode', 'inactive');
+        darkModeState = 'inactive';
     }
   
     const enableDarkMode = () => {
@@ -25,16 +28,17 @@ document.addEventListener('DOMContentLoaded', function() {
             logosign.src = 'https://images-movied.s3.amazonaws.com/static/media/Design_sem_nome__1_-removebg-preview.png';
         }
         localStorage.setItem('dark-mode', 'active');
+        darkModeState = 'active';
     }
   
     let darkMode = localStorage.getItem('dark-mode');
-  
-    if (darkMode === 'active') {
-      enableDarkMode();
-    } else {
-      disableDarkMode();
+    if (darkMode !== darkModeState){
+        if (darkMode === 'active') {
+        enableDarkMode();
+        } else {
+        disableDarkMode();
+        }
     }
-  
     butao.addEventListener('click', () => {
       if (butao.classList.contains('active')) {
           disableDarkMode();
