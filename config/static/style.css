@@ -815,7 +815,6 @@ input:checked + .slider:before {
     display: flex;
     width: 20em;
     margin: 2em 19em 2em 19em;
-    text-align: center;
 }
 
 .logo__suggestions{
