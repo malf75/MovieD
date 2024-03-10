@@ -9,7 +9,7 @@
 <hl class="vl"></hl>
 <section class="followers">
     <div class="container3">
-    <a href="{% url 'index' %}" class="logo__ancora"><img class="logo logo__suggestions" src="https://images-movied.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png" alt="logo do movied"></a>
+    <a href="{% url 'index' %}" class="logo__ancora"><img class="logo logo__suggestions" src="https://movied-bucket.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png" alt="logo do movied"></a>
     {% if postagem %}
                 <div class="quem">
                 {% if postagem.user.profile.profile_image %}
@@ -18,7 +18,7 @@
                 </div>
                 {% else %}
                 <div id="container2">
-                    <a href="{% url 'profile' postagem.user.id %}"><img src="https://images-movied.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil" alt="foto de perfil"></a>
+                    <a href="{% url 'profile' postagem.user.id %}"><img src="https://movied-bucket.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil" alt="foto de perfil"></a>
                 </div>
                 {% endif %}
                 <p class="postagem__data"><strong>{{ postagem.user }}</strong> • {{ postagem.data_postagem }}</p>
@@ -76,7 +76,7 @@
                 </div>
                 {% else %}
                 <div id="container2">
-                    <a href="{% url 'profile' comentario.user.id %}"><img src="https://images-movied.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil" alt="foto de perfil"></a>
+                    <a href="{% url 'profile' comentario.user.id %}"><img src="https://movied-bucket.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil" alt="foto de perfil"></a>
                 </div>
                 {% endif %}
                 <p class="comentario__data"><strong>{{ comentario.user }}</strong> • {{ comentario.data_comentario }}</p>
