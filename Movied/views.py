@@ -279,9 +279,6 @@ def profile_edit(request, pk):
 
             if imagem:
                 profile.profile_image = imagem
-                file_name = f'{current_user.username}{datetime.now()}.jpg'
-                file_path = f'media/images/{file_name}'
-                default_storage.save(file_path, imagem)
 
             if erros:
                 context = {'erros': erros, 'profiles': profile}
