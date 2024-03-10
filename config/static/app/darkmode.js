@@ -36,9 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   });
 
-  if (darkMode === 'active') {
-      enableDarkMode();
-  } else {
-    disableDarkMode();
-  }
+    document.addEventListener('chatEnter', () => {
+        if (darkMode === 'active') {
+            enableDarkMode();
+        }
+    });
 });
