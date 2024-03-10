@@ -8,8 +8,8 @@
 </section>
 <hl class="vl"></hl>
 <section class="followers">
+    <a href="{% url 'index' %}" class="logo__ancora"><img class="logo" src="https://movied-bucket.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png" alt="logo do movied"></a>
     <div class="container3">
-    <a href="{% url 'index' %}" class="logo__ancora"><img class="logo logo__suggestions" src="https://movied-bucket.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png" alt="logo do movied"></a>
 {% if profiles %}
     {% for profile in profiles.followed_by.all %}
         <div class="followers__card">
