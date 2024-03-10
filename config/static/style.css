@@ -803,13 +803,13 @@ input:checked + .slider:before {
 .form__filme{
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
 .forms{
     flex-direction: column;
     display: flex;
     width: 20em;
-    margin: 2em 19em 2em 19em;
 }
 
 .logo__suggestions{
@@ -818,20 +818,8 @@ input:checked + .slider:before {
     margin: 1em 0 1em 46%;
 }
 
-.forms__filme{
-    width: 88%;
-    padding: 2em;
-    margin-bottom: 2em;
-    margin-left: 0.5em;
-    border: 1px solid var(--cor-secundaria);
-    border-radius: 40px;
-    background-color: var(--cor-principal);
-    color: var(--cor-secundaria);
-}
-
 .input__suggestion{
     width: 37%;
-    margin: 10% 8% 0% 37%;
     padding: 1.5% 4%;
     border-radius: 40px;
     background-color: var(--cor-principal);
@@ -858,9 +846,8 @@ input:checked + .slider:before {
 .explicacao__suggestion{
     font-family: var(--fonte-principal);
     color: var(--cor-secundaria);
-    margin-bottom: 1em;
-    margin-left: 2em;
-    text-align: center;
+    text-wrap: wrap;
+    width: 300px;
 }
 
 .input__profile{
