@@ -859,6 +859,7 @@ input:checked + .slider:before {
     color: var(--cor-secundaria);
     text-wrap: wrap;
     width: 300px;
+    margin-bottom: 2em;
 }
 
 .input__profile{
