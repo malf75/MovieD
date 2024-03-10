@@ -41,4 +41,6 @@ let darkMode = localStorage.getItem('dark-mode');
 
 if (darkMode === 'active') {
     enableDarkMode();
+} else {
+    disableDarkMode();
 }
