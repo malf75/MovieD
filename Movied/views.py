@@ -209,11 +209,14 @@ def postagem_like(request, pk):
             if notification.exists():
                 pass
             else:
-                notification = Notification.objects.create(
-                user=postagem.user,
-                notificacao=f'{request.user} liked your review of {"".join([filme.Series_Title for filme in postagem.filmes.all()])}',
-                notification_sender=request.user
-                )
+                if request.user == postagem.user:
+                    pass
+                else:
+                    notification = Notification.objects.create(
+                    user=postagem.user,
+                    notificacao=f'{request.user} liked your review of {"".join([filme.Series_Title for filme in postagem.filmes.all()])}',
+                    notification_sender=request.user
+                    )
         data = {
             'likes_count': postagem.likes.count(),
             'user_liked': postagem.likes.filter(id=request.user.id).exists()
