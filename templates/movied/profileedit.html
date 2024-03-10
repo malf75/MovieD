@@ -8,8 +8,8 @@
 </section>
 <hl class="vl"></hl>
 <section class="mid__section">
-    <div class="container3">
     <a href="{% url 'index' %}" class="logo__ancora"><img class="logo logo" src="https://movied-bucket.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png" alt="logo do movied"></a>
+    <div class="container3">
     <div class="forms">
         <form action="{% url 'profileedit' profiles.user.id %}" method="POST" enctype="multipart/form-data" >
             {% csrf_token %}
