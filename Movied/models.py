@@ -59,11 +59,14 @@ class Comentarios(models.Model):
               f"{self.comentario}"
               f"{self.data_comentario}"
          )
+    
+def user_directory_path(instance, filename):
+    return 'media/images/{0}/{1}'.format(instance.user.username, filename)
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     follows = models.ManyToManyField("self", related_name="followed_by", symmetrical=False, blank=True)
-    profile_image = models.ImageField(null=True, blank=True, upload_to="media/images/")
+    profile_image = models.ImageField(null=True, blank=True, upload_to=user_directory_path)
     bio = models.TextField(null=True, blank=True, max_length = 80)
     
     def __str__(self):
