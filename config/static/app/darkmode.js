@@ -1,6 +1,6 @@
 let darkModeState = null
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('load', function() {
     let butao = document.querySelector('#btn');
     let logo = document.querySelector('.logo');
     let logosign = document.querySelector('.logo__signup');
