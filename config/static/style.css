@@ -818,6 +818,16 @@ input:checked + .slider:before {
     margin: 1em 0 1em 46%;
 }
 
+.forms__filme{
+    width: 88%;
+    padding: 2em;
+    margin-bottom: 2em;
+    border: 1px solid var(--cor-secundaria);
+    border-radius: 40px;
+    background-color: var(--cor-principal);
+    color: var(--cor-secundaria);
+}
+
 .input__suggestion{
     width: 37%;
     padding: 1.5% 4%;
