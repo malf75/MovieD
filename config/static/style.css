@@ -154,6 +154,10 @@ input:checked + .slider:before {
     justify-content: center;
 }
 
+.mid__section{
+    text-align: center;
+}
+
 .imagem__filme-trend{
     width: 4em;
     border: 1px solid var(--cor-secundaria);
@@ -334,7 +338,7 @@ input:checked + .slider:before {
 
 .logo{
     height: 80px;
-    margin: 2em 26em 0em 27em;
+    margin: 2em 0 0 0 0;
 }
 
 .form{
