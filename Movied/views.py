@@ -312,7 +312,10 @@ def comentarios(request, pk):
                 notification_sender=request.user,
                 type="CM"
                 )
-                notification.save()
+                if notification.user == notification.notification_sender:
+                    pass
+                else:
+                    notification.save()
                 return redirect('comentarios', pk=pk)
             
         return render(request, 'movied/comentarios.html', {'postagem':postagem})
