@@ -1021,16 +1021,6 @@ input:checked + .slider:before {
     opacity: 20%;
 }
 
-.logo__profile:hover{
-    background-color: rgba(53, 51, 51, 0.2);
-    border-radius: 20px;
-}
-
-.logo__suggestions:hover{
-    background-color: rgba(53, 51, 51, 0.2);
-    border-radius: 20px;
-}
-
 .search__all{
     padding: 1em;
     width: 33%;
