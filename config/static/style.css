@@ -1012,22 +1012,12 @@ input:checked + .slider:before {
     opacity: 20%;
 }
 
-.logo__search{
-    margin-left: 46%;
-    margin-bottom: 2em;
-}
-
 .logo__profile:hover{
     background-color: rgba(53, 51, 51, 0.2);
     border-radius: 20px;
 }
 
 .logo__suggestions:hover{
-    background-color: rgba(53, 51, 51, 0.2);
-    border-radius: 20px;
-}
-
-.logo__search:hover{
     background-color: rgba(53, 51, 51, 0.2);
     border-radius: 20px;
 }
