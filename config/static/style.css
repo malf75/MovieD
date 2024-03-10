@@ -365,6 +365,10 @@ input:checked + .slider:before {
     color: var(--cor-secundaria);
 }
 
+.comentario{
+    text-align: start;
+}
+
 .comentario__data{
     width: 730px;
     padding: 2.4em 1em 0 0.5em;
