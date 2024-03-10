@@ -820,7 +820,7 @@ input:checked + .slider:before {
 }
 
 .forms__filme{
-    width: 88%;
+    width: 80%;
     padding: 2em;
     margin-bottom: 2em;
     border: 1px solid var(--cor-secundaria);
