@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
 const selectFilmes = document.createElement('select')
 
-fetch(`/api/filme_info/`)
+await fetch(`/api/filme_info/`)
   .then(res => res.json())
   .then((filmes) => {
 

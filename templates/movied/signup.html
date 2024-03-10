@@ -8,7 +8,7 @@
         {% csrf_token %}
     <div class="container">
         <div class="container__signup">
-            <img class="logo logo__signup" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied">
+            <img class="logo logo__signup" src="https://images-movied.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png" alt="logo do movied">
             <input class="input__signup" type="text" placeholder="username" name="nome" required>
             <p class="erro__senha-sign">{{ erros.username }}</p>
             <input class="input__signup" type="email" placeholder="email" name="email" required>

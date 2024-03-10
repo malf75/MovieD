@@ -9,7 +9,7 @@
 <hl class="vl"></hl>
 <section>
     <div class="container3">
-    <a href="{% url 'index' %}" class="logo__ancora" id="logo__ancora"><img class="logo logo__search" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied"></a>
+    <a href="{% url 'index' %}" class="logo__ancora" id="logo__ancora"><img class="logo logo__search" src="https://images-movied.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png" alt="logo do movied"></a>
     <div class="buttons">
         <button class="search__all">All</button>
         <button class="search__reviews">Reviews</button>
@@ -23,7 +23,7 @@
                 </div>
                 {% else %}
                 <div id="container2">
-                    <a href="{% url 'profile' postagem.user.id %}"><img src="{% static 'img/default.jpg'%}" class="foto__perfil" alt="foto de perfil"></a>
+                    <a href="{% url 'profile' postagem.user.id %}"><img src="https://images-movied.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil" alt="foto de perfil"></a>
                 </div>
                 {% endif %}
                 <p class="postagem__data"><strong>{{ postagem.user }}</strong> • {{ postagem.data_postagem }}</p>
@@ -74,7 +74,7 @@
                     {% endif %}
                 </div>
                 {% else %}
-                <a href="{% url 'profile' profile.id %}"><img src="{% static 'img/default.jpg'%}" class="foto__followers" alt="{{ profile.user.username }}"></a>
+                <a href="{% url 'profile' profile.id %}"><img src="https://images-movied.s3.amazonaws.com/static/media/default.jpg" class="foto__followers" alt="{{ profile.user.username }}"></a>
                 <div class="nome__bio">
                     <h3 class="username__followers">{{ profile.username }}</h3>
                     {% if profile.profile.bio %}

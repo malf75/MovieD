@@ -13,7 +13,7 @@
                         {% if user.profile.profile_image %}
                         <img src="{{ user.profile.profile_image.url }}" class="foto__perfil" alt="foto de perfil">
                         {% else %}
-                        <img src="{% static 'img/default.jpg'%}" class="foto__perfil" alt="foto de perfil">
+                        <img src="https://images-movied.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil" alt="foto de perfil">
                         {% endif %}
                         <span class="foto__perfil"></span>
                     </label>
@@ -48,7 +48,7 @@
             {% endfor %}
         </ul>
         {% endif %}
-        <img class="logo" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied">
+        <img class="logo" src="https://images-movied.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png" alt="logo do movied">
         <form class="form" action="{% url 'index' %}" method="POST">
         {% csrf_token %}
             <textarea class="posta" name="postagemt" id="postagem" placeholder="Comment your review" maxlength="400" style="height: auto;" required></textarea>
@@ -65,7 +65,7 @@
                 </div>
                 {% else %}
                 <div id="container2">
-                    <a href="{% url 'profile' postagem.user.id %}"><img src="{% static 'img/default.jpg'%}" class="foto__perfil" alt="foto de perfil"></a>
+                    <a href="{% url 'profile' postagem.user.id %}"><img src="https://images-movied.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil" alt="foto de perfil"></a>
                 </div>
                 {% endif %}
                 <p class="postagem__data"><strong>{{ postagem.user }}</strong> • {{ postagem.data_postagem }}</p>
@@ -117,7 +117,7 @@
                 </div>
                 {% else %}
                 <div id="container2">
-                    <a href="{% url 'profile' comentario.user.id %}"><img src="{% static 'img/default.jpg'%}" class="foto__perfil" alt="foto de perfil"></a>
+                    <a href="{% url 'profile' comentario.user.id %}"><img src="https://images-movied.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil" alt="foto de perfil"></a>
                 </div>
                 {% endif %}
                 <p class="comentario__data"><strong>{{ comentario.user }}</strong> • {{ comentario.data_comentario }}</p>

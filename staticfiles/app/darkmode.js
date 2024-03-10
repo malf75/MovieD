@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
       butao.classList.remove('active');
       document.body.classList.remove('dark-mode');
       if (logo) {
-          logo.src = '/static/img/Design_sem_nome-removebg-preview.png';
+          logo.src = 'https://images-movied.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png';
       }
       if (logosign) {
-          logosign.src = '/static/img/Design_sem_nome-removebg-preview.png';
+          logosign.src = 'https://images-movied.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png';
       }
       localStorage.setItem('dark-mode', 'inactive');
   }
@@ -20,10 +20,10 @@ document.addEventListener('DOMContentLoaded', function() {
       butao.classList.add('active');
       document.body.classList.add('dark-mode');
       if (logo) {
-          logo.src = '/static/img/Design_sem_nome__1_-removebg-preview.png';
+          logo.src = 'https://images-movied.s3.amazonaws.com/static/media/Design_sem_nome__1_-removebg-preview.png';
       }
       if (logosign) {
-          logosign.src = '/static/img/Design_sem_nome__1_-removebg-preview.png';
+          logosign.src = 'https://images-movied.s3.amazonaws.com/static/media/Design_sem_nome__1_-removebg-preview.png';
       }
       localStorage.setItem('dark-mode', 'active');
   }

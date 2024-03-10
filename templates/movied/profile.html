@@ -11,7 +11,7 @@
 <div class="vl"></div>
 <section>
     <div class="container3">
-        <a href="{% url 'index' %}" class="logo__ancora"><img class="logo logo__profile" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied"></a>
+        <a href="{% url 'index' %}" class="logo__ancora"><img class="logo logo__profile" src="https://images-movied.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png" alt="logo do movied"></a>
         <div>
             {% if profile == user.profile %}
                 <input type="checkbox" id="menu2" class="container__btn">
@@ -19,7 +19,7 @@
                 {% if profile.user.profile.profile_image %}              
                     <img src="{{ profile.user.profile.profile_image.url }}" class="foto__perfil-pp" alt="foto de perfil">   
                 {% else %}
-                    <img src="{% static 'img/default.jpg'%}" class="foto__perfil-pp" alt="foto de perfil">
+                    <img src="https://images-movied.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil-pp" alt="foto de perfil">
                 {% endif %}
                 </label>
                 <ul class="lista-menu2">
@@ -31,7 +31,7 @@
             {% if profile.user.profile.profile_image %}
                 <img src="{{ profile.user.profile.profile_image.url }}" class="foto__perfil-pp" alt="foto de perfil">
             {% else %}
-                <img src="{% static 'img/default.jpg'%}" class="foto__perfil-pp" alt="foto de perfil">
+                <img src="https://images-movied.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil-pp" alt="foto de perfil">
             {% endif %}
             {% endif %}
         </div>
@@ -65,7 +65,7 @@
                 </div>
                 {% else %}
                 <div id="container2">
-                    <img src="{% static 'img/default.jpg'%}" class="foto__perfil" alt="foto de perfil">
+                    <img src="https://images-movied.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil" alt="foto de perfil">
                 </div>
                 {% endif %}
                 <p class="postagem__data"><strong>{{ postagem.user }}</strong> • {{ postagem.data_postagem }}</p>

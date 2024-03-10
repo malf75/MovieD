@@ -8,14 +8,14 @@
 </section>
 <div class="vl"></div>
 <section>
-    <a href="{% url 'index' %}" class="logo__ancora"><img class="logo logo__notification" src="{% static '/img/Design_sem_nome-removebg-preview.png' %}" alt="logo do movied"></a>
+    <a href="{% url 'index' %}" class="logo__ancora"><img class="logo logo__notification" src="https://images-movied.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png" alt="logo do movied"></a>
     {% for notifications in notification %}
     <div class="notificacao">
     <a href="{% url 'profile' notifications.notification_sender.id %}" class="notificacao__ancora">
     {% if notifications.notification_sender.profile.profile_image %}
     <img src="{{ notifications.notification_sender.profile.profile_image.url }}" class="foto__notification">
     {% else %}
-    <img src="{% static 'img/default.jpg' %}" class="foto__notification">
+    <img src="https://images-movied.s3.amazonaws.com/static/media/default.jpg" class="foto__notification">
     {% endif %}
     <p class="paragrafo__ancora">{{ notifications.notificacao }}</p>
     </a>
