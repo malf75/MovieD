@@ -1,4 +1,4 @@
-document.addEventListener('load', function() {
+document.addEventListener('DOMContentLoaded', function() {
   let butao = document.querySelector('#btn');
   let logo = document.querySelector('.logo');
   let logosign = document.querySelector('.logo__signup');
@@ -38,5 +38,7 @@ document.addEventListener('load', function() {
 
   if (darkMode === 'active') {
       enableDarkMode();
+  } else {
+    disableDarkMode();
   }
 });
