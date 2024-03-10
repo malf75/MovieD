@@ -692,6 +692,7 @@ input:checked + .slider:before {
     justify-content: center;
     flex-direction: column;
     text-align: start;
+    align-items: center;
 }
 
 .nome__perfil{
