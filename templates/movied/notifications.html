@@ -7,8 +7,8 @@
     </div>
 </section>
 <div class="vl"></div>
-<section>
-    <a href="{% url 'index' %}" class="logo__ancora"><img class="logo logo__notification" src="https://movied-bucket.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png" alt="logo do movied"></a>
+<section class="mid__section">
+    <a href="{% url 'index' %}" class="logo__ancora"><img class="logo" src="https://movied-bucket.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png" alt="logo do movied"></a>
     {% for notifications in notification %}
     <div class="notificacao">
     <a href="{% url 'profile' notifications.notification_sender.id %}" class="notificacao__ancora">
