@@ -687,12 +687,20 @@ input:checked + .slider:before {
     height: 90px;
     cursor: pointer;
 }
+
 .container3{
     display: flex;
     justify-content: center;
     flex-direction: column;
     text-align: start;
     align-items: center;
+}
+
+.container4{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: start;
 }
 
 .nome__perfil{
