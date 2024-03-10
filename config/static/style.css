@@ -15,7 +15,6 @@
 .dark-mode{
     --cor-principal: #090d1f;
     --cor-secundaria: #FFF5E0;
-    transition: 0.1s;
 }
 
 select option:hover {
