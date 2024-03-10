@@ -1,6 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
+  let butao = document.querySelector('#btn');
   let logo = document.querySelector('.logo');
   let logosign = document.querySelector('.logo__signup');
+
+  butao.addEventListener('click', () => {
+    if (butao.classList.contains('active')) {
+        disableDarkMode();
+    } else {
+        enableDarkMode();
+    }
+    });
 
   const disableDarkMode = () => {
       butao.classList.remove('active');
@@ -26,16 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
       localStorage.setItem('dark-mode', 'active');
   }
   
-});
-
-let butao = document.querySelector('#btn');
-
-butao.addEventListener('click', () => {
-    if (butao.classList.contains('active')) {
-        disableDarkMode();
-    } else {
-        enableDarkMode();
-    }
 });
 
 let darkMode = localStorage.getItem('dark-mode');
