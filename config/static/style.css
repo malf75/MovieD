@@ -1043,6 +1043,8 @@ input:checked + .slider:before {
     border: none;
     background-color: var(--cor-principal);
     color: var(--cor-secundaria);
+    border-left: 1px solid var(--cor-secundaria);
+    border-right: 1px solid var(--cor-secundaria);
 }
 
 .search__reviews:hover{
