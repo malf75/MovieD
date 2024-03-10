@@ -334,7 +334,7 @@ input:checked + .slider:before {
 
 .logo{
     height: 80px;
-    margin: 2em 26em 0em 27em;
+    text-align: center;
 }
 
 .form{
