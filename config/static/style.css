@@ -694,11 +694,6 @@ input:checked + .slider:before {
     text-align: start;
 }
 
-.logo__profile{
-    height: 9%;
-    width: 9%;
-}
-
 .nome__perfil{
     font-family: var(--fonte-principal);
     margin: 1.4em 0 0.4em 1.6em;
