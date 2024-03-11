@@ -21,5 +21,5 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('preferences/', views.preferences, name='preferences'),
     path('notifications/<int:pk>', views.notifications, name='notifications'),
-    path('List/<int:pk>', views.List, name='List')
+    path('List/<int:pk>', views.list, name='List')
 ]
