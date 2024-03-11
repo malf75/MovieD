@@ -382,6 +382,7 @@ def save_movie(request, pk):
     if request.user.is_authenticated and request.method == 'POST':
         postagem = get_object_or_404(Postagem, id=pk)
         filme = postagem.filmes.get(filme)
+        print(filme)
         if postagem.filmes:
             list = List.objects.filter(user=request.user, filmes=postagem.filmes)
             if not list.exists():

@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 $('.filme__like').on('click', function(event) {
   event.preventDefault();
-  var url = $(this).attr("href");
-  var postId = $(this).data('post-id');
-  var csrfToken = $(this).data('csrf-token');
+  let url = $(this).attr("href");
+  let postId = $(this).data('post-id');
+  let csrfToken = $(this).data('csrf-token');
 
   $.post(url, { pk: postId, csrfmiddlewaretoken: csrfToken })
     .done(function(data) {
@@ -30,9 +30,9 @@ $('.filme__like').on('click', function(event) {
 
 $('.filme__save').on('click', function(event) {
   event.preventDefault();
-  var url = $(this).attr("href");
-  var postId = $(this).data('post-id');
-  var csrfToken = $(this).data('csrf-token');
+  let url = $(this).attr("href");
+  let postId = $(this).data('post-id');
+  let csrfToken = $(this).data('csrf-token');
 
   $.post(url, { pk: postId, csrfmiddlewaretoken: csrfToken })
     .done(function(data) {
