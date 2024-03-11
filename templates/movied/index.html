@@ -105,9 +105,9 @@
                 {% endif %}
                 <p class="comentarios__length">{{ postagem.comentarios_postagem.all.count }}</p><a href="{% url 'comentarios' postagem.id %}" class="filme__comment"><i class="fa-regular fa-comment"></i></a>
                 {% if filme in user.list.filmes.filme %}
-                <a href="#" class="filme__save"><i class="fa-solid fa-bookmark"></i></a>
+                <a href="#" data-post-id="{{ postagem.id }}" data-csrf-token="{{ csrf_token }}" class="filme__save"><i class="fa-solid fa-bookmark"></i></a>
                 {% else %}
-                <a href="{% url 'save_movie' postagem.id %}" class="filme__save"><i class="fa-regular fa-bookmark"></i></a>
+                <a data-post-id="{{ postagem.id }}" data-csrf-token="{{ csrf_token }}" href="{% url 'save_movie' postagem.id %}" class="filme__save"><i class="fa-regular fa-bookmark"></i></a>
                 {% endif %}
             </div>
         {% for comentario in postagem.comentarios_postagem.all %}
