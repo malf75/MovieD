@@ -381,12 +381,10 @@ def notifications(request, pk):
 def save_movie(request, pk):
     if request.user.is_authenticated and request.method == 'POST':
         postagem = get_object_or_404(Postagem, id=pk)
-        filme = postagem.filmes.filme
+        filme = postagem.filmes.get(filme)
         if postagem.filmes:
             list = List.objects.filter(user=request.user, filmes=postagem.filmes)
-            if list.exists():
-                pass
-            else:
+            if not list.exists():
                 list = List.objects.create(
                 user=request.user,
                 )
