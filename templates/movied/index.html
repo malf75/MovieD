@@ -104,7 +104,11 @@
                 <p data-post-id="{{ postagem.id }}" class="number__likes">{{postagem.number_of_likes}}</p><a href="{% url 'postagem_like' postagem.id %}" class="filme__like" data-post-id="{{ postagem.id }}" data-csrf-token="{{ csrf_token }}"><i class="fa-regular fa-heart"></i></a>
                 {% endif %}
                 <p class="comentarios__length">{{ postagem.comentarios_postagem.all.count }}</p><a href="{% url 'comentarios' postagem.id %}" class="filme__comment"><i class="fa-regular fa-comment"></i></a>
-                <a href="#" class="filme__save"><i class="fa-regular fa-bookmark"></i></a>
+                {% if filme in user.list.filmes.filme %}
+                <a href="#" class="filme__save"><i class="fa-solid fa-bookmark"></i></a>
+                {% else %}
+                <a href="{% url 'save_movie' postagem.id %}" class="filme__save"><i class="fa-regular fa-bookmark"></i></a>
+                {% endif %}
             </div>
         {% for comentario in postagem.comentarios_postagem.all %}
         {% if comentario.user.profile in user.profile.follows.all or comentario.user.profile == user.profile %}

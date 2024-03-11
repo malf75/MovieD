@@ -378,8 +378,30 @@ def notifications(request, pk):
         
         return render(request, 'movied/notifications.html', {'notification':notification})
     
-def save_movie(request):
-    return redirect('')
+def save_movie(request, pk):
+    if request.user.is_authenticated and request.method == 'POST':
+        postagem = get_object_or_404(Postagem, id=pk)
+        filme = postagem.filmes.filme
+        if postagem.filmes:
+            list = List.objects.filter(user=request.user, filmes=postagem.filmes)
+            if list.exists():
+                pass
+            else:
+                list = List.objects.create(
+                user=request.user,
+                )
+                list.filmes.add(filme)
+                list.save()
+
+        data = {
+            'user_saved': List.objects.filter(user=request.user, filme=postagem.filmes.filme).exists()
+        }
+
+        return JsonResponse(data)
+
+    else:
+        messages.warning(request, ('You Must Be Logged In'))
+        return redirect('login')
     
 def list(request, pk):
     if request.user.is_authenticated and pk == request.user.id:
