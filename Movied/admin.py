@@ -1,5 +1,5 @@
 from django.contrib import admin
-from Movied.models import Postagem, Suggestions, Comentarios, Filmes, Notification
+from Movied.models import Postagem, Suggestions, Comentarios, Filmes, Notification, List
 from django.contrib.auth.models import User, Group
 from .models import Profile
 
@@ -61,7 +61,12 @@ class ListSuggestions(admin.ModelAdmin):
     search_fields = ("id", "Series_Title")
     list_per_page = 10
     actions = [create_filmes_from_suggestion]
-    
+
+class ListList(admin.ModelAdmin):
+    list_display = ("id", "user")
+    list_display_links = ("id", "user")
+    search_fields = ("id", "user")
+    list_per_page = 10
 
 admin.site.unregister(User)
 
@@ -76,6 +81,8 @@ admin.site.register(Suggestions, ListSuggestions)
 admin.site.register(Filmes, ListFilmes)
 
 admin.site.register(Notification, ListNotifications)
+
+admin.site.register(List, ListList)
 
 
 

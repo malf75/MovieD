@@ -378,3 +378,8 @@ def notifications(request, pk):
         notification = Notification.objects.filter(user_id=pk).order_by("-id")
         
         return render(request, 'movied/notifications.html', {'notification':notification})
+    
+def list(request, pk):
+    if request.user.is_authenticated and pk == request.user.id:
+
+        return render(request, 'movied/list.html')
