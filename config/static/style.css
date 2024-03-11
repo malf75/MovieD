@@ -668,6 +668,10 @@ input:checked + .slider:before {
     flex-direction: row;
 }
 
+.confirmDeleteModal{
+    position: fixed;
+}
+
 .messages{
     padding: 0.2em;
     display: flex;

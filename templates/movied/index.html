@@ -76,11 +76,11 @@
                           document.getElementById('confirmDeleteModal').style.display = '';
                         }
                     </script>
-                  <div id="confirmDeleteModal" style="display: none;">
-                    <p>Deseja realmente excluir esta postagem?</p>
-                    <a href="{% url 'deletar_postagem' postagem.id %}">Sim</a>
-                    <button onclick="closeModal()">Cancelar</button>
-                  </div>
+                    <div id="confirmDeleteModal" style="display: none;">
+                        <p>Deseja realmente excluir esta postagem?</p>
+                        <a href="{% url 'deletar_postagem' postagem.id %}">Sim</a>
+                        <button onclick="closeModal()">Cancelar</button>
+                    </div>
                   <script>
                     function closeModal() {
                       document.getElementById('confirmDeleteModal').style.display = 'none';
