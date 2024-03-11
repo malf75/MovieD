@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from Movied.models import Postagem, Profile, Suggestions, Comentarios, Filmes, Notification
+from Movied.models import Postagem, Profile, Suggestions, Comentarios, Filmes, Notification, List
 from django.db.models import Count
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from django.utils import timezone
-from datetime import datetime
 from django.http import JsonResponse
 from django.core.files.storage import default_storage
 import re
@@ -364,7 +363,7 @@ def reportar_comentario(request, pk):
     
 def search(request):
     query = request.POST.get('query')
-    posts = Postagem.objects.filter(comentario__icontains=query)
+    posts = Postagem.objects.annotate(num_likes=Count('likes')).filter(comentario__icontains=query).order_by("-num_likes")
     users = User.objects.filter(username__icontains=query)
     return render(request, 'movied/search.html', {'posts':posts, 'query':query, 'users':users})
 
@@ -379,7 +378,11 @@ def notifications(request, pk):
         
         return render(request, 'movied/notifications.html', {'notification':notification})
     
+def save_movie(request):
+    return redirect('')
+    
 def list(request, pk):
     if request.user.is_authenticated and pk == request.user.id:
+        list = List.objects.filter(user_id=pk)
 
-        return render(request, 'movied/list.html')
+        return render(request, 'movied/list.html', {'list':list})
