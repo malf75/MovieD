@@ -70,7 +70,22 @@
                 {% endif %}
                 <p class="postagem__data"><strong>{{ postagem.user }}</strong> • {{ postagem.data_postagem }}</p>
                 {% if postagem.user == request.user %}
-                <a href="{% url 'deletar_postagem' postagem.id %}" class="remove__post"><i class="fa-solid fa-trash"></i></a>
+                <button onclick="openModal()" class="remove__post"><i class="fa-solid fa-trash"></i></a>
+                    <script>
+                        function openModal() {
+                          document.getElementById('confirmDeleteModal').style.display = '';
+                        }
+                    </script>
+                  <div id="confirmDeleteModal" style="display: none;">
+                    <p>Deseja realmente excluir esta postagem?</p>
+                    <a href="{% url 'deletar_postagem' postagem.id %}">Sim</a>
+                    <button onclick="closeModal()">Cancelar</button>
+                  </div>
+                  <script>
+                    function closeModal() {
+                      document.getElementById('confirmDeleteModal').style.display = 'none';
+                    }
+                  </script>
                 {% else %}
                 <a href="{% url 'reportar_postagem' postagem.id %}" class="report__post"><i class="fa-solid fa-triangle-exclamation"></i></a>
                 {% endif %}

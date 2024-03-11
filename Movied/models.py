@@ -96,6 +96,14 @@ class Suggestions(models.Model):
     def __str__(self):
         return (f"{self.Series_Title}"
             )
+    
+class List(models.Model):
+     user = models.ForeignKey(User, related_name='List_user', on_delete=models.CASCADE)
+     filmes = models.ManyToManyField(Filmes, related_name='lists', blank=True)
+
+     def __str__(self):
+          return self.filmes
+
 
 def create_profile(sender, instance, created, **kwargs):
     if created:
