@@ -54,11 +54,11 @@
             <textarea class="posta" name="postagemt" id="postagem" placeholder="Comment your review" maxlength="400" style="height: auto;" required></textarea>
             <input type="submit" value="Post" class="form__submit">
         </form>
-        <div class="tudo">
         <div class="tabela">
                 {% if posts %}
                 {% for postagem in posts %}
                 {% if postagem.user.profile in user.profile.follows.all or postagem.user.profile == user.profile %}
+                <div class="tudo">
                 <div class="quem">
                 {% if postagem.user.profile.profile_image %}
                 <div id="container2">
