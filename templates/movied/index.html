@@ -106,7 +106,6 @@
                 <p class="comentarios__length">{{ postagem.comentarios_postagem.all.count }}</p><a href="{% url 'comentarios' postagem.id %}" class="filme__comment"><i class="fa-regular fa-comment"></i></a>
                 <a href="#" class="filme__save"><i class="fa-regular fa-bookmark"></i></a>
             </div>
-        </div>
         {% for comentario in postagem.comentarios_postagem.all %}
         {% if comentario.user.profile in user.profile.follows.all or comentario.user.profile == user.profile %}
             <div class="comentario">
@@ -139,6 +138,7 @@
         {% endfor %}
         {% else %}
         {% endif %}
+    </div>
     </section>
     <div class="vl2"></div>
     <section>
