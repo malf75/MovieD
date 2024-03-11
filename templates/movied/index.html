@@ -58,7 +58,6 @@
                 {% if posts %}
                 {% for postagem in posts %}
                 {% if postagem.user.profile in user.profile.follows.all or postagem.user.profile == user.profile %}
-                <div class="tudo">
                 <div class="quem">
                 {% if postagem.user.profile.profile_image %}
                 <div id="container2">
@@ -140,7 +139,6 @@
         {% endfor %}
         {% else %}
         {% endif %}
-        </div>
     </section>
     <div class="vl2"></div>
     <section>

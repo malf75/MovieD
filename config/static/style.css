@@ -365,10 +365,6 @@ input:checked + .slider:before {
     color: var(--cor-secundaria);
 }
 
-.tudo{
-    align-items: center;
-}
-
 .comentario{
     text-align: start;
 }
@@ -659,6 +655,7 @@ input:checked + .slider:before {
     border-top: 1px solid var(--cor-secundaria);
     display: flex;
     flex-direction: row;
+    padding-left: 0.5em;
 }
 
 .quem2{
