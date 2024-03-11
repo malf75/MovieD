@@ -365,6 +365,10 @@ input:checked + .slider:before {
     color: var(--cor-secundaria);
 }
 
+.tudo{
+    align-items: center;
+}
+
 .comentario{
     text-align: start;
 }
