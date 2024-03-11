@@ -63,9 +63,9 @@ class ListSuggestions(admin.ModelAdmin):
     actions = [create_filmes_from_suggestion]
 
 class ListList(admin.ModelAdmin):
-    list_display = ("id", "user")
-    list_display_links = ("id", "user")
-    search_fields = ("id", "user")
+    list_display = ("id",)
+    list_display_links = ("id",)
+    search_fields = ("id",)
     list_per_page = 10
 
 admin.site.unregister(User)

@@ -28,6 +28,13 @@ class Filmes(models.Model):
               f"{self.Released_Year}"
          )
     
+class List(models.Model):
+     user = models.ForeignKey(User, related_name='List_user', on_delete=models.CASCADE)
+     filmes = models.ManyToManyField(Filmes, related_name='lists', blank=True)
+
+     def __str__(self):
+          return f"{self.user}"
+    
 class Postagem(models.Model):
     comentario = models.TextField(null=False, blank=False, max_length=400)
     data_postagem = models.DateTimeField(default=datetime.now, blank=False)
@@ -36,6 +43,7 @@ class Postagem(models.Model):
     reported = models.BooleanField(default=False)
     id = models.AutoField(primary_key=True)
     filmes = models.ManyToManyField(Filmes, related_name='postagens', blank=True)
+    list = models.ManyToManyField(User, related_name='postagem_listed', blank=True)
 
     def number_of_likes(self):
          return self.likes.count()
@@ -97,12 +105,7 @@ class Suggestions(models.Model):
         return (f"{self.Series_Title}"
             )
     
-class List(models.Model):
-     user = models.ForeignKey(User, related_name='List_user', on_delete=models.CASCADE)
-     filmes = models.ManyToManyField(Filmes, related_name='lists', blank=True)
 
-     def __str__(self):
-          return self.filmes
 
 
 def create_profile(sender, instance, created, **kwargs):

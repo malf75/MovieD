@@ -9,8 +9,16 @@
 <hl class="vl"></hl>
 <section class="mid__section">
     <a href="{% url 'index' %}" class="logo__ancora"><img class="logo" src="https://movied-bucket.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png" alt="logo do movied"></a>
-    <div class="container4">
-        
+    <div class="container5">
+        {% for list in user_lists %}
+            {% for filme in list.filmes.all %}
+            <div class="filme__div">
+                <a href="{% url 'exclude_movie' filme.id %}" class="exclude_movie"><i class="fa-solid fa-circle-xmark"></i></a>
+                <img class="poster__list" src="{{ filme.Poster_Link }}" alt="Poster do filme">
+                <h2>{{ filme.Series_Title }}</h2>
+            </div>
+            {% endfor %}
+        {% endfor %}
     </div>
     </section>
     <hl class="vl2"></hl>

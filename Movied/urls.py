@@ -22,5 +22,6 @@ urlpatterns = [
     path('preferences/', views.preferences, name='preferences'),
     path('notifications/<int:pk>', views.notifications, name='notifications'),
     path('list/<int:pk>', views.list, name='list'),
-    path('save_movie/<int:pk>', views.save_movie, name='save_movie')
+    path('save_movie/<int:pk>', views.save_movie, name='save_movie'),
+    path('exclude_movie/<int:pk>', views.exclude_movie, name='exclude_movie')
 ]

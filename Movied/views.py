@@ -4,8 +4,8 @@ from django.db.models import Count
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from django.utils import timezone
-from django.http import JsonResponse
-from django.core.files.storage import default_storage
+from django.http import JsonResponse, HttpResponseRedirect
+from django.urls import reverse
 import re
 
 def get_filme_info(request):
@@ -379,22 +379,33 @@ def notifications(request, pk):
         return render(request, 'movied/notifications.html', {'notification':notification})
     
 def save_movie(request, pk):
-    if request.user.is_authenticated and request.method == 'POST':
+    if request.user.is_authenticated:
         postagem = get_object_or_404(Postagem, id=pk)
-        filme = postagem.filmes.get(filme)
-        print(filme)
-        if postagem.filmes:
-            list = List.objects.filter(user=request.user, filmes=postagem.filmes)
+        titulo = Filmes.objects.values_list('Series_Title', flat=True)
+        pattern = r'\b(?!:.)\s*(?:' + '|'.join(map(re.escape, titulo)) + r')\b(?!:.)\s*'
+        text = "".join([filme.Series_Title for filme in postagem.filmes.all()])
+        filme_match = re.search(pattern, text)
+        if filme_match:
+            titulo_matched = filme_match.group()
+            filme = Filmes.objects.filter(Series_Title__iexact=titulo_matched.strip()).first()
+            list = List.objects.filter(user=request.user, filmes=filme)
             if not list.exists():
                 list = List.objects.create(
                 user=request.user,
                 )
-                list.filmes.add(filme)
+                list.filmes.set([filme])
                 list.save()
-
-        data = {
-            'user_saved': List.objects.filter(user=request.user, filme=postagem.filmes.filme).exists()
-        }
+                postagem.list.add(request.user.id)
+                data = {
+                'user_saved': True
+                }
+            else:
+                lista = List.objects.get(user=request.user, filmes=filme)
+                lista.delete()
+                postagem.list.remove(request.user.id)
+                data = {
+                'user_saved': False
+                }
 
         return JsonResponse(data)
 
@@ -404,6 +415,18 @@ def save_movie(request, pk):
     
 def list(request, pk):
     if request.user.is_authenticated and pk == request.user.id:
-        list = List.objects.filter(user_id=pk)
+        user_lists = List.objects.filter(user_id=pk)
 
-        return render(request, 'movied/list.html', {'list':list})
+        return render(request, 'movied/list.html', {'user_lists': user_lists})
+    
+def exclude_movie(request, pk):
+    if request.user.is_authenticated:
+        list = List.objects.filter(user=request.user, filmes=pk)
+        postagem = get_object_or_404(Postagem, filmes=pk)
+        postagem.list.remove(request.user.id)
+        list.delete()
+
+        return HttpResponseRedirect(reverse('list', kwargs={'pk': request.user.id}))
+    else:
+        messages.warning(request, ('You Must Be Logged In'))
+        return HttpResponseRedirect(reverse('login'))

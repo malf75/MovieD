@@ -35,15 +35,13 @@ $('.filme__save').on('click', function(event) {
   let csrfToken = $(this).data('csrf-token');
 
   $.post(url, { pk: postId, csrfmiddlewaretoken: csrfToken })
-    .done(function(data) {
-      if (data.user_saved) {
-        $('.filme__save[data-post-id="' + postId + '"]').html('<i class="fa-solid fa-bookmark"></i>');
-      } else {
-        $('.filme__save[data-post-id="' + postId + '"]').html('<i class="fa-regular fa-bookmark"></i>');
-      }
-    })
-    .fail(function(xhr, errmsg, err) {
-    });
+  .done(function(data) {
+    let iconClass = data.user_saved ? 'fa-solid' : 'fa-regular';
+    $('.filme__save[data-post-id="' + postId + '"]').html('<i class="' + iconClass + ' fa-bookmark"></i>');
+  })
+  .fail(function(xhr, errmsg, err) {
+
+  });
 
 });
 
