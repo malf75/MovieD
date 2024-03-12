@@ -843,6 +843,12 @@ input:checked + .slider:before {
     margin-right: 0.4em;
 }
 
+.number__save{
+    font-size: 16px;
+    margin-top: 0.2em;
+    margin-right: 0.4em;
+}
+
 .form__filme{
     display: flex;
     flex-direction: column;
