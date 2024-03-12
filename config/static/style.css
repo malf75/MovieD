@@ -187,7 +187,7 @@ input:checked + .slider:before {
 .imagem__filme-trend{
     width: 4em;
     border: 1px solid var(--cor-secundaria);
-    border-radius: 20px;
+    border-radius: 10px;
     margin-left: 0.5em;
     margin-top: 0.5em;
 }
