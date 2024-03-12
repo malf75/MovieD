@@ -24,6 +24,7 @@ def get_filme_info(request):
 def index(request):
     if request.user.is_authenticated:
         postagens = Postagem.objects.all().order_by("-data_postagem")
+        notification = Notification.objects.filter(user_id=request.user.id)
         include_follows = request.GET.get('include_follows')
         followed_profiles = request.user.profile.follows.all()
         followed_profiles_ids = request.user.profile.follows.values_list('user__id', flat=True)
