@@ -397,14 +397,16 @@ def save_movie(request, pk):
                 list.save()
                 postagem.list.add(request.user.id)
                 data = {
-                'user_saved': True
+                'user_saved': True,
+                'save_count': postagem.list.count()
                 }
             else:
                 lista = List.objects.get(user=request.user, filmes=filme)
                 lista.delete()
                 postagem.list.remove(request.user.id)
                 data = {
-                'user_saved': False
+                'user_saved': False,
+                'save_count': postagem.list.count()
                 }
 
         return JsonResponse(data)

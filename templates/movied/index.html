@@ -105,9 +105,9 @@
                 {% endif %}
                 <p class="comentarios__length">{{ postagem.comentarios_postagem.all.count }}</p><a href="{% url 'comentarios' postagem.id %}" class="filme__comment"><i class="fa-regular fa-comment"></i></a>
                 {% if user in postagem.list.all %}
-                <p class="comentarios__length">{{ postagem.list.all.count }}</p><a href="#" data-post-id="{{ postagem.id }}" data-csrf-token="{{ csrf_token }}" class="filme__save"><i class="fa-solid fa-bookmark"></i></a>
+                <p data-post-id="{{ postagem.id }}" class="number__save">{{ postagem.list.all.count }}</p><a href="#" data-post-id="{{ postagem.id }}" data-csrf-token="{{ csrf_token }}" class="filme__save"><i class="fa-solid fa-bookmark"></i></a>
                 {% else %}
-                <p class="comentarios__length">{{ postagem.list.all.count }}</p><a data-post-id="{{ postagem.id }}" data-csrf-token="{{ csrf_token }}" href="{% url 'save_movie' postagem.id %}" class="filme__save"><i class="fa-regular fa-bookmark"></i></a>
+                <p data-post-id="{{ postagem.id }}" class="number__save">{{ postagem.list.all.count }}</p><a data-post-id="{{ postagem.id }}" data-csrf-token="{{ csrf_token }}" href="{% url 'save_movie' postagem.id %}" class="filme__save"><i class="fa-regular fa-bookmark"></i></a>
                 {% endif %}
             </div>
         {% for comentario in postagem.comentarios_postagem.all %}

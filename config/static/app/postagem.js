@@ -38,6 +38,7 @@ $('.filme__save').on('click', function(event) {
   .done(function(data) {
     let iconClass = data.user_saved ? 'fa-solid' : 'fa-regular';
     $('.filme__save[data-post-id="' + postId + '"]').html('<i class="' + iconClass + ' fa-bookmark"></i>');
+    $('.number__save[data-post-id="' + postId + '"]').text(data.save_count);
   })
   .fail(function(xhr, errmsg, err) {
 
