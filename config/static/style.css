@@ -79,6 +79,10 @@ textarea:focus, input:focus{
     margin-left: 12px;
 }
 
+.filme__trend-a:hover{
+    border-color: red;
+}
+
 .trend__options{
     display: flex;
     flex-direction: row;
