@@ -200,6 +200,7 @@ input:checked + .slider:before {
     text-align: start;
     margin-left: 0.5em;
     width: 130px;
+    text-overflow: clip;
 }
 
 .rt3__texto{
