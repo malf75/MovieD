@@ -837,6 +837,7 @@ input:checked + .slider:before {
 
 .botao_follow2{
     padding: 1em;
+    margin-left: 0.5em;
     background-color: var(--cor-principal);
     border: 1px solid var(--cor-secundaria);
     border-radius: 20px;
