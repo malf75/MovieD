@@ -423,8 +423,11 @@ def exclude_movie(request, pk):
     if request.user.is_authenticated:
         list = List.objects.filter(user=request.user, filmes=pk)
         postagem = get_object_or_404(Postagem, filmes=pk)
-        postagem.list.remove(request.user.id)
-        list.delete()
+        if postagem:
+            postagem.list.remove(request.user.id)
+            list.delete()
+        else:
+            list.delete()
 
         return HttpResponseRedirect(reverse('list', kwargs={'pk': request.user.id}))
     else:
