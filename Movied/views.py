@@ -27,7 +27,7 @@ def index(request):
         include_follows = request.GET.get('include_follows')
         followed_profiles = request.user.profile.follows.all()
         followed_profiles_ids = request.user.profile.follows.values_list('user__id', flat=True)
-        users = User.objects.exclude(id__in=followed_profiles_ids).exclude(request.user.id)[:3]
+        users = User.objects.exclude(id__in=followed_profiles_ids)[:3]
         if include_follows == 'on':
             related_postagens = Postagem.objects.filter(user__profile__in=followed_profiles)
             top_posts = Filmes.objects.filter(postagens__in=related_postagens).annotate(total_citations=Count('postagens')).filter(total_citations__gt=0).order_by('-total_citations')[:3]

@@ -187,7 +187,7 @@
             {% for user in users %}
             <div class="user_recomended">
                 {% if user.profile.profile_image %}
-                <div id="container2">
+                <div id="container3">
                 <a href="{% url 'profile' user.id %}"><img class="foto__perfil-rc" src="{{ user.profile.profile_image.url }}" alt="foto de perfil"></a>
                 {% else %}
                 <a href="{% url 'profile' user.id %}"><img src="https://movied-bucket.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil-rc" alt="foto de perfil"></a>
