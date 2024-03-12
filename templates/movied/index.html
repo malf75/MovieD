@@ -196,9 +196,9 @@
                     {% csrf_token %}
                     <button class="botao_follow2" name="follow" value="{{ user.id }}" type="submit">Follow</button>
                 </form>
+            </div>
             {% endfor %}
             {% endif %}
-        </div>
         </div>
     </section>
     <script src="{% static 'app/api.js' %}"></script>
