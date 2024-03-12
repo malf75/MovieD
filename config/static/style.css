@@ -72,6 +72,13 @@ textarea:focus, input:focus{
     text-align: center;
 }
 
+.new__notification{
+    font-size: 8px;
+    color: red;
+    position: absolute;
+    margin-left: 12px;
+}
+
 .trend__options{
     display: flex;
     flex-direction: row;

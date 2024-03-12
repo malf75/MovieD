@@ -97,7 +97,7 @@ def index(request):
     else:
         return redirect('login')
 
-    return render(request, 'movied/index.html', {'posts': postagens, 'top_posts':top_posts, 'users':users})
+    return render(request, 'movied/index.html', {'posts': postagens, 'top_posts':top_posts, 'users':users, 'notification':notification})
 
 def login(request):
 
