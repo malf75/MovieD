@@ -187,7 +187,6 @@
             {% for user in users %}
             <div class="user_recomended">
                 {% if user.profile.profile_image %}
-                <div id="container3">
                 <a href="{% url 'profile' user.id %}"><img class="foto__perfil-rc" src="{{ user.profile.profile_image.url }}" alt="foto de perfil"></a>
                 {% else %}
                 <a href="{% url 'profile' user.id %}"><img src="https://movied-bucket.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil-rc" alt="foto de perfil"></a>
@@ -197,7 +196,6 @@
                     {% csrf_token %}
                     <button class="botao_follow2" name="follow" value="{{ user.id }}" type="submit">Follow</button>
                 </form>
-            </div>
             {% endfor %}
             {% endif %}
         </div>
