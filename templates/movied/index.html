@@ -52,7 +52,7 @@
         <form class="form" action="{% url 'index' %}" method="POST">
         {% csrf_token %}
             <textarea class="posta" name="postagemt" id="postagem" placeholder="Comment your review" maxlength="400" style="height: auto;" required></textarea>
-            <input type="submit" value="Post" class="form__submit">
+            <input type="submit" value="Post" name="postagem" class="form__submit">
         </form>
         <div class="tabela">
                 {% if posts %}
@@ -180,6 +180,27 @@
                     <i class="fa-solid fa-users"></i>
                 </form>
             </div>
+        </div>
+        <div class="rt3">
+            <h3 class="rt3__texto">Recommended Users</h3>
+            {% if users %}
+            {% for user in users %}
+            <div class="user_recomended">
+                {% if user.profile.profile_image %}
+                <div id="container2">
+                <a href="{% url 'profile' user.id %}"><img class="foto__perfil-rc" src="{{ user.profile.profile_image.url }}" alt="foto de perfil"></a>
+                {% else %}
+                <a href="{% url 'profile' user.id %}"><img src="https://movied-bucket.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil-rc" alt="foto de perfil"></a>
+                {% endif %}
+                <p class="user_username">{{user.username}}</p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <button class="botao_follow2" name="follow" value="{{ user.id }}" type="submit">Follow</button>
+                </form>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
         </div>
     </section>
     <script src="{% static 'app/api.js' %}"></script>

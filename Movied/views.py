@@ -26,39 +26,29 @@ def index(request):
         postagens = Postagem.objects.all().order_by("-data_postagem")
         include_follows = request.GET.get('include_follows')
         followed_profiles = request.user.profile.follows.all()
+        followed_profiles_ids = request.user.profile.follows.values_list('user__id', flat=True)
+        users = User.objects.exclude(id__in=followed_profiles_ids)[:3]
         if include_follows == 'on':
             related_postagens = Postagem.objects.filter(user__profile__in=followed_profiles)
             top_posts = Filmes.objects.filter(postagens__in=related_postagens).annotate(total_citations=Count('postagens')).filter(total_citations__gt=0).order_by('-total_citations')[:3]
         else:
             top_posts = Filmes.objects.annotate(total_citations=Count('postagens')).filter(total_citations__gt=0).order_by('-total_citations')[:3]
+
+        
     
         if request.method == "POST":
 
-            postagem_text = request.POST.get('postagemt', None)
-            user = request.user
-            titulo = Filmes.objects.values_list('Series_Title', flat=True)
-            pattern = r'\b(?!:.)\s*(?:' + '|'.join(map(re.escape, titulo)) + r')\b(?!:.)\s*'
-            pattern_pink = r'Pink Floyd: The Wall'
-            pink_match = re.search(pattern_pink, postagem_text)
+            if 'postagem' in request.POST:
 
-            if pink_match: 
-                titulo_matched = pink_match.group()
-                filme = Filmes.objects.filter(Series_Title__iexact=titulo_matched.strip()).first()
-                if filme:
-                    postagem = Postagem.objects.create(
-                        user=user,
-                        comentario=postagem_text,
-                        data_postagem=timezone.now(),
-                    )
-                    postagem.filmes.set([filme])
-                    postagem.save()
+                postagem_text = request.POST.get('postagemt', None)
+                user = request.user
+                titulo = Filmes.objects.values_list('Series_Title', flat=True)
+                pattern = r'\b(?!:.)\s*(?:' + '|'.join(map(re.escape, titulo)) + r')\b(?!:.)\s*'
+                pattern_pink = r'Pink Floyd: The Wall'
+                pink_match = re.search(pattern_pink, postagem_text)
 
-                    return redirect('index')
-                
-            else:
-                filme_match = re.search(pattern, postagem_text)
-                if filme_match:
-                    titulo_matched = filme_match.group()
+                if pink_match: 
+                    titulo_matched = pink_match.group()
                     filme = Filmes.objects.filter(Series_Title__iexact=titulo_matched.strip()).first()
                     if filme:
                         postagem = Postagem.objects.create(
@@ -68,21 +58,45 @@ def index(request):
                         )
                         postagem.filmes.set([filme])
                         postagem.save()
-                else:
-                    filme = None
-                    postagem = Postagem.objects.create(
-                        user=user,
-                        comentario=postagem_text,
-                        data_postagem=timezone.now(),
-                    )
-                    postagem.save()
 
-                return redirect('index')
+                        return redirect('index')
+                    
+                else:
+                    filme_match = re.search(pattern, postagem_text)
+                    if filme_match:
+                        titulo_matched = filme_match.group()
+                        filme = Filmes.objects.filter(Series_Title__iexact=titulo_matched.strip()).first()
+                        if filme:
+                            postagem = Postagem.objects.create(
+                                user=user,
+                                comentario=postagem_text,
+                                data_postagem=timezone.now(),
+                            )
+                            postagem.filmes.set([filme])
+                            postagem.save()
+                    else:
+                        filme = None
+                        postagem = Postagem.objects.create(
+                            user=user,
+                            comentario=postagem_text,
+                            data_postagem=timezone.now(),
+                        )
+                        postagem.save()
+
+                    return redirect('index')
+                
+            if 'follow' in request.POST:
+                user_id_to_follow = request.POST.get('follow')
+                user_to_follow = User.objects.get(id=user_id_to_follow)
+                current_user_profile = request.user.profile
+                current_user_profile.follows.add(user_to_follow.profile.id)
+
+                current_user_profile.save()
         
     else:
         return redirect('login')
 
-    return render(request, 'movied/index.html', {'posts': postagens, 'top_posts':top_posts})
+    return render(request, 'movied/index.html', {'posts': postagens, 'top_posts':top_posts, 'users':users})
 
 def login(request):
 

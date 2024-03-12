@@ -57,6 +57,21 @@ textarea:focus, input:focus{
     padding-bottom: 2em;
 }
 
+.rt3{
+    border: 1px solid var(--cor-secundaria);
+    border-radius: 20px;
+    height: 420px;
+    width: 70%;
+    margin: 20% 0 0 15%;
+    font-family: var(--fonte-principal);
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: start;   
+    flex-direction: column;
+    text-align: center;
+}
+
 .trend__options{
     display: flex;
     flex-direction: row;
@@ -171,6 +186,25 @@ input:checked + .slider:before {
     list-style: none;
     border-top: 1px solid var(--cor-secundaria);
     margin-bottom: 0.5em;
+}
+
+.user_recomended{
+    border-top: 1px solid var(--cor-secundaria);
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.user_username{
+    text-align: start;
+    margin-left: 0.5em;
+    width: 130px;
+}
+
+.rt3__texto{
+    margin-top: 1em;
+    height: 60px;
 }
 
 .filme__item-p-trend{
@@ -722,6 +756,18 @@ input:checked + .slider:before {
     cursor: pointer;
 }
 
+.foto__perfil-rc{
+    width: 100%;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 0.5em;
+    border: 2px solid var(--cor-secundaria);
+    border-radius: 100%;
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+}
+
 .container3{
     display: flex;
     justify-content: center;
@@ -780,6 +826,16 @@ input:checked + .slider:before {
 .botao_follow{
     padding: 1em;
     margin-left: 42em;
+    background-color: var(--cor-principal);
+    border: 1px solid var(--cor-secundaria);
+    border-radius: 20px;
+    font-family: var(--fonte-principal);
+    color: var(--cor-secundaria);
+    cursor: pointer;
+}
+
+.botao_follow2{
+    padding: 1em;
     background-color: var(--cor-principal);
     border: 1px solid var(--cor-secundaria);
     border-radius: 20px;
