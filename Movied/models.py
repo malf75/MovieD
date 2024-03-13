@@ -86,6 +86,7 @@ class Notification(models.Model):
      notificacao = models.CharField(null=True, blank=True, max_length = 200)
      notification_sender = models.ForeignKey(User, related_name='Notification_sender', on_delete=models.CASCADE, default=None)
      type = models.CharField(max_length=20, choices=NOTIFICATION_CHOICES, default='Like')
+     isRead = models.BooleanField(default=False)
 
      def __str__(self):
           return self.notificacao

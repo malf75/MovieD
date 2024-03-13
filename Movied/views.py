@@ -389,9 +389,12 @@ def preferences(request):
 
 def notifications(request, pk):
     if request.user.is_authenticated and pk == request.user.id:
-        notification = Notification.objects.filter(user_id=pk).order_by("-id")
-        
-        return render(request, 'movied/notifications.html', {'notification':notification})
+        notifications = Notification.objects.filter(user_id=pk).order_by("-id")
+        for notification in notifications:
+            notification.isRead = True
+            notification.save()
+
+        return render(request, 'movied/notifications.html', {'notification':notifications})
     
 def save_movie(request, pk):
     if request.user.is_authenticated:

@@ -54,7 +54,7 @@ textarea:focus, input:focus{
     display: flex;
     justify-content: start;   
     flex-direction: column;
-    padding-bottom: 2em;
+    padding-bottom: 2.5em;
 }
 
 .rt3{
