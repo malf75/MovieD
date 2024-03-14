@@ -81,7 +81,7 @@
                 {% endif %}
                 </div>
             <div class="paragrafo">
-                <p class="postagem__paragrafo">{{ postagem.comentario }}</p>
+                <p class="postagem__paragrafo">{{ postagem.comentario|linebreaksbr }}</p>
             </div>
             {% if postagem.filmes.all %}
             {% for filme_item in postagem.filmes.all %}

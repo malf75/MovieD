@@ -29,7 +29,7 @@
                 {% endif %}
                 </div>
             <div class="paragrafo">
-                <p class="postagem__paragrafo">{{ postagem.comentario }}</p>
+                <p class="postagem__paragrafo">{{ postagem.comentario|linebreaksbr }}</p>
             </div>
             {% for filme in postagem.filmes.all %}
             <div class="filme__container">
