@@ -108,8 +108,8 @@
                 <p class="comentarios__length">{{ postagem.list.all.count }}</p><a data-post-id="{{ postagem.id }}" data-csrf-token="{{ csrf_token }}" href="{% url 'save_movie' postagem.id %}" class="filme__save"><i class="fa-regular fa-bookmark"></i></a>
                 {% endif %}
             </div>
-        </div>
         {% endfor %}
+        </div>
         {% else %}
         {% endif %}
 </div>
