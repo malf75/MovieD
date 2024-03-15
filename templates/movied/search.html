@@ -26,7 +26,11 @@
                     <a href="{% url 'profile' postagem.user.id %}"><img src="https://movied-bucket.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil" alt="foto de perfil"></a>
                 </div>
                 {% endif %}
-                <p class="postagem__data"><strong>{{ postagem.user }}</strong> • {{ postagem.data_postagem }}</p>
+                {% if postagem.user.profile.isVerified %}
+                <p class="postagem__data"><strong>{{ postagem.user }} </strong><i class="fa-solid fa-circle-check"></i> • {{ postagem.data_postagem }}</p>
+                {% else %}
+                <p class="postagem__data"><strong>{{ postagem.user }} </strong> • {{ postagem.data_postagem }}</p>
+                {% endif %}
                 {% if postagem.user == request.user %}
                 <a href="{% url 'deletar_postagem' postagem.id %}" class="remove__post"><i class="fa-solid fa-trash"></i></a>
                 {% else %}
@@ -71,21 +75,19 @@
             <div class="followers__card">
                 {% if profile.profile.profile_image %}
                 <a href="{% url 'profile' profile.id %}"><img src="{{ profile.profile.profile_image.url }}" class="foto__followers" alt="{{ profile.user.username }}"></a>
+                {% else %}
+                <a href="{% url 'profile' profile.id %}"><img src="https://movied-bucket.s3.amazonaws.com/static/media/default.jpg" class="foto__followers" alt="{{ profile.user.username }}"></a>
+                {% endif %}
                 <div class="nome__bio">
+                    {% if profile.profile.isVerified %}
+                    <h3 class="username__followers">{{ profile.username }} <i class="fa-solid fa-circle-check"></i></h3>
+                    {% else %}
                     <h3 class="username__followers">{{ profile.username }}</h3>
+                    {% endif %}
                     {% if profile.profile.bio %}
                     <p class="bio__followers">{{ profile.profile.bio }}</p>
                     {% endif %}
                 </div>
-                {% else %}
-                <a href="{% url 'profile' profile.id %}"><img src="https://movied-bucket.s3.amazonaws.com/static/media/default.jpg" class="foto__followers" alt="{{ profile.user.username }}"></a>
-                <div class="nome__bio">
-                    <h3 class="username__followers">{{ profile.username }}</h3>
-                    {% if profile.profile.bio %}
-                    <p class="bio__followers">{{ profile.bio }}</p>
-                    {% endif %}
-                </div>
-                {% endif %}
             </div>
         {% endfor %}
     </div>

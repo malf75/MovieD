@@ -13,24 +13,22 @@
 {% if profiles %}
     {% for profile in profiles.followed_by.all %}
         <div class="followers__card">
-            {% if profile.profile_image %}
-            <a href="{% url 'profile' profile.user.id %}"><img src="{{ profile.profile_image.url }}" class="foto__followers" alt="{{ profile.user.username }}"></a>
-            <div class="nome__bio">
-                <h3 class="username__followers">{{ profile.user.username }}</h3>
-                {% if profile.bio %}
-                <p class="bio__followers">{{ profile.bio }}</p>
+                {% if profile.profile_image %}
+                <a href="{% url 'profile' profile.id %}"><img src="{{ profile.profile_image.url }}" class="foto__followers" alt="{{ profile.user.username }}"></a>
+                {% else %}
+                <a href="{% url 'profile' profile.id %}"><img src="https://movied-bucket.s3.amazonaws.com/static/media/default.jpg" class="foto__followers" alt="{{ profile.user.username }}"></a>
                 {% endif %}
-            </div>
-            {% else %}
-            <a href="{% url 'profile' profile.user.id %}"><img src="https://movied-bucket.s3.amazonaws.com/static/media/default.jpg" class="foto__followers" alt="{{ profile.user.username }}"></a>
-            <div class="nome__bio">
-                <h3 class="username__followers">{{ profile.user.username }}</h3>
-                {% if profile.bio %}
+                <div class="nome__bio">
+                    {% if profile.isVerified %}
+                    <h3 class="username__followers">{{ profile.user.username }} <i class="fa-solid fa-circle-check"></i></h3>
+                    {% else %}
+                    <h3 class="username__followers">{{ profile.user.username }}</h3>
+                    {% endif %}
+                    {% if profile.bio %}
                     <p class="bio__followers">{{ profile.bio }}</p>
-                {% endif %}
+                    {% endif %}
+                </div>
             </div>
-            {% endif %}
-        </div>
         {% endfor %}
 {% endif %}
 </div>

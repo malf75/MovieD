@@ -76,6 +76,7 @@ class Profile(models.Model):
     follows = models.ManyToManyField("self", related_name="followed_by", symmetrical=False, blank=True)
     profile_image = models.ImageField(null=True, blank=True, upload_to=user_directory_path)
     bio = models.TextField(null=True, blank=True, max_length = 80)
+    isVerified = models.BooleanField(default=False)
     
     def __str__(self):
         return (f"{self.user.username}"

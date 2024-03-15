@@ -193,6 +193,13 @@ input:checked + .slider:before {
     cursor: pointer;
 }
 
+.name__profile{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1.4em 0 0.4em 2.4em;
+}
+
 .filme__trend{
     display: flex;
     flex-direction: row;
@@ -799,7 +806,11 @@ input:checked + .slider:before {
 
 .nome__perfil{
     font-family: var(--fonte-principal);
-    margin: 1.4em 0 0.4em 1.6em;
+    margin-right: 0.2em;
+}
+
+.fa-circle-check{
+    color: var(--cor-secundaria);
 }
 
 .bio{

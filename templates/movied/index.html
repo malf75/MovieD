@@ -73,7 +73,11 @@
                     <a href="{% url 'profile' postagem.user.id %}"><img src="https://movied-bucket.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil" alt="foto de perfil"></a>
                 </div>
                 {% endif %}
-                <p class="postagem__data"><strong>{{ postagem.user }}</strong> • {{ postagem.data_postagem }}</p>
+                {% if postagem.user.profile.isVerified %}
+                <p class="postagem__data"><strong>{{ postagem.user }} </strong><i class="fa-solid fa-circle-check"></i> • {{ postagem.data_postagem }}</p>
+                {% else %}
+                <p class="postagem__data"><strong>{{ postagem.user }} </strong> • {{ postagem.data_postagem }}</p>
+                {% endif %}
                 {% if postagem.user == request.user %}
                 <a href="{% url 'deletar_postagem' postagem.id %}" class="remove__post"><i class="fa-solid fa-trash"></i></a>
                 {% else %}
@@ -128,7 +132,11 @@
                     <a href="{% url 'profile' comentario.user.id %}"><img src="https://movied-bucket.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil" alt="foto de perfil"></a>
                 </div>
                 {% endif %}
-                <p class="comentario__data"><strong>{{ comentario.user }}</strong> • {{ comentario.data_comentario }}</p>
+                {% if comentario.user.profile.isVerified %}
+                <p class="postagem__data"><strong>{{ comentario.user }} </strong><i class="fa-solid fa-circle-check"></i> • {{ comentario.data_comentario }}</p>
+                {% else %}
+                <p class="postagem__data"><strong>{{ comentario.user }} </strong> • {{ comentario.data_comentario }}</p>
+                {% endif %}
                 {% if comentario.user == request.user %}
                 <a href="{% url 'deletar_comentario' comentario.id %}" class="remove__post2"><i class="fa-solid fa-trash"></i></a>
                 {% else %}
@@ -200,7 +208,11 @@
                 {% else %}
                 <a href="{% url 'profile' user.id %}"><img src="https://movied-bucket.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil-rc" alt="foto de perfil"></a>
                 {% endif %}
+                {% if user.profile.isVerified %}
+                <p class="user_username">{{user.username}} <i class="fa-solid fa-circle-check"></i></p>
+                {% else %}
                 <p class="user_username">{{user.username}}</p>
+                {% endif %}
                 <form method="POST">
                     {% csrf_token %}
                     <button class="botao_follow2" name="follow" value="{{ user.id }}" type="submit">Follow</button>
