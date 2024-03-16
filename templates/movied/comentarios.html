@@ -83,7 +83,11 @@
                     <a href="{% url 'profile' comentario.user.id %}"><img src="https://movied-bucket.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil" alt="foto de perfil"></a>
                 </div>
                 {% endif %}
-                <p class="comentario__data"><strong>{{ comentario.user }}</strong> • {{ comentario.data_comentario }}</p>
+                {% if comentario.user.profile.isVerified %}
+                <p class="comentario__data"><strong>{{ comentario.user }} </strong><i class="fa-solid fa-circle-check"></i> • {{ comentario.data_comentario }}</p>
+                {% else %}
+                <p class="comentario__data"><strong>{{ comentario.user }} </strong> • {{ comentario.data_postagem }}</p>
+                {% endif %}
                 {% if comentario.user == request.user %}
                 <a href="{% url 'deletar_comentario' comentario.id %}" class="remove__post2"><i class="fa-solid fa-trash"></i></a>
                 {% else %}

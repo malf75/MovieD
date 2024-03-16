@@ -46,6 +46,9 @@
     </section>
     <div class="vl"></div>
     <section class="mid__section">
+        <div class="btn__mobile-div">
+            <button id="btn" class="btn__mobile"><i class="fa-solid fa-moon"></i></button>
+        </div>
         {% if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -133,9 +136,9 @@
                 </div>
                 {% endif %}
                 {% if comentario.user.profile.isVerified %}
-                <p class="postagem__data"><strong>{{ comentario.user }} </strong><i class="fa-solid fa-circle-check"></i> • {{ comentario.data_comentario }}</p>
+                <p class="comentario__data"><strong>{{ comentario.user }} </strong><i class="fa-solid fa-circle-check"></i> • {{ comentario.data_comentario }}</p>
                 {% else %}
-                <p class="postagem__data"><strong>{{ comentario.user }} </strong> • {{ comentario.data_comentario }}</p>
+                <p class="comentario__data"><strong>{{ comentario.user }} </strong> • {{ comentario.data_comentario }}</p>
                 {% endif %}
                 {% if comentario.user == request.user %}
                 <a href="{% url 'deletar_comentario' comentario.id %}" class="remove__post2"><i class="fa-solid fa-trash"></i></a>
@@ -158,7 +161,7 @@
     </div>
     </section>
     <div class="vl2"></div>
-    <section>
+    <section class="right__section">
         <form class="form2" action="{% url 'search' %}" method="POST">
             {% csrf_token %}
             <input type="text" class="busca" name="query" id="query" maxlength="30" placeholder="Search" required>
@@ -222,5 +225,20 @@
             {% endif %}
         </div>
     </section>
+    <div class="redirect__mobile">
+        {% if user.profile.profile_image %}
+        <a href="{% url 'profile' request.user.id %}" class="profile__mobile"><img src="{{ user.profile.profile_image.url }}" class="foto__perfil-mobile" alt="foto de perfil"></a>
+        {% else %}
+        <a href="{% url 'profile' request.user.id %}" class="profile__mobile"><img src="https://movied-bucket.s3.amazonaws.com/static/media/default.jpg" class="foto__perfil-mobile" alt="foto de perfil"></a>
+        {% endif %}
+        <a href="{% url 'index' %}" class="redirect__navbar__botao"><span class="fa fa-house"></span></a>
+        {% for notifications in notification %}
+        {% if not notifications.isRead %}
+        <p class="new__notification"><i class="fa-solid fa-circle"></i></p>
+        {% endif %}
+        {% endfor %}
+        <a href="{% url 'notifications' request.user.id %}" class="redirect__navbar__botao"><span class="fa fa-bell"></span></a>
+        <a href="{% url 'list' request.user.id %}" class="redirect__navbar__botao"><span class="fa fa-clipboard"></span></a>
+    </div>
     <script src="{% static 'app/api.js' %}"></script>
 {% endblock %}
