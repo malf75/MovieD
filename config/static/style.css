@@ -1315,6 +1315,8 @@ input:checked + .slider:before {
         flex-direction: row;
         align-items: end;
         width: 100vw;
+        position: fixed;
+        top: 98.3%;
     }
 
     .foto__perfil-mobile{
