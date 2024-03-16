@@ -1259,6 +1259,10 @@ input:checked + .slider:before {
     display: none;
 }
 
+.redirect__mobile{
+    display: none;
+}
+
 @media screen and (max-width:500px) {
     .body{
         display: flex;
