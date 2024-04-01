@@ -5,6 +5,35 @@
     padding: 0;
 }
 
+.sign{
+    text-align: center;
+    color: var(--cor-secundaria);
+    font-family: var(--fonte-principal);
+}
+
+.description{
+    margin-bottom: 0.5em;
+}
+
+.github{
+    text-decoration: none;
+    color: var(--cor-secundaria);
+    margin-bottom: 0.5em;
+}
+
+.github:hover{
+    text-decoration: underline;
+}
+
+.email__sign{
+    text-decoration: none;
+    color: var(--cor-secundaria);
+}
+
+.email__sign:hover{
+    text-decoration: underline;
+}
+
 :root{
     --cor-principal: #FFF5E0;
     --cor-secundaria: #090d1f;
