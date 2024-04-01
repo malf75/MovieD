@@ -198,8 +198,8 @@
                 </form>
             </div>
         </div>
+        {% if users %}
         <div class="rt3">
-            {% if users %}
             <h3 class="rt3__texto">Recommended Users</h3>
             {% for user in users %}
             <div class="user_recomended">
@@ -219,8 +219,8 @@
                 </form>
             </div>
             {% endfor %}
-            {% endif %}
         </div>
+        {% endif %}
         <div class="sign">
             <p class="description">Developed by MaLf</p>
             <a class="github" href="https://github.com/malf75">Github</a>
