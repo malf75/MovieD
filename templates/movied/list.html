@@ -9,6 +9,26 @@
 <hl class="vl"></hl>
 <section class="mid__section">
     <a href="{% url 'index' %}" class="logo__ancora"><img class="logo" src="https://movied-bucket.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png" alt="logo do movied"></a>
+    <div class="header__wheel">
+        <p id="winner">NONE</p>
+    </div>
+    </div>
+    <div class="wheel">
+        <canvas class="canvas" id="canvas" width="500" height="500">
+        </canvas>
+        <div class="center-circle" onclick="spin()" >
+            <div class="triangle"></div>
+    </div>    
+    </div>
+    <div class="inputArea" onchange="createWheel()">
+        <textarea class="textarea__class">
+        {% for list in user_lists %}
+        {% for filme in list.filmes.all %}
+        {{ filme.Series_Title }}
+        {% endfor %}
+        {% endfor %}
+        </textarea>
+    </div>
     <div class="container5">
         {% for list in user_lists %}
             {% for filme in list.filmes.all %}
@@ -24,4 +44,5 @@
     <hl class="vl2"></hl>
     <section>
     </section>
-    {% endblock %}
+    <script src="{% static 'app/spin.js' %}"></script>
+{% endblock %}
