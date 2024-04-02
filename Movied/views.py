@@ -436,8 +436,9 @@ def save_movie(request, pk):
 def list(request, pk):
     if request.user.is_authenticated and pk == request.user.id:
         user_lists = List.objects.filter(user_id=pk)
+        counter = user_lists.count()
 
-        return render(request, 'movied/list.html', {'user_lists': user_lists})
+        return render(request, 'movied/list.html', {'user_lists': user_lists, 'counter':counter})
     
 def exclude_movie(request, pk):
     if request.user.is_authenticated:
