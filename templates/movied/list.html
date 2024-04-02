@@ -9,8 +9,6 @@
 <hl class="vl"></hl>
 <section class="mid__section">
     <a href="{% url 'index' %}" class="logo__ancora"><img class="logo" src="https://movied-bucket.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png" alt="logo do movied"></a>
-    {% for list in user_lists %}
-    {% if filme in list.filmes.all %}
     <div class="header__wheel">
         <p id="winner">NONE</p>
     </div>
@@ -31,8 +29,6 @@
         {% endfor %}
         </textarea>
     </div>
-    {% endif %}
-    {% endfor %}
     <div class="container5">
         {% for list in user_lists %}
             {% for filme in list.filmes.all %}
