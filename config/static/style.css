@@ -212,6 +212,8 @@ input:checked + .slider:before {
 
 .mid__section{
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .imagem__filme-trend{
@@ -424,6 +426,7 @@ input:checked + .slider:before {
 .logo{
     height: 80px;
     margin: 2em 0 1em 0;
+    align-self: center;
 }
 
 .form{
@@ -750,6 +753,24 @@ input:checked + .slider:before {
     margin: 1em 1em 1em 1em;
 }
 
+.spin__show{
+    padding: 1em;
+    background-color: var(--cor-principal);
+    border: 1px solid var(--cor-secundaria);
+    border-radius: 20px;
+    text-align: center;
+    color: var(--cor-secundaria);
+    cursor: pointer;
+    align-self: center;
+    margin-top: 1em;
+}
+
+.spin__show:hover{
+    background-color: var(--cor-secundaria);
+    color: var(--cor-principal);
+    border-color: var(--cor-principal);
+}
+
 .header__wheel{
     padding: 40px;
     color: #fff;
@@ -764,7 +785,7 @@ input:checked + .slider:before {
 }
 
 .wheel{
-    display: flex;
+    display: none;
     justify-content: center;
     position: relative;
 }
@@ -1366,7 +1387,7 @@ input:checked + .slider:before {
     }
 
     .mid__section{
-        width: fit-content;
+        width: fit-content
     }
 
     .redirect__navbar{

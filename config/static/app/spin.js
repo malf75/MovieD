@@ -1,3 +1,11 @@
+var button = document.getElementById("spin-show")
+var wheel = document.getElementById("wheel")
+
+button.addEventListener('click', ()=>{
+    wheel.style.display = "flex"
+    button.style.display = "none"
+})
+
 function randomColor(){
     r = Math.floor(Math.random() * 255);
     g = Math.floor(Math.random() * 255);
@@ -107,6 +115,7 @@ function draw(){
 let speed = 0
 let maxRotation = randomRange(360* 3, 360 * 6)
 let pause = false
+
 function animate(){
     if(pause){
         return
@@ -135,10 +144,8 @@ function spin(){
     result.style.display = "block"
 
     
-    maxRotation = Math.floor(Math.random() * (3960 - 2160 + 1)) + 2160;
+    maxRotation = Math.floor(Math.random() * 1000) * 4;
     itemDegs = {}
-    console.log("max",maxRotation)
-    console.log(itemDegs);
     pause = false
     window.requestAnimationFrame(animate);
 }

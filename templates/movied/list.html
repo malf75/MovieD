@@ -10,11 +10,12 @@
 <section class="mid__section">
     <a href="{% url 'index' %}" class="logo__ancora"><img class="logo" src="https://movied-bucket.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png" alt="logo do movied"></a>
     {% if counter > 2 %}
+    <button class="spin__show" id="spin-show">Random</button>
     <div class="header__wheel">
         <p id="winner">NONE</p>
     </div>
     </div>
-    <div class="wheel">
+    <div class="wheel" id="wheel">
         <canvas class="canvas" id="canvas" width="500" height="500">
         </canvas>
         <div class="center-circle" onclick="spin()" >
