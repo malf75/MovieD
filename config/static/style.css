@@ -212,6 +212,10 @@ input:checked + .slider:before {
 
 .mid__section{
     text-align: center;
+}
+
+.mid__section-list{
+    text-align: center;
     display: flex;
     flex-direction: column;
 }
