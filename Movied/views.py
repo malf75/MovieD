@@ -45,6 +45,7 @@ def index(request):
                 user = request.user
                 titulo = Filmes.objects.values_list('Series_Title', flat=True)
                 pattern = r'\b(?!:.)\s*(?:' + '|'.join(map(re.escape, titulo)) + r')\b(?!:.)\s*'
+                print(pattern)
                 pattern_pink = r'Pink Floyd: The Wall'
                 pink_match = re.search(pattern_pink, postagem_text)
 
@@ -75,7 +76,6 @@ def index(request):
                             )
                             postagem.filmes.set([filme])
                             postagem.save()
-                            print(postagem)
                     else:
                         filme = None
                         postagem = Postagem.objects.create(

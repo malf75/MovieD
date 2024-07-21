@@ -106,9 +106,6 @@ class Suggestions(models.Model):
     def __str__(self):
         return (f"{self.Series_Title}"
             )
-    
-
-
 
 def create_profile(sender, instance, created, **kwargs):
     if created:

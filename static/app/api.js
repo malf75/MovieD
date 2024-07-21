@@ -9,10 +9,6 @@ fetch(`/api/filme_info/`)
     selectFilmes.style.display = "none"
     selectFilmes.title = "opções de filme"
 
-    const option = document.createElement('option')
-    option.value = ''
-    selectFilmes.appendChild(option)
-
     filmes.filmes.forEach((filme) => {
       const option = document.createElement('option')
       option.value = filme.Series_Title

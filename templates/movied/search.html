@@ -1,6 +1,7 @@
 {% extends 'movied/base.html' %}
 {% load static %}
 {% block content %}
+{% load custom_filters %}
 <section>
     <div>
         <button id="btn"><i class="fa-solid fa-moon"></i></button>
@@ -49,7 +50,7 @@
                 {% endif %}
               <li class="filme__item">
                 <p class="filme__item-p">Name: {{filme.Series_Title}}</p>
-                <p class="filme__item-p">Overview: {{filme.Overview}}</p>
+                <p class="filme__item-p">Overview: {{filme.Overview | truncate_chars:180}}...</p>
                 <p class="filme__item-p">Runtime: {{filme.Runtime}}</p>
                 <p class="filme__item-p">IMDB Rating: {{filme.Rating}}</p>
                 <p class="filme__item-p">Released: {{filme.Released_Year}}</p>

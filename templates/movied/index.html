@@ -1,6 +1,9 @@
 {% extends 'movied/base.html' %}
 {% load static %}
+{% load custom_filters %}
 {% block content %}
+
+
     <section class="redirect">
         <div>
             <button id="btn"><i class="fa-solid fa-moon"></i></button>
@@ -38,7 +41,6 @@
             <a href="{% url 'notifications' request.user.id %}" class="redirect__navbar__botao"><span class="fa fa-bell"></span>Notifications</a>
             <a href="{% url 'list' request.user.id %}" class="redirect__navbar__botao"><span class="fa fa-clipboard"></span>Lists</a>
             <a href="{% url 'suggestions' %}" class="redirect__navbar__botao"><span class="fa fa-lightbulb"></span>Suggestions</a>
-            <a href="#" class="redirect__navbar__botao"><span class="fa fa-gear"></span>Preferences</a>
         </div> 
     </section>
     <div class="vl"></div>
@@ -56,7 +58,7 @@
         <img class="logo" src="https://movied-bucket.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png" alt="logo do movied">
         <form class="form" action="{% url 'index' %}" method="POST">
         {% csrf_token %}
-            <textarea class="posta" name="postagemt" id="postagem" placeholder="Comment your review" maxlength="400" style="height: auto;" required></textarea>
+            <textarea class="posta" name="postagemt" id="postagem" placeholder="Comment your review" maxlength="400" required></textarea>
             <input type="submit" value="Post" name="postagem" class="form__submit">
         </form>
         <div class="tabela">
@@ -97,9 +99,9 @@
                 {% endif %}
               <li class="filme__item">
                 <p class="filme__item-p">Name: {{filme_item.Series_Title}}</p>
-                <p class="filme__item-p">Overview: {{filme_item.Overview}}</p>
+                <p class="filme__item-p">Overview: {{filme_item.Overview | truncate_chars:180}}...</p>
                 <p class="filme__item-p">Runtime: {{filme_item.Runtime}}</p>
-                <p class="filme__item-p">IMDB Rating: {{filme_item.Rating}}</p>
+                <p class="filme__item-p">Rating: {{filme_item.Rating}}</p>
                 <p class="filme__item-p">Released: {{filme_item.Released_Year}}</p>
                 <p class="filme__item-p">Genre: {{filme_item.Genre}}</p>
               </li>

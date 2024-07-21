@@ -2,10 +2,15 @@ document.addEventListener('DOMContentLoaded', function() {
   let post = document.getElementById('postagem');
   
   if (post) {
-      post.addEventListener('click', () => {
-          post.style.height = '350px';
+    post.addEventListener('focus', () => {
+        post.style.height = '350px';
+        post.style.borderColor = '#2196F3'
+    });
+    post.addEventListener('blur', () => {
+      post.style.height = '100px';
+      post.style.borderColor = '';
       });
-  }
+}
 });
 
 $('.filme__like').on('click', function(event) {

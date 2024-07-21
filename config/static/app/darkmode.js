@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    let body = document.body;
     let butao = document.querySelector('#btn');
     let logo = document.querySelector('.logo');
     let logosign = document.querySelector('.logo__signup');
@@ -13,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
             logosign.src = 'https://movied-bucket.s3.amazonaws.com/static/media/Design_sem_nome-removebg-preview.png';
         }
         localStorage.setItem('dark-mode', 'inactive');
+        body.classList.remove('preload');
     }
   
     const enableDarkMode = () => {
@@ -25,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             logosign.src = 'https://movied-bucket.s3.amazonaws.com/static/media/Design_sem_nome__1_-removebg-preview.png';
         }
         localStorage.setItem('dark-mode', 'active');
+        body.classList.remove('preload');
     }
   
     let darkMode = localStorage.getItem('dark-mode');
