@@ -35,8 +35,6 @@ def index(request):
         else:
             top_posts = Filmes.objects.annotate(total_citations=Count('postagens')).filter(total_citations__gt=0).order_by('-total_citations')[:3]
 
-        
-    
         if request.method == "POST":
 
             if 'postagem' in request.POST:
