@@ -10,10 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-from pathlib import Path, os
+from pathlib import Path 
+import os
 from dotenv import load_dotenv
-from decouple import config
-import django_on_heroku
 
 load_dotenv()
 
@@ -23,6 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
@@ -38,8 +38,6 @@ AWS_HEADERS = {
     'Access-Control-Allow-Origin': '*'
 }
 AWS_S3_REGION_NAME = 'us-east-1'
-
-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -58,17 +56,21 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Movied.apps.MoviedConfig',
     'storages',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'config.urls'
 
@@ -154,8 +156,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-django_on_heroku.settings(locals())
 
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False

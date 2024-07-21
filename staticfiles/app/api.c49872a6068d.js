@@ -1,17 +1,13 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
 const selectFilmes = document.createElement('select')
 
-fetch(`/api/filme_info/`)
+await fetch(`/api/filme_info/`)
   .then(res => res.json())
   .then((filmes) => {
 
     selectFilmes.style.position = "absolute"
     selectFilmes.style.display = "none"
     selectFilmes.title = "opções de filme"
-
-    const option = document.createElement('option')
-    option.value = ''
-    selectFilmes.appendChild(option)
 
     filmes.filmes.forEach((filme) => {
       const option = document.createElement('option')

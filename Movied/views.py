@@ -75,6 +75,7 @@ def index(request):
                             )
                             postagem.filmes.set([filme])
                             postagem.save()
+                            print(postagem)
                     else:
                         filme = None
                         postagem = Postagem.objects.create(
